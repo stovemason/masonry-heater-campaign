@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<!-- saved from url=(0118)file:///D:/111-aaa/compariosn/11/files%20(11)/send/html%20sendable/1%20-%20Emissions_Comparison_Dashboard_Desktop.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solid Fuel Emission Standards — Cross-Jurisdictional Comparison</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#FAFAF7;font-family:'Segoe UI','Helvetica Neue',system-ui,sans-serif;color:#1A1A2E;line-height:1.6;-webkit-font-smoothing:antialiased}
+::selection{background:#FFF8E1}
+
+/* HEADER */
+.hdr{background:linear-gradient(135deg,#1A1A2E 0%,#2D2D4A 100%);padding:28px 24px 20px;color:#fff}
+.hdr-inner{max-width:960px;margin:0 auto}
+.hdr-tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8B7355;margin-bottom:6px}
+.hdr h1{font-family:Georgia,'Times New Roman',serif;font-size:26px;font-weight:700;margin:0;line-height:1.2}
+.hdr p{font-size:14px;color:#B0B0C0;margin:6px 0 0}
+
+/* NAV */
+.nav-wrap{background:#fff;border-bottom:1px solid #E5E2DD;position:sticky;top:0;z-index:10}
+.nav{max-width:960px;margin:0 auto;display:flex;gap:0;overflow-x:auto;padding:0 8px}
+.nav button{font-family:'Segoe UI','Helvetica Neue',sans-serif;font-size:12px;font-weight:500;padding:12px 14px;border:none;border-bottom:3px solid transparent;background:none;cursor:pointer;color:#6B7280;white-space:nowrap;transition:all 0.2s}
+.nav button:hover{color:#1A1A2E}
+.nav button.active{font-weight:700;color:#1A1A2E;border-bottom-color:#8B7355}
+
+/* CONTENT */
+.main{max-width:960px;margin:0 auto;padding:24px 16px}
+.tab{display:none}.tab.active{display:block}
+
+/* SECTION TITLE */
+.stitle{margin-bottom:24px;border-left:4px solid #8B7355;padding-left:16px}
+.stitle h2{font-family:Georgia,'Times New Roman',serif;font-size:22px;font-weight:700;color:#1A1A2E;margin:0;line-height:1.3}
+.stitle p{font-size:13px;color:#6B7280;margin:4px 0 0;line-height:1.4}
+
+/* CARD */
+.card{background:#fff;border:1px solid #E5E2DD;border-radius:8px;padding:24px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
+
+/* INSIGHT BOX */
+.insight{background:#FFF8E1;border-left:3px solid #8B7355;padding:10px 14px;margin-top:12px;border-radius:0 4px 4px 0;font-size:13px;color:#5D4037;line-height:1.5}
+
+/* TABLES */
+table{width:100%;border-collapse:collapse;font-size:12px}
+.tbl-head{background:#2D2D4A;color:#fff}
+.tbl-head th{padding:10px 8px;text-align:left;font-weight:600;font-size:11px;letter-spacing:0.3px}
+tbody tr{border-bottom:1px solid #E5E2DD}
+tbody tr:nth-child(even){background:#F5F3F0}
+td{padding:8px}
+.mono{font-family:'Courier New',monospace;font-weight:700;font-size:11px}
+.total-pm{color:#2E7D32;font-weight:600}
+.filt-only{color:#E65100;font-weight:600}
+
+/* BAR CHART */
+.chart{margin:16px 0}
+.bar-row{display:flex;align-items:center;margin-bottom:8px}
+.bar-lbl{width:140px;font-size:11px;font-weight:600;text-align:right;padding-right:12px;flex-shrink:0;line-height:1.3}
+.bar-track{flex:1;height:32px;background:#F0F0EC;border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px 0 0 4px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-size:11px;font-weight:700;color:#fff;min-width:40px;transition:width 0.8s ease}
+
+/* GRID LAYOUTS */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px}
+.flex3{display:flex;gap:12px;margin-top:12px}
+.flex3>div{flex:1}
+
+/* ACCENT CARDS */
+.accent-card{background:#F5F3F0;border-radius:6px;padding:14px;border-top:3px solid #8B7355}
+.accent-card .ac-title{font-weight:700;font-size:13px;margin-bottom:6px}
+.accent-card .ac-body{font-size:12px;line-height:1.5}
+
+/* DENOMINATOR CARDS */
+.denom-mha{background:#FFF3E0;border-radius:6px;padding:16px}
+.denom-epa{background:#E3F2FD;border-radius:6px;padding:16px}
+.denom-title{font-weight:700;font-size:13px;margin-bottom:8px}
+.denom-big{font-family:Georgia,serif;font-size:36px;font-weight:700;line-height:1}
+.denom-big span{font-size:14px;font-weight:400}
+.denom-detail{font-size:12px;margin-top:4px}
+.denom-result{font-size:14px;font-weight:700;margin-top:8px}
+
+/* STAT CARDS (Lopez distribution) */
+.stat-card{background:#F5F3F0;border-radius:6px;padding:14px;border-top:3px solid #8B7355;text-align:center}
+.stat-big{font-family:Georgia,serif;font-size:28px;font-weight:700}
+.stat-label{font-size:12px;font-weight:600;margin-top:4px}
+.stat-desc{font-size:11px;color:#6B7280;margin-top:4px}
+
+/* BURN RATE CARDS */
+.burn-good{background:#E8F5E9;padding:14px;border-radius:6px;text-align:center}
+.burn-bad{background:#FFEBEE;padding:14px;border-radius:6px;text-align:center}
+.burn-val{font-family:Georgia,serif;font-size:28px;font-weight:700}
+.burn-note{font-size:11px}
+
+/* COVERAGE MATRIX */
+.cov-yes{color:#2E7D32;font-weight:700;font-size:16px;text-align:center}
+.cov-half{color:#E65100;font-weight:700;font-size:16px;text-align:center}
+.cov-no{color:#B71C1C;font-weight:700;font-size:16px;text-align:center}
+.cov-legend{display:flex;gap:16px;margin-top:8px;font-size:11px;color:#6B7280}
+
+/* STEP BADGES */
+.step-card{background:#F5F3F0;border-radius:6px;padding:14px;position:relative}
+.step-badge{position:absolute;top:-8px;left:12px;background:#8B2500;color:#fff;width:24px;height:24px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.step-title{font-weight:700;font-size:13px;margin-top:12px;margin-bottom:6px}
+.step-body{font-size:12px;line-height:1.5}
+
+/* HEATER TYPE CARDS */
+.ht-card{background:#FFF3E0;padding:12px;border-radius:6px;font-size:12px}
+
+/* UNIT CARDS */
+.unit-card{background:#F5F3F0;border-radius:6px;padding:16px;border-left:4px solid #8B7355}
+.unit-name{font-family:'Courier New',monospace;font-size:18px;font-weight:700}
+.unit-who{font-size:11px;color:#6B7280;margin-top:2px}
+.unit-desc{font-size:12px;line-height:1.5;margin-top:8px}
+
+/* GREEN BOX */
+.green-box{background:#E8F5E9;padding:16px;border-radius:6px;margin:12px 0;border-left:4px solid #2E7D32;font-size:13px;line-height:1.6}
+
+/* FOOTER */
+.footer{background:#2D2D4A;padding:16px 24px;text-align:center;margin-top:24px}
+.footer p{font-size:11px;color:#8888AA}
+
+/* CARD HEADING */
+.card h3{font-family:Georgia,'Times New Roman',serif;font-size:16px;margin-top:0;margin-bottom:8px;color:#1A1A2E}
+.card p{font-size:13px;line-height:1.6;margin-bottom:8px}
+</style>
+</head>
+<body>
+<div style="background:#1A1A2E;padding:8px 16px;text-align:left;position:sticky;top:0;z-index:999">
+<a href="index.html" style="color:#8B7355;font-family:Georgia,serif;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:6px">
+<span style="font-size:16px">←</span> Back to Campaign Home</a></div>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-inner">
+    <div class="hdr-tag">Cross-Jurisdictional Comparison</div>
+    <h1>Solid Fuel Emission Standards</h1>
+    <p>United States · Austria / EU · United Kingdom — Testing regimes, limits, and the masonry heater question</p>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <div class="nav" id="nav"></div>
+</div>
+
+<!-- CONTENT -->
+<div class="main" id="content"></div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>Sources: MHA-Net.org · HeatKit.com/Lopez Labs · OMNI Environmental (Tiegs, 1994) · EPA NSPS (2015, 2020) · EN 15544 · EU 2015/1185 · Ricardo RDE002 / ED16697100 (2022) · CCHRC Alaska (2009) · Defra 2026 Consultation · 850grad.org</p>
+</div>
+
+<script>
+var C={us:"#1B4965",austria:"#8B2500",uk:"#1B5E20",ukProp:"#66BB6A",mha:"#E65100",gold:"#8B7355",sage:"#E8F5E9",warmGrey:"#F5F3F0",muted:"#6B7280",text:"#1A1A2E"};
+
+var TABS=[
+  {id:"overview",label:"Regime Overview"},
+  {id:"pm",label:"PM Limits"},
+  {id:"factor",label:"Emission Factors"},
+  {id:"efficiency",label:"Efficiency"},
+  {id:"heat",label:"Per Heat Output"},
+  {id:"coverage",label:"Pollutant Coverage"},
+  {id:"austria",label:"Austrian Detail"},
+  {id:"units",label:"Units Problem"}
+];
+
+function bar(lbl,val,max,color){
+  var pct=Math.min(val/max*100,100);
+  return '<div class="bar-row"><div class="bar-lbl">'+lbl+'</div><div class="bar-track"><div class="bar-fill" style="width:'+pct+'%;background:'+color+'">'+val+'</div></div></div>';
+}
+
+function switchTab(id){
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active')});
+  document.querySelectorAll('.nav button').forEach(function(b){b.classList.remove('active')});
+  var el=document.getElementById('tab-'+id);if(el)el.classList.add('active');
+  var btn=document.querySelector('.nav button[data-id="'+id+'"]');if(btn)btn.classList.add('active');
+  setTimeout(function(){document.querySelectorAll('#tab-'+id+' .bar-fill').forEach(function(b){var w=b.style.width;b.style.width='0';requestAnimationFrame(function(){b.style.width=w})})},50);
+}
+
+// BUILD NAV
+var nav=document.getElementById('nav');
+TABS.forEach(function(t){
+  var b=document.createElement('button');
+  b.dataset.id=t.id;b.textContent=t.label;
+  b.onclick=function(){switchTab(t.id)};
+  nav.appendChild(b);
+});
+
+// BUILD TABS
+var content=document.getElementById('content');
+
+// ═══════════════════════════════════════════════════════════
+// TAB: OVERVIEW
+// ═══════════════════════════════════════════════════════════
+var overview='<div class="stitle"><h2>Seven Regimes, Four Units, Zero Comparability</h2><p>How each jurisdiction tests, what it measures, and what units it reports</p></div>';
+overview+='<div class="card"><div style="overflow-x:auto"><table><thead><tr class="tbl-head"><th>Regime</th><th>Unit</th><th>Pollutants Measured</th><th>PM Method</th><th>Test Cycle</th><th>Captures Condensable?</th></tr></thead><tbody>';
+var regimes=[
+  {r:"US EPA NSPS",u:"g/hr",m:"PM only",met:"Dilution tunnel (M5G)",cy:"Hot-to-hot",cap:"Total PM",rc:C.us,cc:"total-pm"},
+  {r:"EU Ecodesign",u:"mg/m³ @13% O₂",m:"PM, CO, NOx, OGC",met:"Heated filter OR dilution tunnel",cy:"Steady-state",cap:"Filterable only (heated filter)",rc:"#1565C0",cc:"filt-only"},
+  {r:"Austria EN 15544",u:"mg/MJ",m:"Dust, CO, NOx, OGC",met:"Calculation (verified)",cy:"N/A (calculated)",cap:"N/A",rc:C.austria,cc:""},
+  {r:"MHA Lopez Labs",u:"g/kg",m:"PM, CO, efficiency",met:"Condar portable dilution tunnel",cy:"Cold-to-cold",cap:"Total PM (filt + cond)",rc:C.mha,cc:"total-pm"},
+  {r:"UK BS 3841 (Fuel)",u:"g/hr",m:"Smoke mass only",met:"Dilution tunnel / ESP",cy:"Standard fire",cap:"Total PM",rc:C.uk,cc:"total-pm"},
+  {r:"UK Defra Exempt",u:"g/hr",m:"Smoke (CO recorded)",met:"Dilution tunnel / ESP",cy:"Rated + min output",cap:"Total PM",rc:C.uk,cc:"total-pm"},
+  {r:"UK Ecodesign (retained)",u:"mg/m³ @13% O₂",m:"PM, CO, NOx, OGC",met:"Heated filter",cy:"Steady-state",cap:"Filterable only",rc:C.uk,cc:"filt-only"},
+];
+regimes.forEach(function(row,i){
+  var bg=i%2===0?'#fff':'#F5F3F0';
+  overview+='<tr style="background:'+bg+'"><td style="font-weight:600;color:'+row.rc+'">'+row.r+'</td><td class="mono">'+row.u+'</td><td>'+row.m+'</td><td>'+row.met+'</td><td>'+row.cy+'</td><td class="'+(row.cc||'')+'">'+row.cap+'</td></tr>';
+});
+overview+='</tbody></table></div>';
+overview+='<div class="insight">Four different units (g/hr, mg/m³, mg/MJ, g/kg) across seven regimes. No published conversion mechanism exists for residential solid fuel appliances. The UK alone uses three incompatible regimes simultaneously.</div></div>';
+
+overview+='<div class="card"><h3>Key Observation: Test Cycle Matters as Much as the Limit</h3><div class="grid3">';
+[{t:"US EPA M28A",d:"Hot-to-hot: starts from hot coal bed. Misses ~33% of total emissions (Shelton, 1986). Designed to rank stoves, not estimate real-world performance.",c:C.us},
+{t:"EU Ecodesign",d:"Steady-state: tested after ignition/preheat period. Misses startup and cooldown phases. Results 'never reached during real-life operation' (IEA Bioenergy).",c:"#1565C0"},
+{t:"MHA Lopez Labs",d:"Cold-to-cold: captures entire burn cycle including startup (highest PM phase). Most realistic test cycle of any residential wood combustion protocol.",c:C.mha}
+].forEach(function(item){
+  overview+='<div class="accent-card" style="border-top-color:'+item.c+'"><div class="ac-title" style="color:'+item.c+'">'+item.t+'</div><div class="ac-body">'+item.d+'</div></div>';
+});
+overview+='</div></div>';
+
+// ═══════════════════════════════════════════════════════════
+// TAB: PM LIMITS
+// ═══════════════════════════════════════════════════════════
+var pm='<div class="stitle"><h2>PM Emission Limits: The Misleading Picture of g/hr</h2><p>All values in g/hr where possible — note the masonry heater paradox</p></div>';
+pm+='<div class="card"><div class="chart">';
+pm+=bar("EPA Woodstove (Step 2 crib)",2.0,12.5,C.us);
+pm+=bar("EPA Woodstove (Step 2 cord)",2.5,12.5,C.us);
+pm+=bar("UK Defra Exempt (current)",5.0,12.5,C.uk);
+pm+=bar("UK Proposed (2026)",1.0,12.5,C.ukProp);
+pm+=bar("UK Authorised Fuel (BS 3841)",5.0,12.5,"#2E7D32");
+pm+=bar("Masonry Heater (during burn)",11.8,12.5,C.mha);
+pm+=bar("Masonry Heater (24hr average)",0.98,12.5,"#FF8F00");
+pm+='</div>';
+pm+='<div class="insight">The masonry heater produces 11.8 g/hr during its 2-hour burn — but only 0.98 g/hr averaged over 24 hours. An EPA-certified woodstove rated at 2.6 g/hr actually tested at 14.5 g/hr at low (damped) burn rate in Alaska. The g/hr number is misleading for both appliance types.</div></div>';
+
+pm+='<div class="card"><h3>The Denominator Problem</h3><div class="grid2">';
+pm+='<div class="denom-mha"><div class="denom-title" style="color:'+C.mha+'">Masonry Heater</div><div class="denom-big" style="color:'+C.mha+'">11.8 <span>g/hr</span></div><div class="denom-detail" style="color:'+C.muted+'">BUT: burns for only 2 hours / day</div><div class="denom-detail" style="margin-top:8px">Daily PM: 11.8 × 2 = <strong>23.6 g total</strong></div><div class="denom-detail">Heat delivered: <strong>521,610 BTU</strong></div><div class="denom-result" style="color:'+C.mha+'">= 16.4 g / 100,000 BTU</div></div>';
+pm+='<div class="denom-epa"><div class="denom-title" style="color:'+C.us+'">EPA Certified Woodstove</div><div class="denom-big" style="color:'+C.us+'">2.6 <span>g/hr (rated)</span></div><div class="denom-detail" style="color:'+C.muted+'">BUT: runs 10–15 hrs/day; 14.5 g/hr at low burn</div><div class="denom-detail" style="margin-top:8px">Daily PM (weekend): ~95 g total</div><div class="denom-detail">Heat delivered: <strong>247,747 BTU</strong></div><div class="denom-result" style="color:'+C.us+'">= 34.7 g / 100,000 BTU</div></div>';
+pm+='</div>';
+pm+='<div class="insight">Per unit of heat delivered, the EPA-certified woodstove emits 2.1× more PM than the masonry heater. Yet the masonry heater\'s g/hr number looks 4.5× worse. This is the measurement unit trap that Paul Tiegs identified in 1994.</div></div>';
+
+// ═══════════════════════════════════════════════════════════
+// TAB: EMISSION FACTORS
+// ═══════════════════════════════════════════════════════════
+var factor='<div class="stitle"><h2>Emission Factors: PM Per Kilogram of Fuel Burned</h2><p>g/kg — the unit MHA and OMNI argue is most scientifically honest</p></div>';
+factor+='<div class="card"><div class="chart">';
+factor+=bar("MHA Normal (Lopez Labs)",0.97,8.5,C.mha);
+factor+=bar("MHA All Tests (103 runs)",1.27,8.5,"#E65100");
+factor+=bar("MHA Worst Case (cold+wet)",4.61,8.5,"#BF360C");
+factor+=bar("MHA Best Run (dry oak, warm)",0.45,8.5,"#FF8F00");
+factor+=bar("EN 15544 Guaranteed",1.5,8.5,C.austria);
+factor+=bar("OMNI Swedish Heater (ASTM)",2.35,8.5,C.us);
+factor+=bar("EPA Stove (low burn)",8.0,8.5,"#37474F");
+factor+=bar("EPA Stove (high burn)",3.0,8.5,"#546E7A");
+factor+='</div>';
+factor+='<div class="insight">Under normal conditions, masonry heaters produce 0.97 g/kg — comparable to pellet stoves. An EPA woodstove at low (damped) burn rate produces 8.0 g/kg — over 8× worse. Even at high burn rate, the stove is 3× higher. The g/kg metric reveals what g/hr conceals.</div></div>';
+
+factor+='<div class="card"><h3>Lopez Labs 185-Test Distribution</h3><div class="flex3">';
+[{l:"< 1.0 g/kg",p:"~50%",c:"#2E7D32",d:"Green zone — pellet stove range"},
+{l:"1.0–2.0 g/kg",p:"~35%",c:C.gold,d:"Normal variation zone"},
+{l:"> 2.0 g/kg",p:"~15%",c:"#BF360C",d:"Adverse conditions (cold starts, wet fuel, bottom ignition)"}
+].forEach(function(item){
+  factor+='<div class="stat-card" style="border-top-color:'+item.c+'"><div class="stat-big" style="color:'+item.c+'">'+item.p+'</div><div class="stat-label">'+item.l+'</div><div class="stat-desc">'+item.d+'</div></div>';
+});
+factor+='</div></div>';
+
+// ═══════════════════════════════════════════════════════════
+// TAB: EFFICIENCY
+// ═══════════════════════════════════════════════════════════
+var efficiency='<div class="stitle"><h2>Efficiency Requirements Across Jurisdictions</h2><p>Thermal efficiency determines how much PM per unit of heat — and who requires it</p></div>';
+efficiency+='<div class="card"><div class="chart">';
+efficiency+=bar("UK Open Fireplace",15,82,"#B71C1C");
+efficiency+=bar("UK Defra Exempt Stove",50,82,C.uk);
+efficiency+=bar("EU Ecodesign Minimum",65,82,"#1565C0");
+efficiency+=bar("MHA Typical (Lopez Labs)",74,82,C.mha);
+efficiency+=bar("EN 15544 Guaranteed",78,82,C.austria);
+efficiency+=bar("EU Ecodesign Pellet Stove",79,82,"#0D47A1");
+efficiency+=bar("MHA Best Single Run",79,82,"#FF6F00");
+efficiency+='</div>';
+efficiency+='<div class="insight">The UK has NO efficiency requirement for authorised fuels OR Defra exempt appliances. An open fireplace at 15% efficiency delivers the same heat as an Ecodesign stove at 65% — but burns 4.3× more fuel and produces 4.3× more combustion products. Austria guarantees ≥78% efficiency through EN 15544.</div></div>';
+
+// ═══════════════════════════════════════════════════════════
+// TAB: PER HEAT OUTPUT
+// ═══════════════════════════════════════════════════════════
+var heat='<div class="stitle"><h2>PM Emissions Per Unit of Heat Delivered</h2><p>Alaska Cold Climate Housing Research Center, 2009 — realistic daily use patterns</p></div>';
+heat+='<div class="card"><div class="chart">';
+heat+=bar("Masonry Heater",16.4,50,C.mha);
+heat+=bar("EPA Stove (weekend)",34.7,50,C.us);
+heat+=bar("EPA Stove (weekday)",48.5,50,"#37474F");
+heat+=bar("Pellet Stove (barley)",40.6,50,"#5D4037");
+heat+=bar("Pellet Stove (pellets)",12.7,50,"#4E342E");
+heat+='</div>';
+heat+='<div class="insight">This is the metric Paul Tiegs called \'the most useful unit\' in 1994: emissions per unit of useful heat. The masonry heater (16.4 g/100k BTU) outperforms the EPA-certified woodstove (34.7–48.5) by 2–3×. Only the pellet stove on pellets (12.7) is cleaner. No jurisdiction uses this unit for regulation.</div></div>';
+
+heat+='<div class="card"><h3>The EPA Stove\'s Hidden Emission Profile</h3><p>The EPA-certified woodstove in the Alaska study was <strong>rated at 2.6 g/hr</strong>. In the field, it tested at:</p><div class="grid2" style="margin-top:8px">';
+heat+='<div class="burn-good"><div style="font-size:11px;color:'+C.muted+'">High burn rate</div><div class="burn-val" style="color:#2E7D32">2.3 g/hr</div><div class="burn-note">Close to rated performance</div></div>';
+heat+='<div class="burn-bad"><div style="font-size:11px;color:'+C.muted+'">Low (damped) burn rate</div><div class="burn-val" style="color:#B71C1C">14.5 g/hr</div><div class="burn-note">5.6× the rated value — smoldering</div></div>';
+heat+='</div>';
+heat+='<div class="insight">The EPA hot-to-hot test protocol never captures low-burn-rate emissions because it doesn\'t test damped-down operation. Jay Shelton (1986) found that cold startup alone equals 50% of a full hot-to-hot test\'s emissions — meaning the test misses ~33% of real-world PM.</div></div>';
+
+// ═══════════════════════════════════════════════════════════
+// TAB: POLLUTANT COVERAGE
+// ═══════════════════════════════════════════════════════════
+var coverage='<div class="stitle"><h2>Multi-Pollutant Coverage by Regime</h2><p>1 = measured and has a pass/fail limit · 0.5 = measured/recorded but no limit · 0 = not measured</p></div>';
+
+// Coverage matrix table
+coverage+='<div class="card"><h3>Detailed Coverage Matrix</h3><div style="overflow-x:auto;margin-top:12px"><table><thead><tr class="tbl-head"><th style="text-align:left">Pollutant</th><th style="text-align:center">US EPA</th><th style="text-align:center">Austria</th><th style="text-align:center">UK Fuel</th><th style="text-align:center">UK Exempt</th><th style="text-align:center">UK Ecodesign</th></tr></thead><tbody>';
+var covData=[
+  {p:"PM / Dust",vals:[1,1,1,1,1]},
+  {p:"CO",vals:[0.5,1,0,0.5,1]},
+  {p:"NOx",vals:[0,1,0,0,1]},
+  {p:"OGC / VOC",vals:[0,1,0,0.5,1]},
+  {p:"Efficiency",vals:[0.5,1,0,0,1]},
+  {p:"SO₂",vals:[0,0,0.5,0,0]},
+];
+covData.forEach(function(row){
+  coverage+='<tr><td style="font-weight:600">'+row.p+'</td>';
+  row.vals.forEach(function(v){
+    var cls=v===1?'cov-yes':v===0.5?'cov-half':'cov-no';
+    var sym=v===1?'✓':v===0.5?'◐':'✗';
+    coverage+='<td class="'+cls+'">'+sym+'</td>';
+  });
+  coverage+='</tr>';
+});
+coverage+='</tbody></table>';
+coverage+='<div class="cov-legend"><span><strong style="color:#2E7D32">✓</strong> = Measured with pass/fail limit</span><span><strong style="color:#E65100">◐</strong> = Recorded / partial</span><span><strong style="color:#B71C1C">✗</strong> = Not measured</span></div></div>';
+coverage+='<div class="insight">Austria\'s EN 15544 guarantees five parameters through calculation. UK Ecodesign (retained EU law) covers four pollutants. The US EPA covers PM only. UK BS 3841 fuel authorisation — the regime that governs what may be burned in every Smoke Control Area in Britain — covers one parameter: visible smoke mass. It is the least comprehensive regime in this comparison.</div></div>';
+
+// ═══════════════════════════════════════════════════════════
+// TAB: AUSTRIAN DETAIL
+// ═══════════════════════════════════════════════════════════
+var austria='<div class="stitle"><h2>The Austrian Model: What It Guarantees</h2><p>EN 15544 calculation method — how Austria certifies site-built masonry heaters without lab testing</p></div>';
+
+austria+='<div class="card"><div style="overflow-x:auto"><table><thead><tr style="background:'+C.austria+';color:#fff"><th style="padding:10px 12px;text-align:left">Parameter</th><th style="padding:10px 12px;text-align:left">EN 15544 Limit</th><th style="padding:10px 12px;text-align:left">Approx. in g/kg</th><th style="padding:10px 12px;text-align:left">Notes</th></tr></thead><tbody>';
+var aDetail=[
+  {p:"Dust (PM)",l:"≤60 mg/MJ",a:"~1.0–1.5 g/kg",n:"Guaranteed by calculation"},
+  {p:"CO",l:"≤1,000 mg/MJ",a:"~15–20 g/kg",n:"Guaranteed by calculation"},
+  {p:"NO₂",l:"≤150 mg/MJ",a:"—",n:"Guaranteed by calculation"},
+  {p:"OGC",l:"≤80 mg/MJ",a:"—",n:"Guaranteed by calculation"},
+  {p:"Efficiency",l:"≥78% LHV",a:"—",n:"Based on stack temperature"},
+  {p:"Burn duration",l:"~77 min (fixed)",a:"—",n:"= fuel load / (load × 0.78)"},
+  {p:"Air factor",l:"2.95 (avg)",a:"—",n:"Excess air ratio"},
+  {p:"Firebox temp",l:"700°C (avg)",a:"—",n:"Design parameter"},
+];
+aDetail.forEach(function(row,i){
+  austria+='<tr style="background:'+(i%2===0?'#fff':'#F5F3F0')+';border-bottom:1px solid #E5E2DD"><td style="padding:8px 12px;font-weight:600">'+row.p+'</td><td style="padding:8px 12px;font-family:Courier New,monospace;font-weight:700;color:'+C.austria+'">'+row.l+'</td><td style="padding:8px 12px;color:#6B7280">'+row.a+'</td><td style="padding:8px 12px;font-size:12px">'+row.n+'</td></tr>';
+});
+austria+='</tbody></table></div></div>';
+
+austria+='<div class="card"><h3>How the Calculator Certifies Without Lab Testing</h3><div class="grid3">';
+[{s:"1",t:"Design Input",d:"Mason enters firebox dimensions, fuel load, channel layout, chimney height. Software calculates all pressure losses and buoyancy forces."},
+{s:"2",t:"Verification",d:"At rated output, rising forces (buoyancy) must equal ±5% all resistances (friction + direction changes). If balanced → heater will function correctly."},
+{s:"3",t:"Certification",d:"Software output submitted to accredited lab (e.g. TU Vienna). Lab verifies calculation against empirical test data. If validated → heater certified without physical test."}
+].forEach(function(item){
+  austria+='<div class="step-card"><div class="step-badge">'+item.s+'</div><div class="step-title">'+item.t+'</div><div class="step-body">'+item.d+'</div></div>';
+});
+austria+='</div>';
+austria+='<div class="insight">This system has been operational in Austria since at least 2001 (TU Vienna verification report). It allows every site-built Kachelofen to be individually certified for five emission parameters without the €10,000+ cost of physical lab testing. Neither the UK nor the US has an equivalent system for any residential solid fuel appliance.</div></div>';
+
+austria+='<div class="card"><h3>MHA\'s North American Adaptation: Current Status</h3><div style="font-size:13px;line-height:1.7"><p><strong>The problem:</strong> EN 15544 only works for Austrian-style channelled heaters. It does not work for contraflow heaters (most common in North America) or bell heaters, because:</p><div class="grid2" style="margin:12px 0">';
+austria+='<div class="ht-card"><strong>Contraflow:</strong> Parallel downdrafting ducts with high aspect ratio. EN 15544 doesn\'t account for buoyancy effects in large downdrafting channels at low speeds.</div>';
+austria+='<div class="ht-card"><strong>Bell heaters:</strong> Low-speed, low-friction systems where gas speed is theoretically "too slow" under EN 15544 parameters. In reality, they transfer heat extremely well.</div>';
+austria+='</div><p><strong>MHA\'s solution:</strong> Add a buoyancy coefficient (Bernoulli\'s principle) to pressure terms. Work ongoing with Damien Lehmann (AFPMA) since 2014. Latest update: January 2023. <strong>Not yet submitted to EPA for formal vetting.</strong></p></div></div>';
+
+// ═══════════════════════════════════════════════════════════
+// TAB: UNITS PROBLEM
+// ═══════════════════════════════════════════════════════════
+var units='<div class="stitle"><h2>The Universal Measurement Unit Trap</h2><p>The same problem identified in the UK dossier exists globally — and has been documented since 1994</p></div>';
+
+units+='<div class="card"><h3>Four Units, Four Stories</h3><div class="grid2" style="gap:14px">';
+[{u:"g/hr",who:"US EPA + UK",what:"Emission rate",prob:"Penalises fast, clean burns. Favours small stoves over large ones regardless of pollution per heat unit. Masks smoldering emissions at low burn rates. EPA's own expert (Tiegs, 1994) called it 'a quirk of history.'",c:C.us},
+{u:"mg/m³ @13% O₂",who:"EU Ecodesign",what:"Concentration in flue gas",prob:"Not convertible to g/hr without knowing volumetric flow rate. EU's heated filter method misses condensable fraction — understating PM2.5 (Ricardo RDE002, 2022). Steady-state test misses startup emissions.",c:"#1565C0"},
+{u:"g/kg",who:"MHA / Lopez Labs",what:"Emission factor per fuel mass",prob:"Best indicator of combustion quality. Not affected by burn rate. But doesn't account for efficiency — a very efficient heater delivers more heat per kg, so g/kg slightly understates its advantage. Not used by any regulator.",c:C.mha},
+{u:"mg/MJ",who:"Austria EN 15544",what:"Emission per energy output",prob:"The theoretically best unit — accounts for both combustion quality AND efficiency. But depends on accurate efficiency measurement. Only Austria uses it for regulation.",c:C.austria}
+].forEach(function(item){
+  units+='<div class="unit-card" style="border-left-color:'+item.c+'"><div class="unit-name" style="color:'+item.c+'">'+item.u+'</div><div class="unit-who">Used by: '+item.who+' · Measures: '+item.what+'</div><div class="unit-desc">'+item.prob+'</div></div>';
+});
+units+='</div>';
+units+='<div class="insight">The ideal unit (mg/MJ or g/MJ — emissions per unit of useful heat) has been known since at least 1986 (NSPS negotiations) and was explicitly recommended by Paul Tiegs in 1994. It was rejected because efficiency measurement was considered too costly. Three decades later, no major jurisdiction has adopted it.</div></div>';
+
+units+='<div class="card"><h3>What This Means for the UK Dossier</h3><div style="font-size:13px;line-height:1.7"><p>The measurement units problem identified in the UK dossier (g/hr for BS 3841 and Defra exempt vs mg/m³ for Ecodesign) is not a UK-specific gap. It is a global regulatory failure with a 30-year documented history.</p><p>The strongest version of the argument is now:</p>';
+units+='<div class="green-box"><strong>Austria solved this problem.</strong> EN 15544 uses mg/MJ — which normalises for both combustion quality and efficiency. It guarantees five pollutant parameters through calculation, without expensive lab testing. The UK has three incompatible regimes, measures fewer pollutants than Austria, has no efficiency requirement for fuels or exempt appliances, and has not explored calculation-based certification. The technology and the methodology exist. The regulatory will does not.</div></div></div>';
+
+// INJECT ALL TABS
+var tabsHTML={overview:overview,pm:pm,factor:factor,efficiency:efficiency,heat:heat,coverage:coverage,austria:austria,units:units};
+TABS.forEach(function(t){
+  var div=document.createElement('div');
+  div.className='tab';div.id='tab-'+t.id;
+  div.innerHTML=tabsHTML[t.id];
+  content.appendChild(div);
+});
+
+switchTab('overview');
+</script>
+
+
+</body></html>
