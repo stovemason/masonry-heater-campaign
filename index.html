@@ -1,187 +1,738 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UK Masonry Heater Campaign — BS EN 15544 Recognition</title>
-<meta name="description" content="The cleanest wood heating technology exists — and the UK ignores it. Evidence base for BS EN 15544 masonry heater recognition.">
+<title>Dossier de preuves — UK Masonry Heater Recognition</title>
+<meta name="description" content="Dossier technique soumis à Defra: Pour l’harmonisation des émissions britanniques de combustibles solides avec les cadres européens avancés des poêles de masse.">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#FAFAF7;font-family:'Segoe UI','Helvetica Neue',system-ui,sans-serif;color:#1A1A2E;line-height:1.6;-webkit-font-smoothing:antialiased}
-::selection{background:#FFF8E1}
-h1,h2,h3{font-family:Georgia,'Times New Roman',serif;font-weight:700;line-height:1.25}
-a{color:#8B7355;text-decoration:none;transition:color .2s}
-a:hover{color:#1A1A2E}
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600;700&display=swap');
 
-/* Header */
-.hdr{background:linear-gradient(135deg,#1A1A2E 0%,#2D2D4A 100%);padding:28px 24px 22px;color:#fff}
-.hdr-inner{max-width:900px;margin:0 auto}
-.hdr-tag{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:#8B7355;margin-bottom:6px}
-.hdr h1{font-family:Georgia,serif;font-size:clamp(22px,3.5vw,32px);color:#fff;margin:0;line-height:1.2}
-.hdr p{font-size:13px;color:#B0B0C0;margin:6px 0 0}
+:root {
+  --navy: #1B2A4A;
+  --navy-deep: #0F1A2E;
+  --navy-light: #243756;
+  --gold: #C4A35A;
+  --gold-light: #D4B876;
+  --gold-muted: rgba(196,163,90,0.12);
+  --cream: #FAFAF7;
+  --warm-white: #F5F3F0;
+  --text: #2C2C2C;
+  --text-mid: #4A4A4A;
+  --text-light: #6B6B6B;
+  --border: #E0DDD8;
+  --red-accent: #8B3A3A;
+  --green-accent: #3A6B4A;
+}
 
-/* Hero */
-.hero{text-align:center;padding:48px 24px 40px;max-width:740px;margin:0 auto}
-.hero h2{font-size:clamp(24px,4vw,38px);margin-bottom:16px;line-height:1.15}
-.hero h2 em{font-style:normal;color:#8B7355}
-.hero-lead{font-size:clamp(14px,1.6vw,17px);color:#4A5568;line-height:1.7;max-width:620px;margin:0 auto 32px}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cream);
+  color: var(--text);
+  font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  font-size: 16px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--gold-muted); }
 
-/* Stats */
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:700px;margin:0 auto 40px;padding:0 24px}
-.stat{background:#F5F3F0;border-radius:8px;padding:20px 14px;text-align:center;border-top:3px solid #8B7355}
-.stat-big{font-family:Georgia,serif;font-size:clamp(26px,3.5vw,36px);font-weight:700;line-height:1}
-.stat-label{font-size:11px;font-weight:700;margin-top:5px;text-transform:uppercase;letter-spacing:.5px;color:#4A5568}
-.stat-desc{font-size:11px;color:#6B7280;margin-top:5px;line-height:1.4}
+/* ═══ HOME BAR ═══ */
+.home-bar {
+  background: var(--navy-deep);
+  padding: 8px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.home-bar a {
+  color: var(--gold);
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color .2s;
+}
+.home-bar a:hover { color: var(--gold-light); }
+.home-bar-actions { display: flex; gap: 10px; align-items: center; }
+.btn-sm {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: all .2s;
+}
+.btn-download { background: var(--gold); color: var(--navy-deep); }
+.btn-download:hover { background: var(--gold-light); }
+.btn-respond { background: var(--red-accent); color: #fff; }
+.btn-respond:hover { background: #A04545; }
 
-/* Evidence grid */
-.section{max-width:900px;margin:0 auto;padding:0 24px 40px}
-.section-hd{border-left:4px solid #8B7355;padding-left:16px;margin-bottom:24px}
-.section-hd h2{margin-bottom:4px}
-.section-hd p{font-size:13px;color:#6B7280;margin:0}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
-.card{background:#fff;border:1px solid #E5E2DD;border-radius:8px;padding:22px;border-top:3px solid #8B7355;transition:transform .2s,box-shadow .2s;text-decoration:none;color:inherit;display:block}
-.card:hover{transform:translateY(-3px);box-shadow:0 6px 16px rgba(0,0,0,.08);color:inherit}
-.card-tag{display:inline-block;font-size:9px;letter-spacing:1.2px;text-transform:uppercase;color:#8B7355;margin-bottom:8px;font-weight:700}
-.card h3{font-size:15px;margin-bottom:6px}
-.card p{font-size:12px;color:#6B7280;margin:0;line-height:1.5}
+/* ═══ COVER ═══ */
+.cover {
+  background: linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 40%, var(--navy-light) 100%);
+  color: #fff;
+  padding: 80px 40px 60px;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(196,163,90,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cover::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.cover-inner { max-width: 780px; margin: 0 auto; position: relative; }
+.cover-tag {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.cover h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 24px;
+  letter-spacing: -0.5px;
+}
+.cover-meta {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  line-height: 2;
+}
+.cover-meta strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+.cover-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--gold);
+  margin: 24px 0;
+}
 
-/* Download card */
-.download{background:#fff;border:1px solid #E5E2DD;border-radius:8px;padding:24px;border-left:4px solid #C4483E;margin-bottom:24px}
-.download h3{font-size:16px;margin-bottom:6px}
-.download p{font-size:13px;color:#4A5568;margin-bottom:12px}
-.btn{display:inline-block;padding:10px 22px;background:#C4483E;color:#fff;border-radius:6px;font-weight:700;font-size:13px;text-decoration:none;transition:background .2s}
-.btn:hover{background:#A33A32;color:#fff}
+/* ═══ DEFRA ACTION BOX ═══ */
+.defra-box {
+  background: linear-gradient(135deg, #8B3A3A 0%, #6B2A2A 100%);
+  color: #fff;
+  padding: 28px 32px;
+  max-width: 780px;
+  margin: -20px auto 0;
+  position: relative;
+  z-index: 2;
+  border-radius: 0 0 8px 8px;
+  border-top: 3px solid var(--gold);
+}
+.defra-box h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+.defra-box p {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 14px;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+.defra-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.btn-defra {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 5px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: all .2s;
+}
+.btn-defra-primary { background: #fff; color: var(--red-accent); }
+.btn-defra-primary:hover { background: var(--gold-light); color: var(--navy-deep); }
+.btn-defra-secondary { background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+.btn-defra-secondary:hover { background: rgba(255,255,255,0.25); }
+.btn-defra-download { background: var(--gold); color: var(--navy-deep); }
+.btn-defra-download:hover { background: var(--gold-light); }
 
-/* Info box */
-.info{background:#FFF8E1;border-left:3px solid #8B7355;padding:12px 16px;border-radius:0 6px 6px 0;font-size:13px;color:#5D4037;line-height:1.6;margin-bottom:24px}
+/* ═══ TABLE OF CONTENTS ═══ */
+.toc {
+  max-width: 780px;
+  margin: 48px auto 40px;
+  padding: 0 24px;
+}
+.toc h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: var(--navy);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--gold);
+  display: inline-block;
+}
+.toc-list { list-style: none; }
+.toc-list li {
+  border-bottom: 1px solid var(--border);
+  transition: background .2s;
+}
+.toc-list li:hover { background: var(--warm-white); }
+.toc-list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 10px 12px;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 15px;
+  font-family: 'Source Sans 3', sans-serif;
+}
+.toc-list a:hover { color: var(--gold); }
+.toc-num { font-weight: 700; color: var(--navy); margin-right: 12px; min-width: 32px; }
+.toc-title { flex: 1; }
+.toc-arrow { color: var(--gold); font-size: 12px; }
 
-/* International */
-.orgs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:16px}
-.org{background:#F5F3F0;border-radius:6px;padding:14px;font-size:13px}
-.org strong{display:block;margin-bottom:3px}
-.org a{font-size:12px}
+/* ═══ CONTENT ═══ */
+.content {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+}
+
+/* Part headers */
+.part-header {
+  margin: 56px 0 28px;
+  padding: 24px 0 16px;
+  border-top: 3px solid var(--navy);
+  position: relative;
+}
+.part-header::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background: var(--gold);
+}
+.part-num {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.part-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 3vw, 30px);
+  color: var(--navy);
+  line-height: 1.2;
+}
+
+/* Subheadings */
+.content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px;
+  color: var(--navy);
+  margin: 32px 0 12px;
+  padding-left: 16px;
+  border-left: 3px solid var(--gold);
+}
+
+/* Body text */
+.content p { margin-bottom: 16px; }
+.content strong { color: var(--navy); }
+
+/* Labelled paragraphs */
+.label-para {
+  padding-left: 20px;
+  border-left: 2px solid var(--border);
+  margin: 12px 0 16px;
+}
+.label-para .label {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  color: var(--navy);
+  text-transform: uppercase;
+}
+
+/* Key figures */
+.key-figure {
+  background: var(--warm-white);
+  border-left: 4px solid var(--gold);
+  padding: 16px 20px;
+  margin: 20px 0;
+  border-radius: 0 6px 6px 0;
+}
+.key-figure p { margin: 0; font-size: 15px; }
+
+/* Recommendations */
+.recommendation {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--navy);
+  padding: 20px 24px;
+  margin: 16px 0;
+  border-radius: 0 6px 6px 0;
+}
+.recommendation .rec-num {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.recommendation h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.recommendation p { font-size: 15px; margin: 0; }
+
+/* EN limits box */
+.limits-box {
+  background: var(--navy);
+  color: #fff;
+  padding: 20px 24px;
+  border-radius: 6px;
+  margin: 20px 0;
+  font-family: 'Source Sans 3', sans-serif;
+}
+.limits-box h4 { color: var(--gold); font-size: 14px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+.limits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+.limit-item {
+  text-align: center;
+  padding: 10px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 4px;
+}
+.limit-val { font-size: 22px; font-weight: 700; color: var(--gold-light); }
+.limit-label { font-size: 11px; color: rgba(255,255,255,0.65); margin-top: 2px; }
+
+/* Heater type cards */
+.heater-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 20px 0;
+}
+.heater-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  border-top: 3px solid var(--navy-light);
+}
+.heater-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.heater-card p { font-size: 14px; line-height: 1.6; color: var(--text-mid); margin-bottom: 6px; }
+.heater-card .origin {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* Conclusion */
+.conclusion {
+  background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 100%);
+  color: #fff;
+  padding: 40px 32px;
+  border-radius: 8px;
+  margin: 48px 0 32px;
+}
+.conclusion h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.conclusion p { color: rgba(255,255,255,0.85); margin-bottom: 12px; }
+.conclusion .gold-line { width: 60px; height: 2px; background: var(--gold); margin: 20px 0; }
 
 /* Footer */
-.footer{background:#2D2D4A;padding:24px;text-align:center;margin-top:40px}
-.footer p{font-size:11px;color:#8888AA}
-.footer a{color:#8B7355}
+.doc-footer {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 24px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.doc-footer p {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 12px;
+  color: var(--text-light);
+}
 
-@media(max-width:600px){
-  .stats{grid-template-columns:1fr}
-  .grid{grid-template-columns:1fr}
-  .orgs{grid-template-columns:1fr}
+/* Responsive */
+@media (max-width: 600px) {
+  .cover { padding: 48px 20px 40px; }
+  .defra-box { padding: 20px; margin: 0 12px; border-radius: 0 0 6px 6px; }
+  .heater-grid { grid-template-columns: 1fr; }
+  .limits-grid { grid-template-columns: 1fr 1fr; }
+  .home-bar { padding: 8px 12px; }
+  .defra-actions { flex-direction: column; }
+}
+
+/* Print styles */
+@media print {
+  .home-bar, .defra-box, .toc { display: none; }
+  .cover { padding: 40px 0; }
+  body { font-size: 12pt; }
 }
 </style>
 </head>
 <body>
 
-<div style="background:#1A1A2E;padding:6px 24px;display:flex;justify-content:flex-end;gap:12px;font-size:12px"><a href="index.html" style="color:#8B7355;font-family:Segoe UI,sans-serif;text-decoration:none">🇬🇧 EN</a><a href="fr/index.html" style="color:#6B7280;font-family:Segoe UI,sans-serif;text-decoration:none">🇫🇷 FR</a><a href="de/index.html" style="color:#6B7280;font-family:Segoe UI,sans-serif;text-decoration:none">🇩🇪 DE</a></div>
-<div class="hdr"><div class="hdr-inner">
-  <div class="hdr-tag">Campaign for Recognition</div>
-  <h1>UK Masonry Heaters</h1>
-  <p>BS EN 15544:2023 — a British Standard with zero regulatory function</p>
-</div></div>
-
-<section class="hero">
-  <h2>The cleanest wood heating technology exists — <em>and the UK ignores it</em></h2>
-  <p class="hero-lead">Masonry heaters control 5 pollutants, achieve ≥80% efficiency, and produce a fraction of the emissions allowed under current UK limits. France inscribed the same standard in their Tax Code. Austria uses it for legal compliance. The UK gives it zero regulatory function.</p>
-</section>
-
-<section class="stats">
-  <div class="stat">
-    <div class="stat-big" style="color:#2E7D32">6–10×</div>
-    <div class="stat-label">Cleaner</div>
-    <div class="stat-desc">PM emissions 6–10× below Defra's current SCA limits</div>
-  </div>
-  <div class="stat">
-    <div class="stat-big" style="color:#8B7355">5</div>
-    <div class="stat-label">Pollutants</div>
-    <div class="stat-desc">PM, CO, NOx, OGC + efficiency. UK measures 1.</div>
-  </div>
-  <div class="stat">
-    <div class="stat-big" style="color:#1565C0">9</div>
-    <div class="stat-label">Regimes</div>
-    <div class="stat-desc">Every comparator regulates more strictly than the UK</div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="download">
-    <div class="card-tag" style="color:#C4483E">Defra consultation response</div>
-    <h3>Technical Evidence Dossier</h3>
-    <p>10-part executive dossier submitted to Defra — covering the regulatory anomaly, heater typology, scientific evidence, legal framework (BS EN 15544 & 15250), the French AFPMA model, and the 850° Grundofen position.</p>
-    <a href="Technical_Evidence_Dossier_Online.html" class="btn" style="background:#1B2A4A;margin-right:8px">Read online →</a>
-    <a href="Technical_Evidence_Dossier_Defra_2026.docx" class="btn" style="background:#6B6B6B">↓ Download .docx</a>
-    <div style="margin-top:14px;padding-top:12px;border-top:1px solid #E0DDD8;font-size:12px;color:#6B6B6B">
-      <strong style="color:#C4483E">Defra Consultation closes 19 March 2026</strong> —
-      <a href="https://consult.defra.gov.uk/domestic-burning/consultation-on-solid-fuel-burning/consultation/subpage.2026-01-13.3633732225/" target="_blank" style="color:#C4483E;font-weight:700">Respond here →</a> ·
-      <a href="https://consult.defra.gov.uk/domestic-burning/consultation-on-solid-fuel-burning/" target="_blank">Read consultation</a> ·
-      <a href="https://consult.defra.gov.uk/domestic-burning/consultation-on-solid-fuel-burning/user_uploads/consultation-on-solid-fuel-burning-january-2026.pdf" target="_blank">Download Defra PDF</a>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="section-hd">
-    <h2>The Evidence</h2>
-    <p>Interactive dashboards — click any card to explore</p>
-  </div>
-
-  <div class="info"><strong>How these work:</strong> Each page is a self-contained interactive dashboard with clickable tabs. They cover emissions data, regime comparisons, the Austrian certification model, and the full history of the masonry heater movement.</div>
-
-  <div class="grid">
-    <a href="Cross-Jurisdictional_Emissions_5-Regime_Comparison.html" class="card">
-      <div class="card-tag">Core comparison</div>
-      <h3>5-Regime Emissions</h3>
-      <p>Austria, EU, US, UK + masonry heater data. PM normalised to g/hr at 5kW.</p>
-    </a>
-    <a href="Cross-Jurisdictional_Emissions_9-Regime_Comparison.html" class="card">
-      <div class="card-tag">Expanded comparison</div>
-      <h3>9-Regime Emissions</h3>
-      <p>Full Nordic expansion — Norway, Denmark, Sweden, Finland + 5 core regimes.</p>
-    </a>
-    <a href="Solid_Fuel_Emission_Standards_Comparison.html" class="card">
-      <div class="card-tag">Standards analysis</div>
-      <h3>Solid Fuel Standards</h3>
-      <p>US vs UK vs EU vs Austria — unit-by-unit regulatory comparison.</p>
-    </a>
-    <a href="Masonry_Heater_Emissions_Research_Compendium.html" class="card">
-      <div class="card-tag">Complete dataset</div>
-      <h3>Research Compendium</h3>
-      <p>Lopez Labs (185+ test runs), Finnish VTT, OMNI, EPA — the full empirical record.</p>
-    </a>
-    <a href="Masonry_Heater_Movement_Interactive_Timeline.html" class="card">
-      <div class="card-tag">Interactive timeline</div>
-      <h3>The Movement</h3>
-      <p>40+ years across Austria, US, France, Nordic countries, and the UK.</p>
-    </a>
-    <a href="Vision_UK_Masonry_Heater_Recognition_Strategy.html" class="card">
-      <div class="card-tag">Campaign strategy</div>
-      <h3>Vision & Strategy</h3>
-      <p>The French AFPMA model, UK 5-year roadmap, calculator software, campaign plan.</p>
-    </a>
-  </div>
-</section>
-
-<section class="section">
-  <div class="section-hd">
-    <h2>International Partners</h2>
-    <p>The organisations behind the global masonry heater movement</p>
-  </div>
-  <div class="orgs">
-    <div class="org"><strong>🇦🇹 KOV</strong>Austrian Kachelofen Association<br><a href="https://kachelofenverband.at/en/" target="_blank">kachelofenverband.at</a></div>
-    <div class="org"><strong>🇫🇷 AFPMA</strong>French Masonry Heater Association<br><a href="https://www.afpma.pro/" target="_blank">afpma.pro</a></div>
-    <div class="org"><strong>🇺🇸 MHA</strong>Masonry Heater Association<br><a href="https://www.mha-net.org/" target="_blank">mha-net.org</a></div>
-    <div class="org"><strong>🇩🇪 850° Grundofen e.V.</strong>German artisanal Grundofen<br><a href="https://www.850grad.org/" target="_blank">850grad.org</a></div>
-    <div class="org"><strong>🇪🇺 VEUKO</strong>European federation (19 countries)<br><a href="https://www.veuko.com/en/members" target="_blank">veuko.com</a></div>
-    <div class="org"><strong>🇨🇿 Cech Kamnářů</strong>Czech Guild of Stove Builders<br><a href="https://cechkamnaru.cz/" target="_blank">cechkamnaru.cz</a></div>
-  </div>
-</section>
-
-<div class="footer">
-  <p>Campaign by <a href="https://www.stovemason.com" target="_blank">StoveMason — Masonry Heater Builders Ltd</a></p>
-  <p style="margin-top:6px">Sources: AFPMA.pro · MHA-Net.org · Lopez Labs · KachelofenVerband.at · VEUKO · 850grad.org · EN 15544:2023 · Defra 2026 Consultation</p>
+<!-- HOME BAR -->
+<div class="home-bar">
+  <a href="../fr/index.html"><span style="font-size:16px">←</span> Retour à l’accueil</a>
+  <div class="home-bar-actions">
+    <a href="../Technical_Evidence_Dossier_Defra_2026.docx" class="btn-sm btn-download">↓ Télécharger .docx</a>
+    <a href="https://consult.defra.gov.uk/domestic-burning/consultation-on-solid-fuel-burning/consultation/subpage.2026-01-13.3633732225/" target="_blank" class="btn-sm btn-respond">Répondre à Defra →</a>
+  <span style="margin-left:auto;display:flex;gap:8px"><a href="../Technical_Evidence_Dossier_Online.html" style="color:#6B7280;font-size:12px">🇬🇧 EN</a><a href="../de/Technical_Evidence_Dossier_Online.html" style="color:#6B7280;font-size:12px">🇩🇪 DE</a></span></div>
 </div>
 
-</body>
-</html>
+<!-- COVER -->
+<header class="cover">
+  <div class="cover-inner">
+    <div class="cover-tag">Dossier de preuves et évaluation politique</div>
+    <h1>Pour l’harmonisation des émissions britanniques de combustibles solides avec les cadres européens avancés des poêles de masse</h1>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <strong>Soumis à :</strong> Department for Environment, Food and Rural Affairs (Defra)<br>
+      <strong>CC :</strong> Administrations décentralisées:<br> Scottish Government — <a href="/cdn-cgi/l/email-protection#97f2f9e1fee5f8f9faf2f9e3b9e7e5f8e3f2f4e3fef8f9b9e3f2f6fad7f0f8e1b9e4f4f8e3" style="color:var(--gold-light)"><span class="__cf_email__" data-cfemail="284d465e415a4746454d465c06585a475c4d4b5c414746065c4d4945684f475e065b4b475c">[email&#160;protected]</span></a><br> Welsh Government / NRW — <a href="/cdn-cgi/l/email-protection#7e1f170c0f0b1f12170a073e101f0a0b0c1f120c1b0d110b0c1d1b0d091f121b0d50191108500b15" style="color:var(--gold-light)"><span class="__cf_email__" data-cfemail="b3d2dac1c2c6d2dfdac7caf3ddd2c7c6c1d2dfc1d6c0dcc6c1d0d6c0c4d2dfd6c09dd4dcc59dc6d8">[email&#160;protected]</span></a><br> DAERA (Northern Ireland) — <a href="/cdn-cgi/l/email-protection#3e5a5f5b4c5f10565b524e5257505b7e5a5f5b4c5f13505710595148104b55" style="color:var(--gold-light)"><span class="__cf_email__" data-cfemail="3e5a5f5b4c5f10565b524e5257505b7e5a5f5b4c5f13505710595148104b55">[email&#160;protected]</span></a><br>
+      <strong>Objet :</strong> Réponse statutaire à la consultation sur la réduction des émissions de fumée provenant de la combustion de combustibles solides (clôture le 19 mars 2026)<br>
+      <strong>Date :</strong> 10 mars 2026<br>
+      <strong>Classification :</strong> Preuves techniques / Recommandation politique / Évaluation académique
+    </div>
+  </div>
+</header>
+
+<!-- DEFRA ACTION BOX -->
+<div class="defra-box">
+  <h3>Consultation Defra — Clôture le 19 mars 2026</h3>
+  <p>Ce dossier est une réponse statutaire à la consultation sur la réduction des émissions de fumée. Vous pouvez lire la consultation, télécharger le PDF ou soumettre votre propre réponse ci-dessous.</p>
+  <div class="defra-actions">
+    <a href="https://consult.defra.gov.uk/domestic-burning/consultation-on-solid-fuel-burning/consultation/subpage.2026-01-13.3633732225/" target="_blank" class="btn-defra btn-defra-primary">Répondre à la consultation →</a>
+    <a href="https://consult.defra.gov.uk/domestic-burning/consultation-on-solid-fuel-burning/" target="_blank" class="btn-defra btn-defra-secondary">Lire la consultation</a>
+    <a href="https://consult.defra.gov.uk/domestic-burning/consultation-on-solid-fuel-burning/user_uploads/consultation-on-solid-fuel-burning-january-2026.pdf" target="_blank" class="btn-defra btn-defra-secondary">Télécharger le PDF Defra</a>
+    <a href="../Technical_Evidence_Dossier_Defra_2026.docx" class="btn-defra btn-defra-download">↓ Télécharger ce dossier (.docx)</a>
+  </div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<nav class="toc">
+  <h2>Sommaire</h2>
+  <ol class="toc-list">
+    <li><a href="#part1"><span class="toc-num">1</span><span class="toc-title">Résumé exécutif</span><span class="toc-arrow">→</span></a></li>
+    <li><a href="#part2"><span class="toc-num">2</span><span class="toc-title">The Regulatory Anomaly and the "Measurement Gap"</span><span class="toc-arrow">→</span></a></li>
+    <li><a href="#part3"><span class="toc-num">3</span><span class="toc-title">Typologie des poêles de masse : technologies diverses</span><span class="toc-arrow">→</span></a></li>
+    <li><a href="#part4"><span class="toc-num">4</span><span class="toc-title">Revue des preuves scientifiques</span><span class="toc-arrow">→</span></a></li>
+    <li><a href="#part5"><span class="toc-num">5</span><span class="toc-title">Cadre juridique et normatif (BS EN 15544 &amp; 15250)</span><span class="toc-arrow">→</span></a></li>
+    <li><a href="#part6"><span class="toc-num">6</span><span class="toc-title">Précédents juridictionnels internationaux</span><span class="toc-arrow">→</span></a></li>
+    <li><a href="#part7"><span class="toc-num">7</span><span class="toc-title">The "French Model" — A Roadmap for the UK</span><span class="toc-arrow">→</span></a></li>
+    <li><a href="#part8"><span class="toc-num">8</span><span class="toc-title">Analysis of the "850° Grundofen" Position</span><span class="toc-arrow">→</span></a></li>
+    <li><a href="#part9"><span class="toc-num">9</span><span class="toc-title">Recommandations statutaires pour Defra (2026)</span><span class="toc-arrow">→</span></a></li>
+    <li><a href="#part10"><span class="toc-num">10</span><span class="toc-title">Conclusion</span><span class="toc-arrow">→</span></a></li>
+  </ol>
+</nav>
+
+<!-- MAIN CONTENT -->
+<article class="content">
+
+<!-- PART 1 -->
+<div class="part-header" id="part1">
+  <div class="part-num">Partie 1</div>
+  <h2>Résumé exécutif</h2>
+</div>
+
+<p>The United Kingdom is at a defining crossroads in its domestic air quality strategy. The 2026 Defra Consultation proposes a sweeping reduction in allowable smoke emissions for new solid fuel stoves, dropping the limit from the current 5 g/h to 1 g/h (plus 0.1g per 0.3 kW of output). While this represents a stringent numerical target, an exhaustive review of UK British Standards (BS 3841, BS EN 15250, BS EN 15544), global empirical data (US EPA, Lopez Labs), and European frameworks (Austrian 15a B-VG, German 1. BImSchV) reveals a critical systemic flaw: <strong>the UK relies on an antiquated "mass-rate" methodology that inadvertently outlaws the cleanest biomass heating technology in existence — the high-mass Masonry Heater (MH).</strong></p>
+
+<p>This 10-part dossier provides a rigorous, academically validated comparison of international testing regimes. It demonstrates that not all masonry heaters are identical — ranging from the Swedish Kakelugn to the American Contraflow, the German Grundofen, and the Austrian UmweltPlus bio-combustion firebox. Despite their mechanical differences, all these systems share a common thermal principle: high-temperature batch combustion followed by prolonged, zero-emission radiant heat release.</p>
+
+<div class="key-figure">
+  <p><strong>The evidence proves that applying a continuous-burn metric (grams per hour) to a batch-burn thermal battery is scientifically invalid.</strong> To meet its Net Zero and PM2.5 abatement targets, Defra should consider adopting an energy-normalized metric (mg/MJ) and recognise calculation-based certification (BS EN 15544). This dossier outlines the exact policy roadmap to achieve this, at zero cost to the UK Government.</p>
+</div>
+
+<!-- PART 2 -->
+<div class="part-header" id="part2">
+  <div class="part-num">Partie 2</div>
+  <h2>The Regulatory Anomaly and the "Measurement Gap"</h2>
+</div>
+
+<h3>2.1. The UK Legacy: Mass-Rate Measurement (g/h)</h3>
+
+<p>The UK's regulatory framework for domestic appliances is rooted in the Clean Air Act 1956 and operationalized via BS 3841-1:1994 and BS 3841-2:1994 (Determination of smoke emission rate).</p>
+
+<div class="label-para">
+  <p><span class="label">The Methodology:</span> The standard assesses appliances by measuring the mass of smoke over time (grams per hour) using an electrostatic precipitator or dilution tunnel. The legal threshold for exemption is whether the appliance operates without producing a "substantial quantity of smoke."</p>
+</div>
+
+<div class="label-para">
+  <p><span class="label">The Penalty on Clean Tech:</span> Masonry heaters operate via "batch combustion." A large load of wood (e.g., 15–25 kg) is burned at maximum turbulence and temperature (up to 900°C) over 1.5 to 2 hours to charge a massive masonry thermal core. During this intense burn, the instantaneous g/h rate appears high (e.g., 11.8 g/h). However, the appliance then radiates heat for 12–24 hours with zero further emissions.</p>
+</div>
+
+<div class="key-figure">
+  <p><span class="label">The Reality:</span> Averaged over 24 hours, the MH emits roughly ~0.98 g/h. Conversely, a "Defra-exempt" metal stove that is continuously damped down can emit over 14 g/h in real-world smoldering conditions (Tiegs, 1994; Alaska CCHRC Study, 2009).</p>
+</div>
+
+<h3>2.2. The European Best Practice: Energy-Normalized Units (mg/MJ)</h3>
+
+<p>In stark contrast, the Austrian 15a B-VG standard evaluates emissions relative to energy output (milligrams per megajoule).</p>
+
+<div class="label-para">
+  <p><span class="label">The Benefit:</span> By measuring mg/MJ, the regulation demands both clean combustion and high efficiency. An appliance only passes if it delivers maximum heat with minimum pollution. Under this framework, appliances that deliver greater thermal output per unit of fuel consumed are assessed more favourably.</p>
+</div>
+
+<div class="label-para">
+  <p><span class="label">The German Perspective:</span> The German position paper from <a href="https://www.850grad.org/positionspapier-850-handwerklicher-grundofen-e-v/" target="_blank" style="color:var(--gold)">850° Handwerklicher Grundofen e.V.</a> highlights that standard type-testing (such as the 2nd stage of the 1. BImSchV) is often conducted under "perfect laboratory conditions" which simple metal stoves cannot replicate in homes. Masonry heaters, by virtue of their thermal mass design, operate through a defined batch-burn cycle. This inherent operating characteristic means that the combustion conditions observed during testing are closely replicated in normal domestic use.</p>
+</div>
+
+<!-- PART 3 -->
+<div class="part-header" id="part3">
+  <div class="part-num">Partie 3</div>
+  <h2>Typologie des poêles de masse : technologies diverses</h2>
+</div>
+
+<p>A central error in historical regulation is treating all solid-fuel appliances — and even all masonry heaters — as identical. The technology varies vastly by region, materials, and combustion physics.</p>
+
+<div class="heater-grid">
+  <div class="heater-card">
+    <div class="origin">🇸🇪 Suède</div>
+    <h4>The Kakelugn (5-Run System)</h4>
+    <p>Dates to the 18th century. Uses a vertical five-channel system forcing hot gases up and down through heavy masonry channels. Ornate examples preserved at the Victoria &amp; Albert Museum.</p>
+    <p><strong>UK Defra Precedent:</strong> The Jansen Design stove (Kakkelovnsmakeriet / Camina) holds <a href="https://smokecontrol.defra.gov.uk/appliances/jansen-design-stove-using-the-five-channel-system-554/" target="_blank" style="color:var(--gold)"><strong>Defra Exemption No. 554</strong></a> under the Clean Air Act.</p>
+  </div>
+  <div class="heater-card">
+    <div class="origin">🇺🇸 Amérique du Nord</div>
+    <h4>Contraflow &amp; Bell Systems</h4>
+    <p>Championed by the MHA. Dense refractory firebrick cores clad in soapstone, brick, or stone. Lopez Labs data (185+ test runs) proves a baseline emission factor of <strong>0.97 g/kg</strong> under normal conditions.</p>
+  </div>
+  <div class="heater-card">
+    <div class="origin">🇦🇹 Autriche</div>
+    <h4>UmweltPlus Firebox (Bio-Combustion)</h4>
+    <p>The gold standard. Developed by the KOV. Precisely engineered secondary air geometries maximize turbulence and mixing. Meets the strict Austrian Ecolabel <strong>(UZ37)</strong> requirements.</p>
+  </div>
+  <div class="heater-card">
+    <div class="origin">🇩🇪 Allemagne</div>
+    <h4>Handwerklicher Grundofen</h4>
+    <p>Kachelofen craftsmanship inscribed in the <strong>UNESCO Intangible Cultural Heritage</strong> list (June 2023). 850° e.V. emphasizes that combustion temperatures exceeding 850°C, combined with calculated air-excess ratios, significantly reduce PM and VOC emissions during the burn cycle.</p>
+  </div>
+</div>
+
+<!-- PART 4 -->
+<div class="part-header" id="part4">
+  <div class="part-num">Partie 4</div>
+  <h2>Revue des preuves scientifiques</h2>
+</div>
+
+<h3>4.1. The Ricardo Evidence Review for Defra (2022)</h3>
+
+<div class="label-para">
+  <p><span class="label">Finding:</span> The Ricardo report (Project RDE002) confirmed that the EU Ecodesign "heated filter" method likely understates PM₂.₅ emissions because it fails to capture the "condensable" fraction of smoke (organic gases that cool into soot outside the chimney).</p>
+</div>
+
+<div class="label-para">
+  <p><span class="label">The MH Advantage:</span> UK Dilution Tunnel methods (BS 3841) correctly capture total PM (filterable + condensable). Because artisanal Grundöfen and UmweltPlus fireboxes operate above 850°C, they naturally destroy condensable VOCs within the firebox, meaning their "Total PM" profile is vastly superior to continuous-burn metal stoves which smolder and release unburnt condensables.</p>
+</div>
+
+<h3>4.2. Test Cycle Integrity</h3>
+
+<div class="label-para">
+  <p><span class="label">Steady-State (EU Ecodesign):</span> Misses startup and cooldown phases, rendering it unrepresentative of real-life operation (DBFZ Report Nr. 3).</p>
+</div>
+<div class="label-para">
+  <p><span class="label">Hot-to-Hot (US EPA M28A):</span> Misses roughly 33% of real-world emissions by testing from an already-hot coal bed (Shelton, 1986).</p>
+</div>
+<div class="label-para">
+  <p><span class="label">Cold-to-Cold (Lopez Labs / MH Testing):</span> Captures the entire cycle, including the highest-emission cold startup phase. Despite this rigorous standard, MHs still average sub-1.0 g/kg emissions.</p>
+</div>
+
+<!-- PART 5 -->
+<div class="part-header" id="part5">
+  <div class="part-num">Partie 5</div>
+  <h2>Cadre juridique et normatif</h2>
+</div>
+
+<p>The UK does not need to draft new standards; the required technical frameworks have already been adopted by the British Standards Institution (BSI).</p>
+
+<h3>5.1. BS EN 15250:2007 — Slow Heat Release Appliances</h3>
+<p>Unlike standard stoves, masonry heaters are legally classified under BS EN 15250. This standard mandates that manufacturers declare the "thermal storage capacity" of the mass. It defines the appliance by its ability to radiate heat long after the fire is extinguished, creating a clear legal distinction from continuous-burn metal stoves.</p>
+
+<h3>5.2. BS EN 15544:2009/2023 — Certification by Calculation</h3>
+<p>BS EN 15544 provides a rigorous mathematical proof for "one-off mortared stoves." If an artisan adheres to the specific dimensioning rules — calculating firebox surface area, flue channel length, and maintaining air intake cross-sections to ensure gas speeds of 2–4 m/s — the appliance is physically proven to achieve:</p>
+
+<div class="limits-box">
+  <h4>Limites de performance garanties EN 15544</h4>
+  <div class="limits-grid">
+    <div class="limit-item"><div class="limit-val">≤60</div><div class="limit-label">Poussières (PM) mg/MJ</div></div>
+    <div class="limit-item"><div class="limit-val">≤1000</div><div class="limit-label">CO mg/MJ</div></div>
+    <div class="limit-item"><div class="limit-val">≤150</div><div class="limit-label">NOx mg/MJ</div></div>
+    <div class="limit-item"><div class="limit-val">≥78%</div><div class="limit-label">Rendement</div></div>
+  </div>
+</div>
+
+<div class="key-figure">
+  <p><span class="label">The Austrian Legal Precedent:</span> Under Austrian 15a B-VG law, this calculation is legally equivalent to physical laboratory type-testing. This zero-cost regulatory pathway prevents artisanal builders from being priced out of the market by £10,000+ lab testing fees for bespoke, site-built heaters.</p>
+</div>
+
+<!-- PART 6 -->
+<div class="part-header" id="part6">
+  <div class="part-num">Partie 6</div>
+  <h2>Précédents juridictionnels internationaux</h2>
+</div>
+<p>A comparative analysis reveals that the UK is a global outlier in its failure to formally accommodate high-mass thermal appliances. Austria, France, Germany, the Nordic countries, and the United States all provide pathways — whether through calculation-based certification, mass-based exemptions, or explicit regulatory categories for slow heat release appliances. The UK has none.</p>
+
+<!-- PART 7 -->
+<div class="part-header" id="part7">
+  <div class="part-num">Partie 7</div>
+  <h2>The "French Model" — A Roadmap for the UK</h2>
+</div>
+
+<p>In 2013, France had zero regulatory recognition for masonry heaters. Today, thanks to the efforts of the AFPMA (Association Française du Poêle Maçonné Artisanal), they install ~1,000 subsidized heaters annually. The UK can rapidly replicate this success:</p>
+
+<div class="recommendation">
+  <div class="rec-num">Étape 1</div>
+  <h4>Establish the UKMHA</h4>
+  <p>Form a UK Masonry Heater Association to serve as the unified professional body interfacing with Defra, BSI, and HETAS.</p>
+</div>
+<div class="recommendation">
+  <div class="rec-num">Étape 2</div>
+  <h4>Recognise BS EN 15544</h4>
+  <p>Defra should consider formally accepting the calculation method as valid evidence for Smoke Control Area exemptions, bypassing the incompatible 1 g/h physical testing requirement for site-built units.</p>
+</div>
+<div class="recommendation">
+  <div class="rec-num">Étape 3</div>
+  <h4>Partner with HETAS</h4>
+  <p>Utilize the existing HETAS infrastructure to create a "Poêlier" (Masonry Heater Builder) certification, mirroring the French CQP.</p>
+</div>
+<div class="recommendation">
+  <div class="rec-num">Étape 4</div>
+  <h4>Deploy FIRECALC</h4>
+  <p>Utilize the advanced calculation software developed by the AFPMA to certify complex contraflow and bell systems to UK building standards.</p>
+</div>
+
+<!-- PART 8 -->
+<div class="part-header" id="part8">
+  <div class="part-num">Partie 8</div>
+  <h2>Analysis of the "850° Grundofen" Position</h2>
+</div>
+
+<p>The German association <a href="https://www.850grad.org/positionspapier-850-handwerklicher-grundofen-e-v/" target="_blank" style="color:var(--gold)">850° Handwerklicher Grundofen e.V.</a> provides a crucial warning for Defra regarding the 2026 Consultation. Their position paper details the danger of the "Eco-label" illusion:</p>
+
+<div class="label-para">
+  <p><span class="label">Lab vs. Reality:</span> Type-testing for standard stoves (like the UK's proposed 1 g/h limit or Germany's 1. BImSchV) is conducted under best-case scenarios with perfectly seasoned wood, exact drafts, and expert operators. In reality, user error (damping down the air supply) causes PM emissions to skyrocket.</p>
+</div>
+
+<div class="key-figure">
+  <p><span class="label">Operating Characteristics:</span> An artisanal masonry heater removes user error. The user cannot "turn down" the air supply to make the fire burn longer. The fire burns at maximum oxygen and maximum turbulence (>850°C), storing the energy passively. Therefore, <strong>the real-world emissions of a masonry heater are vastly lower than the real-world emissions of an Ecodesign stove, even if both pass laboratory tests.</strong></p>
+</div>
+
+<!-- PART 9 -->
+<div class="part-header" id="part9">
+  <div class="part-num">Partie 9</div>
+  <h2>Recommandations statutaires pour Defra (2026)</h2>
+</div>
+
+<p>To meet the UK's Air Quality targets (a 1.08 kilotonne abatement of PM₂.₅ by 2036) while supporting sustainable, low-carbon domestic heating, The following recommendations are submitted for consideration within the 2026 Consultation timeframe:</p>
+
+<div class="recommendation">
+  <div class="rec-num">Recommandation 1</div>
+  <h4>Acknowledge Historic Precedent</h4>
+  <p>Publicly acknowledge that multi-channel, high-mass masonry heaters have already been tested and exempted (Ref: <a href="https://smokecontrol.defra.gov.uk/appliances/jansen-design-stove-using-the-five-channel-system-554/" target="_blank" style="color:var(--gold)">Defra Exemption No. 554</a>, Jansen Design / Camina), proving their viability and cleanliness in UK Smoke Control Areas.</p>
+</div>
+<div class="recommendation">
+  <div class="rec-num">Recommandation 2</div>
+  <h4>Transition to mg/MJ for High-Mass Units</h4>
+  <p>Replace the flawed 1 g/h mass-rate limit with an energy-normalized mg/MJ concentration limit for all high-efficiency, slow heat release appliances (as defined under BS EN 15250).</p>
+</div>
+<div class="recommendation">
+  <div class="rec-num">Recommandation 3</div>
+  <h4>Approve Calculation-Based Certification</h4>
+  <p>Adopt BS EN 15544:2023 as an officially sanctioned calculation method. This provides a zero-cost regulatory pathway for artisanal builders to legally install bespoke, ultra-clean heaters without prohibitive laboratory type-testing.</p>
+</div>
+<div class="recommendation">
+  <div class="rec-num">Recommandation 4</div>
+  <h4>Differentiate Appliance Categories</h4>
+  <p>Explicitly distinguish "Slow Heat Release Appliances" (thermal mass) from "Continuous Release Appliances" (metal stoves) within the Clean Air Act amendments, aligning the UK with Sweden (Boverket), the US (EPA), and the broader European Ecodesign directive.</p>
+</div>
+
+<!-- PART 10 -->
+<div class="part-header" id="part10">
+  <div class="part-num">Partie 10</div>
+  <h2>Conclusion</h2>
+</div>
+
+<div class="conclusion">
+  <h2>La base de preuves est solide et validée internationalement.</h2>
+  <div class="gold-line"></div>
+  <p>Masonry heaters — whether the Swedish Kakelugn, the Austrian UmweltPlus, or the German Grundofen — represent the pinnacle of clean solid-fuel combustion. The UK's current proposal to enforce a 1 g/h limit utilizing 1960s-era testing methodologies (PD 6434 / BS 3841) does not accommodate a proven technology class that could contribute materially to the UK’s domestic air quality objectives.</p>
+  <p>By formally adopting the European Calculation-Based Framework (BS EN 15544), recognising the distinct operational physics of thermal mass (BS EN 15250), and transitioning to energy-normalized metrics (mg/MJ), the UK Government can align itself with global best practices, honour a nationally recognised cultural heritage tradition, and drastically reduce urban PM₂.₅ emissions.</p>
+  <div class="gold-line"></div>
+  <p style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px;margin-top:16px;margin-bottom:0">Coût zéro pour le gouvernement. La norme, le logiciel et le précédent existent déjà.</p>
+</div>
+
+<!-- FINAL CTA -->
+<div style="text-align:center;margin:40px 0 20px">
+  <a href="https://consult.defra.gov.uk/domestic-burning/consultation-on-solid-fuel-burning/consultation/subpage.2026-01-13.3633732225/" target="_blank" class="btn-defra btn-defra-primary" style="font-size:16px;padding:14px 32px;background:var(--red-accent);color:#fff;border-radius:6px">Répondre à la consultation Defra →</a>
+</div>
+<div style="text-align:center;margin-bottom:24px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+  <a href="https://consult.defra.gov.uk/domestic-burning/consultation-on-solid-fuel-burning/" target="_blank" style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:var(--gold)">Lire la consultation</a>
+  <span style="color:var(--border)">·</span>
+  <a href="https://consult.defra.gov.uk/domestic-burning/consultation-on-solid-fuel-burning/user_uploads/consultation-on-solid-fuel-burning-january-2026.pdf" target="_blank" style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:var(--gold)">Télécharger le PDF Defra</a>
+  <span style="color:var(--border)">·</span>
+  <a href="../Technical_Evidence_Dossier_Defra_2026.docx" style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:var(--gold)">Télécharger ce dossier (.docx)</a>
+</div>
+
+</article>
+
+<!-- FOOTER -->
+<footer class="doc-footer">
+  <p>Campagne par <a href="https://www.stovemason.com" target="_blank" style="color:var(--gold)">StoveMason — Masonry Heater Builders Ltd</a></p>
+  <p style="margin-top:6px">Sources: <a href="https://www.en-standard.eu/bs-en-15544-2023/" target="_blank" style="color:var(--gold)">BS EN 15544:2023</a> · <a href="https://www.en-standard.eu/bs-en-15
