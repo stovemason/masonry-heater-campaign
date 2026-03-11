@@ -86,9 +86,6 @@ var TABS=[
   {id:"compare",label:"5-Country Comparison"},
   {id:"french",label:"The French Model"},
   {id:"software",label:"Calculator Software"},
-  {id:"uk",label:"UK Roadmap"},
-  {id:"strategy",label:"Campaign Strategy"},
-  {id:"website",label:"Website Plan"},
 ];
 
 function bar(l,v,mx,c){var p=Math.min(v/mx*100,100);return'<div class="bar-row"><div class="bar-lbl">'+l+'</div><div class="bar-track"><div class="bar-fill" style="width:'+p+'%;background:'+c+'">'+v+'</div></div></div>';}
@@ -167,75 +164,6 @@ tabs.software+='</tbody></table></div>';
 tabs.software+='<div class="insight"><strong>The FIRECALC breakthrough:</strong> The original EN 15544 calculator only worked for Austrian-style channelled heaters. The AFPMA\'s new FIRECALC software, developed by Guillaume Augais building on Damien Lehmann\'s decade of work, extends the calculation methodology beyond Austrian types. This is the first calculator with potential to certify the full range of masonry heater designs — including the contraflow and bell heaters common in North America and emerging in the UK.</div></div>';
 
 tabs.software+='<div class="card"><h3>What This Means for the UK</h3><div class="green-box"><strong>The software already exists.</strong> A UK Masonry Heater Association would not need to develop calculation software from scratch. The AFPMA\'s FIRECALC, combined with the Austrian KOB 3Plus and the EN 13384-1 chimney calculation standard, provides the complete technical toolkit. The UK would need to: (a) validate against UK chimney standards, (b) integrate with HETAS certification processes, and (c) submit to a UK-accredited test laboratory for verification — exactly what Austria did with TU Vienna and France is doing through the Montendre lab.</div></div>';
-
-// ═══ TAB: UK ROADMAP ═══
-tabs.uk='<div class="stitle"><h2>UK Roadmap — A 5-Year Plan</h2><p>Following the French AFPMA model, adapted for UK regulatory landscape</p></div>';
-var phases=[
-  {n:"Phase 1",t:"Organise (2026–2027)",time:"Year 1",items:["Form UK Masonry Heater Association (UKMHA)","Register as professional body with Companies House","Recruit founding members (StoveMason + other builders)","Join VEUKO as UK member nation","Establish formal partnership with AFPMA and MHA","Submit evidence to Defra 2026 consultation","Build website and public awareness campaign","Approach HETAS for preliminary discussions"]},
-  {n:"Phase 2",t:"Document (2027–2028)",time:"Year 2",items:["Commission or lobby for Defra report on masonry heaters (cf. ADEME 2016 report)","Partner with UK university for emissions testing programme","Begin compiling UK-specific masonry heater performance data","Establish relationship with BSI re: BS EN 15544 regulatory application","Develop draft HETAS masonry heater builder certification criteria","Participate in Defra policy working groups","Secure first media coverage — demonstrate masonry heaters to journalists"]},
-  {n:"Phase 3",t:"Certify (2028–2029)",time:"Year 3",items:["Launch HETAS masonry heater builder certification (cf. French CQP)","Adopt/adapt FIRECALC for UK building regulations","Submit BS EN 15544 calculation method to UKAS-accredited lab for validation","Lobby for BS EN 15544 recognition in Defra smoke control framework","Apply for masonry heaters to qualify for ECO/RHI/BUS subsidies","Begin professional training programme (cf. Lycée Felletin model)","Host first UK Masonry Heater Conference"]},
-  {n:"Phase 4",t:"Scale (2029–2031)",time:"Years 4–5",items:["Defra smoke control exemption pathway for EN 15544 masonry heaters","Government subsidy access confirmed (cf. French MaPrimeRénov)","Growing installer base — target 50 certified builders by 2031","Annual conference established","Training programme accredited","UK-specific calculator software validated","Target: 200+ installations per year by 2031"]},
-];
-phases.forEach(function(p,i){
-  var lis=p.items.map(function(item){return'<li>'+item+'</li>'}).join('');
-  tabs.uk+='<div class="phase" style="border-left-color:'+(["#C4483E","#8B7355","#2A9D8F","#1B4965"][i])+'"><div class="phase-num">'+(i+1)+'</div><h4>'+p.n+': '+p.t+'</h4><div class="timeframe">'+p.time+'</div><ul>'+lis+'</ul></div>';
-});
-tabs.uk+='<div class="insight"><strong>France did this in 12 years starting from zero.</strong> The UK has advantages France didn\'t: BS EN 15544 is already a British Standard, HETAS infrastructure already exists, individual builders already operate to EN 15544, and the Defra consultation provides an immediate entry point. A 5-year plan is realistic — France achieved tax code inclusion in 7 years.</div>';
-
-// ═══ TAB: CAMPAIGN STRATEGY ═══
-tabs.strategy='<div class="stitle"><h2>Campaign Strategy — Making It Happen</h2><p>Stakeholder engagement, messaging, and practical steps</p></div>';
-tabs.strategy+='<div class="card"><h3>Target Stakeholders</h3><div class="grid3">';
-var stakeholders=[
-  {t:"Government",items:["Defra (smoke control policy)","BEIS/DESNZ (energy policy)","DLUHC (building regulations)","Treasury (tax incentives)"],c:"#C4483E"},
-  {t:"Industry",items:["HETAS (installer certification)","BSI (standards body)","BSRIA (building services)","SIA (Stove Industry Alliance)"],c:"#8B7355"},
-  {t:"International",items:["AFPMA (France — model & ally)","MHA (US — data & precedent)","KOV (Austria — technical authority)","VEUKO (European network)","850\u00b0 Grundofen e.V. (Germany)","Czech Guild of Stove Builders"],c:"#2A9D8F"},
-];
-stakeholders.forEach(function(s){
-  var lis=s.items.map(function(i){return'<li>'+i+'</li>'}).join('');
-  tabs.strategy+='<div style="background:#F5F3F0;border-radius:6px;padding:16px;border-top:3px solid '+s.c+'"><div style="font-weight:700;font-size:14px;color:'+s.c+';margin-bottom:8px">'+s.t+'</div><ul style="margin:0 0 0 16px;font-size:12px">'+lis+'</ul></div>';
-});
-tabs.strategy+='</div></div>';
-
-tabs.strategy+='<div class="card"><h3>Key Messages</h3>';
-var msgs=[
-  {n:"1",t:"The cleanest wood heating technology exists — and the UK ignores it",d:"Masonry heaters produce 6–10× less PM than Defra\'s current limits, control 5 pollutants, and achieve ≥80% efficiency. The UK measures 1 pollutant with a 1969 test standard."},
-  {n:"2",t:"The standard is already UK law",d:"BS EN 15544:2023 is a current British Standard. It has zero regulatory function. France inscribed the same standard in their tax code. Austria uses it for legal compliance."},
-  {n:"3",t:"France built a thriving industry from nothing in 12 years",d:"The AFPMA model proves it\'s possible. Government recognition, professional certification, subsidies, research lab, custom software — all achieved by artisans organising."},
-  {n:"4",t:"UNESCO-recognised cultural heritage",d:"Traditional Kachelofen craftsmanship: UNESCO Intangible Cultural Heritage (Germany, 2023). The 850\u00b0 Grundofen e.V. position paper shows artisanal masonry heaters eliminate user error \u2014 real-world emissions far below lab-tested metal stoves."},{n:"5",t:"Zero cost to government",d:"The standard exists. The software exists. The testing infrastructure exists. The international precedent exists. All the UK government needs to do is recognise what\'s already there."},
-];
-msgs.forEach(function(m){
-  tabs.strategy+='<div style="border-left:4px solid #8B7355;padding-left:16px;margin-bottom:16px"><div style="font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#8B7355;margin-bottom:4px">'+m.n+'. '+m.t+'</div><p style="font-size:13px;line-height:1.6;margin:0">'+m.d+'</p></div>';
-});
-tabs.strategy+='</div>';
-
-// ═══ TAB: WEBSITE PLAN ═══
-tabs.website='<div class="stitle"><h2>Website Strategy — The Campaign Platform</h2><p>A single website to house the evidence, build the community, and drive the campaign</p></div>';
-tabs.website+='<div class="card"><h3>Proposed Domain: masonry-heaters.org.uk</h3><p>The website serves three audiences: builders (community), government (evidence), and public (education).</p>';
-tabs.website+='<div class="grid3">';
-var pages=[
-  {t:"Home",d:"Hero statement + 3 key stats (6–10× cleaner, 5 pollutants, 11 regimes). Video of masonry heater in operation. CTA: Join the association / Read the evidence.",c:"#C4483E"},
-  {t:"The Evidence",d:"All dashboards hosted here. 11-regime comparison. French case study. Timeline. Downloadable PDF dossier. Summary for Defra consultation response.",c:"#8B7355"},
-  {t:"For Builders",d:"How to join. Certification pathway. Training opportunities. FIRECALC software access. Directory of certified builders. Technical resources.",c:"#2A9D8F"},
-  {t:"For Homeowners",d:"What is a masonry heater? Gallery of UK installations. Find a builder. FAQs. Running costs comparison. Planning permission guide.",c:"#1B4965"},
-  {t:"International",d:"Partners: AFPMA, MHA, KOV, VEUKO, 850\u00b0 Grundofen e.V., Czech Guild. Country profiles. How other nations recognise masonry heaters. Invitation to support UK campaign.",c:"#6B4FA0"},
-  {t:"Campaign",d:"Sign the petition. Write to your MP. Consultation response template. Press pack. Social media toolkit. Newsletter signup.",c:"#C4483E"},
-];
-pages.forEach(function(p){
-  tabs.website+='<div style="background:#F5F3F0;border-radius:6px;padding:16px;border-top:3px solid '+p.c+'"><div style="font-weight:700;font-size:14px;color:'+p.c+';margin-bottom:6px">'+p.t+'</div><div style="font-size:12px;line-height:1.5">'+p.d+'</div></div>';
-});
-tabs.website+='</div></div>';
-
-tabs.website+='<div class="card"><h3>Content to Host</h3><ul style="margin:0 0 0 18px;font-size:13px;line-height:1.8">';
-tabs.website+='<li><strong>All HTML dashboards</strong> — V1 through V6, plus timeline, plus this vision dashboard</li>';
-tabs.website+='<li><strong>Evidence Dossier V7</strong> — downloadable PDF for Defra consultation</li>';
-tabs.website+='<li><strong>MHA Research Compendium</strong> — full Lopez Labs / OMNI / EPA data</li>';
-tabs.website+='<li><strong>French AFPMA case study</strong> — the "from zero to thriving" story</li>';
-tabs.website+='<li><strong>Interactive timeline</strong> — Austria / US / France / UK comparison</li>';
-tabs.website+='<li><strong>Gallery</strong> — UK masonry heater installations (from StoveMason and others)</li>';
-tabs.website+='<li><strong>Technical resources</strong> — EN 15544 summary, FIRECALC access, chimney calculations</li>';
-tabs.website+='</ul></div>';
-
-tabs.website+='<div class="green-box"><strong>Next step:</strong> Register the domain. Build a simple landing page with the headline, the key stat (6–10× cleaner), and a signup form. Launch on the day the Defra consultation closes (19 March 2026) with the evidence dossier as the centrepiece. Build out the full site over the following months as the association takes shape.</div>';
 
 // INJECT TABS
 TABS.forEach(function(t){
