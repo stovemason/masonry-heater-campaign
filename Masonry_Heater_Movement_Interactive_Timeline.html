@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0112)file:///D:/111-aaa/compariosn/11/files%20(11)/send/html%20sendable/Masonry_Heater_Movement_Timeline_Desktop.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="en"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Masonry Heater Movement — Interactive Timeline</title>
 <style>
@@ -45,8 +43,8 @@ body{background:#FAFAF7;font-family:'Segoe UI','Helvetica Neue',system-ui,sans-s
 .timeline{position:relative;padding:20px 0 20px 0}
 
 /* Year markers across top */
-.year-bar{display:flex;justify-content:space-between;padding:0 60px;margin-bottom:8px;position:relative}
-.year-bar::after{content:'';position:absolute;bottom:0;left:60px;right:60px;height:2px;background:#E5E2DD}
+.year-bar{position:relative;padding:0 0;margin-bottom:8px;margin-left:60px;margin-right:0;height:24px}
+.year-bar::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:#E5E2DD}
 .year-mark{font-size:10px;color:#999;font-weight:600;letter-spacing:0.5px;position:relative;padding-bottom:8px}
 .year-mark::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:1px;height:6px;background:#CCC}
 
@@ -100,14 +98,10 @@ body{background:#FAFAF7;font-family:'Segoe UI','Helvetica Neue',system-ui,sans-s
 .footer{background:#2D2D4A;padding:16px 24px;text-align:center;margin-top:32px}
 .footer p{font-size:11px;color:#8888AA}
 
-/* NAV for mobile */
-.nav-mob{display:none;position:relative;z-index:50}
-.nav-btn{width:100%;background:#fff;border:none;border-bottom:1px solid #E5E2DD;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;color:#8B7355;font-size:14px;font-weight:700;cursor:pointer}
-
 @media(max-width:768px){
   .hdr h1{font-size:20px}
   .stats{grid-template-columns:1fr 1fr}
-  .year-bar{padding:0 40px}
+  .year-bar{margin-left:40px}
   .lane-label{width:40px;font-size:8px}
   .stat-card .s-val{font-size:22px}
   .filters{justify-content:center}
@@ -140,11 +134,11 @@ body{background:#FAFAF7;font-family:'Segoe UI','Helvetica Neue',system-ui,sans-s
 
 <!-- FILTERS -->
 <div class="filters">
-  <button class="filter-btn active" data-c="all" onclick="filterCountry(&#39;all&#39;)">All Countries</button>
-  <button class="filter-btn" data-c="at" onclick="filterCountry(&#39;at&#39;)">🇦🇹 Austria</button>
-  <button class="filter-btn" data-c="us" onclick="filterCountry(&#39;us&#39;)">🇺🇸 United States</button>
-  <button class="filter-btn" data-c="fr" onclick="filterCountry(&#39;fr&#39;)">🇫🇷 France</button>
-  <button class="filter-btn" data-c="uk" onclick="filterCountry(&#39;uk&#39;)">🇬🇧 United Kingdom</button>
+  <button class="filter-btn active" data-c="all" onclick="filterCountry('all')">All Countries</button>
+  <button class="filter-btn" data-c="at" onclick="filterCountry('at')">&#x1F1E6;&#x1F1F9; Austria</button>
+  <button class="filter-btn" data-c="us" onclick="filterCountry('us')">&#x1F1FA;&#x1F1F8; United States</button>
+  <button class="filter-btn" data-c="fr" onclick="filterCountry('fr')">&#x1F1EB;&#x1F1F7; France</button>
+  <button class="filter-btn" data-c="uk" onclick="filterCountry('uk')">&#x1F1EC;&#x1F1E7; United Kingdom</button>
 </div>
 
 <!-- LEGEND -->
@@ -152,7 +146,7 @@ body{background:#FAFAF7;font-family:'Segoe UI','Helvetica Neue',system-ui,sans-s
   <div class="legend-item"><div class="legend-dot" style="background:#8B7355"></div> Austria — centuries of Kachelofen tradition</div>
   <div class="legend-item"><div class="legend-dot" style="background:#1B4965"></div> United States — MHA since 1988</div>
   <div class="legend-item"><div class="legend-dot" style="background:#2A9D8F"></div> France — AFPMA since 2013</div>
-  <div class="legend-item"><div class="legend-dot" style="background:#C4483E"></div> United Kingdom — starting point 2026</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#C4483E"></div> United Kingdom — builders without a pathway</div>
 </div>
 
 <!-- STATS -->
@@ -179,28 +173,28 @@ body{background:#FAFAF7;font-family:'Segoe UI','Helvetica Neue',system-ui,sans-s
     <div class="s-country">United Kingdom</div>
     <div class="s-val" style="color:#C4483E">~10</div>
     <div class="s-label">Estimated installations/year</div>
-    <div class="s-sub">No association. No pathway.</div>
+    <div class="s-sub">8+ companies. No association.</div>
   </div>
 </div>
 
 <!-- VISUAL TIMELINE -->
 <div class="timeline" id="timeline">
-  <div class="year-bar" id="yearBar"><span class="year-mark">1985</span><span class="year-mark">1990</span><span class="year-mark">1995</span><span class="year-mark">2000</span><span class="year-mark">2005</span><span class="year-mark">2010</span><span class="year-mark">2015</span><span class="year-mark">2020</span><span class="year-mark">2025</span></div>
-  <div class="lane" data-country="at" style="opacity: 1;">
+  <div class="year-bar" id="yearBar"></div>
+  <div class="lane" data-country="at">
     <div class="lane-label" style="color:#8B7355">AT</div>
-    <div class="lane-track" id="lane-at"><div class="event" style="left: 12.766%;"><div class="event-dot major" style="background: rgb(139, 115, 85);"></div></div><div class="event" style="left: 21.2766%;"><div class="event-dot" style="background: rgb(139, 115, 85);"></div></div><div class="event" style="left: 44.6809%;"><div class="event-dot milestone" style="background: rgb(139, 115, 85);"></div></div><div class="event" style="left: 61.7021%;"><div class="event-dot milestone" style="background: rgb(139, 115, 85);"></div></div><div class="event" style="left: 74.4681%;"><div class="event-dot major" style="background: rgb(139, 115, 85);"></div></div><div class="event" style="left: 89.3617%;"><div class="event-dot" style="background: rgb(139, 115, 85);"></div></div></div>
+    <div class="lane-track" id="lane-at"></div>
   </div>
-  <div class="lane" data-country="us" style="opacity: 1;">
+  <div class="lane" data-country="us">
     <div class="lane-label" style="color:#1B4965">US</div>
-    <div class="lane-track" id="lane-us"><div class="event" style="left: 17.0213%;"><div class="event-dot milestone" style="background: rgb(27, 73, 101);"></div></div><div class="event" style="left: 25.5319%;"><div class="event-dot major" style="background: rgb(27, 73, 101);"></div></div><div class="event" style="left: 51.0638%;"><div class="event-dot major" style="background: rgb(27, 73, 101);"></div></div><div class="event" style="left: 55.3191%;"><div class="event-dot" style="background: rgb(27, 73, 101);"></div></div><div class="event" style="left: 72.3404%;"><div class="event-dot major" style="background: rgb(27, 73, 101);"></div></div><div class="event" style="left: 74.4681%;"><div class="event-dot milestone" style="background: rgb(27, 73, 101);"></div></div><div class="event" style="left: 72.3404%;"><div class="event-dot major" style="background: rgb(27, 73, 101);"></div></div><div class="event" style="left: 78.7234%;"><div class="event-dot" style="background: rgb(27, 73, 101);"></div></div><div class="event" style="left: 82.9787%;"><div class="event-dot" style="background: rgb(27, 73, 101);"></div></div><div class="event" style="left: 95.7447%;"><div class="event-dot" style="background: rgb(27, 73, 101);"></div></div></div>
+    <div class="lane-track" id="lane-us"></div>
   </div>
-  <div class="lane" data-country="fr" style="opacity: 1;">
+  <div class="lane" data-country="fr">
     <div class="lane-label" style="color:#2A9D8F">FR</div>
-    <div class="lane-track" id="lane-fr"><div class="event" style="left: 70.2128%;"><div class="event-dot milestone" style="background: rgb(42, 157, 143);"></div></div><div class="event" style="left: 76.5957%;"><div class="event-dot major" style="background: rgb(42, 157, 143);"></div></div><div class="event" style="left: 80.8511%;"><div class="event-dot major" style="background: rgb(42, 157, 143);"></div></div><div class="event" style="left: 85.1064%;"><div class="event-dot milestone" style="background: rgb(42, 157, 143);"></div></div><div class="event" style="left: 87.234%;"><div class="event-dot major" style="background: rgb(42, 157, 143);"></div></div><div class="event" style="left: 89.3617%;"><div class="event-dot major" style="background: rgb(42, 157, 143);"></div></div><div class="event" style="left: 91.4894%;"><div class="event-dot major" style="background: rgb(42, 157, 143);"></div></div><div class="event" style="left: 93.617%;"><div class="event-dot milestone" style="background: rgb(42, 157, 143);"></div></div><div class="event" style="left: 95.7447%;"><div class="event-dot milestone" style="background: rgb(42, 157, 143);"></div></div><div class="event" style="left: 95.7447%;"><div class="event-dot major" style="background: rgb(42, 157, 143);"></div></div><div class="event" style="left: 97.8723%;"><div class="event-dot major" style="background: rgb(42, 157, 143);"></div></div></div>
+    <div class="lane-track" id="lane-fr"></div>
   </div>
-  <div class="lane" data-country="uk" style="opacity: 1;">
+  <div class="lane" data-country="uk">
     <div class="lane-label" style="color:#C4483E">UK</div>
-    <div class="lane-track" id="lane-uk"><div class="event" style="left: 61.7021%;"><div class="event-dot" style="background: rgb(196, 72, 62);"></div></div><div class="event" style="left: 63.8298%;"><div class="event-dot major" style="background: rgb(196, 72, 62);"></div></div><div class="event" style="left: 91.4894%;"><div class="event-dot" style="background: rgb(196, 72, 62);"></div></div><div class="event" style="left: 97.8723%;"><div class="event-dot major" style="background: rgb(196, 72, 62);"></div></div><div class="event" style="left: 97.8723%;"><div class="event-dot milestone" style="background: rgb(196, 72, 62);"></div></div><div class="event" style="left: 100%;"><div class="event-dot milestone" style="background: rgb(196, 72, 62);"></div></div></div>
+    <div class="lane-track" id="lane-uk"></div>
   </div>
 </div>
 
@@ -215,32 +209,34 @@ body{background:#FAFAF7;font-family:'Segoe UI','Helvetica Neue',system-ui,sans-s
 <!-- DETAILED TIMELINE BY ERA -->
 <div class="detail-section">
   <h2>Detailed Timeline</h2>
-  <div id="eras"><div class="era"><div class="era-header"><h3>The Foundations (1980–2000)</h3><span class="era-range">Tradition meets regulation ▾</span></div><div class="era-body"><div class="era-event"><span class="ee-year" style="color:#8B7355">1986</span><div class="ee-dot" style="background:#8B7355"></div><div class="ee-text"><strong>Austrian Kachelofenverband (KOV)</strong><br>Professional association of tile stove builders established. Centuries of Kachelofen tradition formalised into professional standards.</div></div><div class="era-event"><span class="ee-year" style="color:#1B4965">1988</span><div class="ee-dot" style="background:#1B4965"></div><div class="ee-text"><strong>MHA Founded + EPA NSPS Exemption</strong><br>Masonry Heater Association of North America founded. EPA NSPS exempts appliances &gt;800 kg from emission testing requirements.</div></div><div class="era-event"><span class="ee-year" style="color:#8B7355">1990</span><div class="ee-dot" style="background:#8B7355"></div><div class="ee-text"><strong>Austrian 15a B-VG Framework</strong><br>Federal provinces begin harmonising emission requirements for small heating installations under 15a B-VG constitutional articles.</div></div><div class="era-event"><span class="ee-year" style="color:#1B4965">1992</span><div class="ee-dot" style="background:#1B4965"></div><div class="ee-text"><strong>OMNI In-Home Study</strong><br>OMNI Environmental tests 5 masonry heaters in homes. PM 3.2 g/kg average — 81% reduction vs conventional stoves. Foundation of EPA exemption rationale.</div></div></div></div><div class="era"><div class="era-header"><h3>Standards &amp; Science (2001–2012)</h3><span class="era-range">EN 15544, Lopez Labs, calculator development ▾</span></div><div class="era-body"><div class="era-event"><span class="ee-year" style="color:#8B7355">2001</span><div class="ee-dot" style="background:#8B7355"></div><div class="ee-text"><strong>TU Vienna Validates Calculator</strong><br>Technical University of Vienna combustion lab verifies the KOV's proprietary calculation software against physical test data. Calculation = legal testing.</div></div><div class="era-event"><span class="ee-year" style="color:#1B4965">2004</span><div class="ee-dot" style="background:#1B4965"></div><div class="ee-text"><strong>Lopez Labs Facility Opens</strong><br>Permanent test facility established at Masonry Stove Builders, Shawville QC. Begins building world's largest masonry heater performance database.</div></div><div class="era-event"><span class="ee-year" style="color:#1B4965">2006</span><div class="ee-dot" style="background:#1B4965"></div><div class="ee-text"><strong>185+ Test Run Database</strong><br>Lopez Labs / MHA Research Laboratory begins systematic testing programme. 185+ documented runs by 2019. PM averaging 0.97 g/kg normal operation.</div></div><div class="era-event"><span class="ee-year" style="color:#8B7355">2009</span><div class="ee-dot" style="background:#8B7355"></div><div class="ee-text"><strong>EN 15544 Published</strong><br>European Standard EN 15544 published by CEN — calculation method for site-built masonry heaters. Based on Austrian Kachelofen methodology.</div></div><div class="era-event"><span class="ee-year" style="color:#C4483E">2009</span><div class="ee-dot" style="background:#C4483E"></div><div class="ee-text"><strong>BS EN 15544:2009 Adopted</strong><br>EN 15544 adopted as British Standard. No regulatory function. No government awareness of its significance.</div></div><div class="era-event"><span class="ee-year" style="color:#C4483E">2010</span><div class="ee-dot" style="background:#C4483E"></div><div class="ee-text"><strong>StoveMason Begins Operations</strong><br>Masonry Heater Builders (StoveMason) established in Scotland. HETAS registered. Builds to BS EN 15544, member of MHA and Austrian KOV.</div></div></div></div><div class="era"><div class="era-header"><h3>Recognition &amp; Growth (2013–2020)</h3><span class="era-range">AFPMA founded, EPA negotiations, French tax code ▾</span></div><div class="era-body open"><div class="era-event"><span class="ee-year" style="color:#2A9D8F">2013</span><div class="ee-dot" style="background:#2A9D8F"></div><div class="ee-text"><strong>AFPMA Founded</strong><br>Association Française du Poêle Maçonné Artisanal created. ~40 artisans from ~60 professionals nationally. Explicitly modeled on the American MHA.</div></div><div class="era-event"><span class="ee-year" style="color:#1B4965">2014</span><div class="ee-dot" style="background:#1B4965"></div><div class="ee-text"><strong>EPA Proposes Subpart RRRR</strong><br>EPA proposes first-ever federal standards for masonry heaters. MHA engages with software calculator alternative to lab testing.</div></div><div class="era-event"><span class="ee-year" style="color:#1B4965">2014</span><div class="ee-dot" style="background:#1B4965"></div><div class="ee-text"><strong>MHA-AFPMA Calculator Collaboration</strong><br>MHA begins working with Damien Lehmann (AFPMA/France) to adapt EN 15544 calculator for North American heater types.</div></div><div class="era-event"><span class="ee-year" style="color:#8B7355">2015</span><div class="ee-dot" style="background:#8B7355"></div><div class="ee-text"><strong>15a B-VG Art.5(4) — Calc = Test</strong><br>Austrian federal law explicitly recognises EN 15544 calculation as legally equivalent to physical type testing. 5-pollutant compliance.</div></div><div class="era-event"><span class="ee-year" style="color:#1B4965">2015</span><div class="ee-dot" style="background:#1B4965"></div><div class="ee-text"><strong>EPA Backs Off — Exemption Maintained</strong><br>EPA does not finalise Subpart RRRR. Exemption maintained. EPA allows MHA time to develop calculator software and test methods.</div></div><div class="era-event"><span class="ee-year" style="color:#2A9D8F">2016</span><div class="ee-dot" style="background:#2A9D8F"></div><div class="ee-text"><strong>ADEME Report Published</strong><br>French environment agency ADEME publishes 'Les poêles de masse artisanaux en France' — first official recognition document.</div></div><div class="era-event"><span class="ee-year" style="color:#1B4965">2017</span><div class="ee-dot" style="background:#1B4965"></div><div class="ee-text"><strong>First Condar + EPA M5G Simultaneous Test</strong><br>Hearth Lab Solutions, Vermont. First time Condar portable sampler runs simultaneously with EPA Method 5G on a masonry heater.</div></div><div class="era-event"><span class="ee-year" style="color:#2A9D8F">2018</span><div class="ee-dot" style="background:#2A9D8F"></div><div class="ee-text"><strong>Research Laboratory Established</strong><br>AFPMA opens measurement and research laboratory in Montendre (Charente-Maritime), directed by Damien Lehmann. Begins calibrating calculator software.</div></div><div class="era-event"><span class="ee-year" style="color:#1B4965">2019</span><div class="ee-dot" style="background:#1B4965"></div><div class="ee-text"><strong>MHA Comments to EPA ANPR</strong><br>Detailed comments requesting accommodation for masonry heaters, software certification approach, and model line certification.</div></div><div class="era-event"><span class="ee-year" style="color:#2A9D8F">2020</span><div class="ee-dot" style="background:#2A9D8F"></div><div class="ee-text"><strong>EN 15544 in French Tax Code</strong><br>NF EN 15544 inscribed in Article 18 bis of the French Tax Code. Masonry heaters gain access to CITE tax credits and MaPrimeRénov subsidies.</div></div></div></div><div class="era"><div class="era-header"><h3>The New Era (2021–2027)</h3><span class="era-range">FIRECALC, certification, UK opportunity ▾</span></div><div class="era-body open"><div class="era-event"><span class="ee-year" style="color:#2A9D8F">2021</span><div class="ee-dot" style="background:#2A9D8F"></div><div class="ee-text"><strong>AFPMA Joins VEUKO</strong><br>AFPMA joins the European federation of tile stove associations (VEUKO, 19 countries). Builds alliance with Austrian KOV.</div></div><div class="era-event"><span class="ee-year" style="color:#8B7355">2022</span><div class="ee-dot" style="background:#8B7355"></div><div class="ee-text"><strong>Ecodesign Overlay</strong><br>EU Ecodesign Directive 2015/1185 takes effect. Austrian system adds Ecodesign requirements on top of existing 15a B-VG framework.</div></div><div class="era-event"><span class="ee-year" style="color:#2A9D8F">2022</span><div class="ee-dot" style="background:#2A9D8F"></div><div class="ee-text"><strong>ADEME: 'Most Performant at Usage'</strong><br>ADEME officially states the masonry heater is 'le plus performant à l'usage' (most performant in use) of all wood heating appliances.</div></div><div class="era-event"><span class="ee-year" style="color:#2A9D8F">2023</span><div class="ee-dot" style="background:#2A9D8F"></div><div class="ee-text"><strong>CQP Professional Certification Created</strong><br>Certificate of Professional Qualification (CQP) for 'Poêlier — constructeur mainteneur de poêle maçonné artisanal' registered on national RNCP directory.</div></div><div class="era-event"><span class="ee-year" style="color:#C4483E">2023</span><div class="ee-dot" style="background:#C4483E"></div><div class="ee-text"><strong>BS EN 15544:2023 Updated</strong><br>Updated British Standard published. Still no regulatory recognition, no pathway for site-built heaters in Smoke Control Areas.</div></div><div class="era-event"><span class="ee-year" style="color:#2A9D8F">2024</span><div class="ee-dot" style="background:#2A9D8F"></div><div class="ee-text"><strong>First 7 Poêliers Certified</strong><br>First cohort of 7 masonry heater builders certified via VAE (validation of prior experience). Jury held at Lycée des Métiers du Bâtiment, Felletin.</div></div><div class="era-event"><span class="ee-year" style="color:#1B4965">2025</span><div class="ee-dot" style="background:#1B4965"></div><div class="ee-text"><strong>EPA Consent Decree — NSPS Review</strong><br>EPA agrees to review and potentially update NSPS for residential wood heaters. Masonry heater scope unclear.</div></div><div class="era-event"><span class="ee-year" style="color:#2A9D8F">2025</span><div class="ee-dot" style="background:#2A9D8F"></div><div class="ee-text"><strong>FIRECALC AFPMA Software Presented</strong><br>New calculation software developed by Guillaume Augais presented at annual colloquium. Extends beyond Austrian heater types. Open-source thermal study tool also released.</div></div><div class="era-event"><span class="ee-year" style="color:#2A9D8F">2025</span><div class="ee-dot" style="background:#2A9D8F"></div><div class="ee-text"><strong>First National Training Cohort</strong><br>9 students begin first formal poêlier training programme in France, partnered with GRETA Limousin.</div></div><div class="era-event"><span class="ee-year" style="color:#2A9D8F">2026</span><div class="ee-dot" style="background:#2A9D8F"></div><div class="ee-text"><strong>First National Masonry Heater Day</strong><br>14 March 2026 — AFPMA coordinates nationwide open-door events. Poêliers across France invite public to experience masonry heaters.</div></div><div class="era-event"><span class="ee-year" style="color:#C4483E">2026</span><div class="ee-dot" style="background:#C4483E"></div><div class="ee-text"><strong>Defra Consultation Opens</strong><br>Defra smoke control consultation opens. Does not mention masonry heaters, EN 15544, or calculation-based compliance. Closes 19 March 2026.</div></div><div class="era-event"><span class="ee-year" style="color:#C4483E">2026</span><div class="ee-dot" style="background:#C4483E"></div><div class="ee-text"><strong>Evidence Dossier Submitted</strong><br>Cross-jurisdictional evidence dossier submitted to Defra. 11 regimes compared. Case made for BS EN 15544 recognition.</div></div><div class="era-event"><span class="ee-year" style="color:#C4483E">2027</span><div class="ee-dot" style="background:#C4483E"></div><div class="ee-text"><strong>UK MHA Founded? →</strong><br>The opportunity: form a UK Masonry Heater Association. Follow the French AFPMA model. Build the same pathway to recognition.</div></div></div></div></div>
+  <div id="eras"></div>
 </div>
 
 <!-- UK COMPARISON -->
 <div class="uk-compare">
-  <h3>🇬🇧 Where the UK Stands — March 2026</h3>
-  <div class="uk-item"><span class="uk-icon">✗</span><span>No masonry heater association exists</span></div>
-  <div class="uk-item"><span class="uk-icon">✗</span><span>EN 15544 adopted as BS EN 15544:2023 but has zero regulatory function</span></div>
-  <div class="uk-item"><span class="uk-icon">✗</span><span>No calculation-based compliance pathway for site-built heaters</span></div>
-  <div class="uk-item"><span class="uk-icon">✗</span><span>No professional qualification or training programme</span></div>
-  <div class="uk-item"><span class="uk-icon">✗</span><span>No government subsidies for masonry heater installation</span></div>
-  <div class="uk-item"><span class="uk-icon">✗</span><span>Defra 2026 consultation does not mention masonry heaters</span></div>
-  <div class="uk-item"><span class="uk-icon">✗</span><span>A handful of builders operate without formal recognition</span></div>
-  <div class="uk-item"><span class="uk-icon">✓</span><span><strong>One HETAS-registered masonry heater builder exists (StoveMason, Scotland)</strong> — building to BS EN 15544, member of both MHA and Austrian KOV</span></div>
-  <div class="uk-item"><span class="uk-icon">✓</span><span><strong>BS EN 15544:2023 is already a British Standard</strong> — the legal foundation exists</span></div>
-  <div class="uk-item"><span class="uk-icon">✓</span><span><strong>HETAS infrastructure exists</strong> — could certify masonry heater builders like it certifies stove installers</span></div>
+  <h3>&#x1F1EC;&#x1F1E7; Where the UK Stands — March 2026</h3>
+  <div class="uk-item"><span class="uk-icon">&#x2717;</span><span>No masonry heater association exists</span></div>
+  <div class="uk-item"><span class="uk-icon">&#x2717;</span><span>EN 15544 adopted as BS EN 15544:2023 but has zero regulatory function</span></div>
+  <div class="uk-item"><span class="uk-icon">&#x2717;</span><span>No calculation-based compliance pathway for site-built heaters</span></div>
+  <div class="uk-item"><span class="uk-icon">&#x2717;</span><span>No professional qualification or training programme</span></div>
+  <div class="uk-item"><span class="uk-icon">&#x2717;</span><span>No government subsidies for masonry heater installation</span></div>
+  <div class="uk-item"><span class="uk-icon">&#x2717;</span><span>Defra 2026 consultation does not mention masonry heaters</span></div>
+  <div class="uk-item"><span class="uk-icon">&#x2717;</span><span>A handful of builders operate without formal recognition or association</span></div>
+  <div class="uk-item"><span class="uk-icon">&#x2713;</span><span><strong>At least 8 companies actively supply, build, or install masonry heaters</strong> — Ceramic Stove Co., Eccostove, Cornish Masonry Stoves, StoveMason, Gondwana Green Heat, Beacon Stoves, Moslin Stoves, Tulikivi UK dealers</span></div>
+  <div class="uk-item"><span class="uk-icon">&#x2713;</span><span><strong>One HETAS-registered masonry heater builder exists (StoveMason, Scotland)</strong> — building to BS EN 15544, member of both MHA and Austrian KOV</span></div>
+  <div class="uk-item"><span class="uk-icon">&#x2713;</span><span><strong>BS EN 15544:2023 is already a British Standard</strong> — the legal foundation exists</span></div>
+  <div class="uk-item"><span class="uk-icon">&#x2713;</span><span><strong>HETAS infrastructure exists</strong> — could certify masonry heater builders like it certifies stove installers</span></div>
+  <div class="uk-item"><span class="uk-icon">&#x2713;</span><span><strong>UK-manufactured masonry heaters exist</strong> — Eccostove (silicon carbide, Studley) and Cornish Masonry Stoves (porcelain, Bodmin) both tested to EN 15250</span></div>
 </div>
 
 <div class="insight" style="margin-top:20px">
-  <strong>The French precedent is the proof.</strong> France had no masonry heater culture in 2013. Thirteen years later, AFPMA has achieved government recognition, tax code inclusion, professional certification, subsidies, its own research laboratory, custom calculation software, and ~1,000 installations per year. The UK has all the same building blocks — BS EN 15544, a HETAS framework, individual skilled builders — but lacks the association to connect them. Everything France achieved started with one thing: artisans organising.
+  <strong>The French precedent is the proof.</strong> France had no masonry heater culture in 2013. Thirteen years later, AFPMA has achieved government recognition, tax code inclusion, professional certification, subsidies, its own research laboratory, custom calculation software, and ~1,000 installations per year. The UK has all the same building blocks — BS EN 15544, a HETAS framework, individual skilled builders, UK manufacturers — but lacks the association to connect them. Everything France achieved started with one thing: artisans organising.
 </div>
 
 </div>
 
 <div class="footer">
-  <p>Sources: 850grad.org \u00b7 AFPMA.pro · MHA-Net.org · HeatKit.com/Lopez Labs · KachelofenVerband.at · VEUKO · ADEME · StoveMason.com · Terre Vivante (2025) · Chauffage Bois Magazine · EN 15544:2023 · Defra 2026 Consultation</p>
+  <p>Sources: 850grad.org · AFPMA.pro · MHA-Net.org · HeatKit.com/Lopez Labs · KachelofenVerband.at · VEUKO · ADEME · StoveMason.com · Terre Vivante (2025) · Chauffage Bois Magazine · EN 15544:2023 · Defra 2026 Consultation · Companies House (UK) · EccoStove.com · CornishMasonryStoves.com · CeramicStove.com · GondwanaGreenHeat.co.uk · Beacon-Stoves.co.uk · MoslinMasonryStoves.co.uk · Tulikivi.com</p>
 </div>
 
 <script>
@@ -249,54 +245,93 @@ var NAMES={at:"Austria",us:"United States",fr:"France",uk:"United Kingdom"};
 var MIN_YEAR=1980;var MAX_YEAR=2027;
 
 var EVENTS=[
-  // AUSTRIA
+  // ──────── AUSTRIA ────────
   {y:1986,c:"at",t:"Austrian Kachelofenverband (KOV)",d:"Professional association of tile stove builders established. Centuries of Kachelofen tradition formalised into professional standards.",major:true},
   {y:1990,c:"at",t:"Austrian 15a B-VG Framework",d:"Federal provinces begin harmonising emission requirements for small heating installations under 15a B-VG constitutional articles.",major:false},
-  {y:2001,c:"at",t:"TU Vienna Validates Calculator",d:"Technical University of Vienna combustion lab verifies the KOV's proprietary calculation software against physical test data. Calculation = legal testing.",major:true,milestone:true},
-  {y:2009,c:"at",t:"EN 15544 Published",d:"European Standard EN 15544 published by CEN — calculation method for site-built masonry heaters. Based on Austrian Kachelofen methodology.",major:true,milestone:true},
-  {y:2015,c:"at",t:"15a B-VG Art.5(4) — Calc = Test",d:"Austrian federal law explicitly recognises EN 15544 calculation as legally equivalent to physical type testing. 5-pollutant compliance.",major:true},
-  {y:2023,c:"at",t:"UNESCO: Kachelofen Craftsmanship",d:"Traditional Kachelofen craftsmanship inscribed on the UNESCO Intangible Cultural Heritage list in Germany. 850\u00b0 Handwerklicher Grundofen e.V. advocates artisanal Grund\u00f6fen at >850\u00b0C as the highest standard of clean combustion.",major:true,milestone:true},{y:2022,c:"at",t:"Ecodesign Overlay",d:"EU Ecodesign Directive 2015/1185 takes effect. Austrian system adds Ecodesign requirements on top of existing 15a B-VG framework.",major:false},
+  {y:2001,c:"at",t:"TU Vienna Validates Calculator",d:"Technical University of Vienna combustion lab verifies the KOV\u2019s proprietary calculation software against physical test data. Calculation = legal testing.",major:true,milestone:true},
+  {y:2009,c:"at",t:"EN 15544 Published",d:"European Standard EN 15544 published by CEN \u2014 calculation method for site-built masonry heaters. Based on Austrian Kachelofen methodology.",major:true,milestone:true},
+  {y:2015,c:"at",t:"15a B-VG Art.5(4) \u2014 Calc = Test",d:"Austrian federal law explicitly recognises EN 15544 calculation as legally equivalent to physical type testing. 5-pollutant compliance.",major:true},
+  {y:2022,c:"at",t:"Ecodesign Overlay",d:"EU Ecodesign Directive 2015/1185 takes effect. Austrian system adds Ecodesign requirements on top of existing 15a B-VG framework.",major:false},
+  {y:2023,c:"at",t:"UNESCO: Kachelofen Craftsmanship",d:"Traditional Kachelofen craftsmanship inscribed on the UNESCO Intangible Cultural Heritage list in Germany. 850\u00b0 Handwerklicher Grundofen e.V. advocates artisanal Grund\u00f6fen at >850\u00b0C as the highest standard of clean combustion.",major:true,milestone:true},
 
-  // UNITED STATES
+  // ──────── UNITED STATES ────────
   {y:1988,c:"us",t:"MHA Founded + EPA NSPS Exemption",d:"Masonry Heater Association of North America founded. EPA NSPS exempts appliances >800 kg from emission testing requirements.",major:true,milestone:true},
-  {y:1992,c:"us",t:"OMNI In-Home Study",d:"OMNI Environmental tests 5 masonry heaters in homes. PM 3.2 g/kg average — 81% reduction vs conventional stoves. Foundation of EPA exemption rationale.",major:true},
-  {y:2004,c:"us",t:"Lopez Labs Facility Opens",d:"Permanent test facility established at Masonry Stove Builders, Shawville QC. Begins building world's largest masonry heater performance database.",major:true},
+  {y:1992,c:"us",t:"OMNI In-Home Study",d:"OMNI Environmental tests 5 masonry heaters in homes. PM 3.2 g/kg average \u2014 81% reduction vs conventional stoves. Foundation of EPA exemption rationale.",major:true},
+  {y:2004,c:"us",t:"Lopez Labs Facility Opens",d:"Permanent test facility established at Masonry Stove Builders, Shawville QC. Begins building world\u2019s largest masonry heater performance database.",major:true},
   {y:2006,c:"us",t:"185+ Test Run Database",d:"Lopez Labs / MHA Research Laboratory begins systematic testing programme. 185+ documented runs by 2019. PM averaging 0.97 g/kg normal operation.",major:false},
   {y:2014,c:"us",t:"EPA Proposes Subpart RRRR",d:"EPA proposes first-ever federal standards for masonry heaters. MHA engages with software calculator alternative to lab testing.",major:true},
-  {y:2015,c:"us",t:"EPA Backs Off — Exemption Maintained",d:"EPA does not finalise Subpart RRRR. Exemption maintained. EPA allows MHA time to develop calculator software and test methods.",major:true,milestone:true},
   {y:2014,c:"us",t:"MHA-AFPMA Calculator Collaboration",d:"MHA begins working with Damien Lehmann (AFPMA/France) to adapt EN 15544 calculator for North American heater types.",major:true},
+  {y:2015,c:"us",t:"EPA Backs Off \u2014 Exemption Maintained",d:"EPA does not finalise Subpart RRRR. Exemption maintained. EPA allows MHA time to develop calculator software and test methods.",major:true,milestone:true},
   {y:2017,c:"us",t:"First Condar + EPA M5G Simultaneous Test",d:"Hearth Lab Solutions, Vermont. First time Condar portable sampler runs simultaneously with EPA Method 5G on a masonry heater.",major:false},
   {y:2019,c:"us",t:"MHA Comments to EPA ANPR",d:"Detailed comments requesting accommodation for masonry heaters, software certification approach, and model line certification.",major:false},
-  {y:2025,c:"us",t:"EPA Consent Decree — NSPS Review",d:"EPA agrees to review and potentially update NSPS for residential wood heaters. Masonry heater scope unclear.",major:false},
+  {y:2025,c:"us",t:"EPA Consent Decree \u2014 NSPS Review",d:"EPA agrees to review and potentially update NSPS for residential wood heaters. Masonry heater scope unclear.",major:false},
 
-  // FRANCE
-  {y:2013,c:"fr",t:"AFPMA Founded",d:"Association Française du Poêle Maçonné Artisanal created. ~40 artisans from ~60 professionals nationally. Explicitly modeled on the American MHA.",major:true,milestone:true},
-  {y:2016,c:"fr",t:"ADEME Report Published",d:"French environment agency ADEME publishes 'Les poêles de masse artisanaux en France' — first official recognition document.",major:true},
+  // ──────── FRANCE ────────
+  {y:2013,c:"fr",t:"AFPMA Founded",d:"Association Fran\u00e7aise du Po\u00eale Ma\u00e7onn\u00e9 Artisanal created. ~40 artisans from ~60 professionals nationally. Explicitly modeled on the American MHA.",major:true,milestone:true},
+  {y:2016,c:"fr",t:"ADEME Report Published",d:"French environment agency ADEME publishes \u2018Les po\u00eales de masse artisanaux en France\u2019 \u2014 first official recognition document.",major:true},
   {y:2018,c:"fr",t:"Research Laboratory Established",d:"AFPMA opens measurement and research laboratory in Montendre (Charente-Maritime), directed by Damien Lehmann. Begins calibrating calculator software.",major:true},
-  {y:2020,c:"fr",t:"EN 15544 in French Tax Code",d:"NF EN 15544 inscribed in Article 18 bis of the French Tax Code. Masonry heaters gain access to CITE tax credits and MaPrimeRénov subsidies.",major:true,milestone:true},
+  {y:2020,c:"fr",t:"EN 15544 in French Tax Code",d:"NF EN 15544 inscribed in Article 18 bis of the French Tax Code. Masonry heaters gain access to CITE tax credits and MaPrimeR\u00e9nov subsidies.",major:true,milestone:true},
   {y:2021,c:"fr",t:"AFPMA Joins VEUKO",d:"AFPMA joins the European federation of tile stove associations (VEUKO, 19 countries). Builds alliance with Austrian KOV.",major:true},
-  {y:2022,c:"fr",t:"ADEME: 'Most Performant at Usage'",d:"ADEME officially states the masonry heater is 'le plus performant à l'usage' (most performant in use) of all wood heating appliances.",major:true},
-  {y:2023,c:"fr",t:"CQP Professional Certification Created",d:"Certificate of Professional Qualification (CQP) for 'Poêlier — constructeur mainteneur de poêle maçonné artisanal' registered on national RNCP directory.",major:true},
-  {y:2024,c:"fr",t:"First 7 Poêliers Certified",d:"First cohort of 7 masonry heater builders certified via VAE (validation of prior experience). Jury held at Lycée des Métiers du Bâtiment, Felletin.",major:true,milestone:true},
+  {y:2022,c:"fr",t:"ADEME: \u2018Most Performant at Usage\u2019",d:"ADEME officially states the masonry heater is \u2018le plus performant \u00e0 l\u2019usage\u2019 (most performant in use) of all wood heating appliances.",major:true},
+  {y:2023,c:"fr",t:"CQP Professional Certification Created",d:"Certificate of Professional Qualification (CQP) for \u2018Po\u00ealier \u2014 constructeur mainteneur de po\u00eale ma\u00e7onn\u00e9 artisanal\u2019 registered on national RNCP directory.",major:true},
+  {y:2024,c:"fr",t:"First 7 Po\u00ealiers Certified",d:"First cohort of 7 masonry heater builders certified via VAE (validation of prior experience). Jury held at Lyc\u00e9e des M\u00e9tiers du B\u00e2timent, Felletin.",major:true,milestone:true},
   {y:2025,c:"fr",t:"FIRECALC AFPMA Software Presented",d:"New calculation software developed by Guillaume Augais presented at annual colloquium. Extends beyond Austrian heater types. Open-source thermal study tool also released.",major:true,milestone:true},
-  {y:2025,c:"fr",t:"First National Training Cohort",d:"9 students begin first formal poêlier training programme in France, partnered with GRETA Limousin.",major:true},
-  {y:2026,c:"fr",t:"First National Masonry Heater Day",d:"14 March 2026 — AFPMA coordinates nationwide open-door events. Poêliers across France invite public to experience masonry heaters.",major:true},
+  {y:2025,c:"fr",t:"First National Training Cohort",d:"9 students begin first formal po\u00ealier training programme in France, partnered with GRETA Limousin.",major:true},
+  {y:2026,c:"fr",t:"First National Masonry Heater Day",d:"14 March 2026 \u2014 AFPMA coordinates nationwide open-door events. Po\u00ealiers across France invite public to experience masonry heaters.",major:true},
 
-  // UNITED KINGDOM
-  {y:1991,c:"uk",t:"Defra Exemption No. 554",d:"Defra grants Smoke Control Area exemption to the Jansen Design stove (Kakkelovnsmakeriet / Camina), a Swedish 5-channel masonry heater. First UK regulatory validation of high-mass batch combustion. Ref: CSC-JDS-01.",major:true,milestone:true},{y:2009,c:"uk",t:"BS EN 15544:2009 Adopted",d:"EN 15544 adopted as British Standard. No regulatory function. No government awareness of its significance.",major:false},
-  {y:2010,c:"uk",t:"StoveMason Begins Operations",d:"Masonry Heater Builders (StoveMason) established in Scotland. HETAS registered. Builds to BS EN 15544, member of MHA and Austrian KOV.",major:true},
+  // ──────── UNITED KINGDOM ────────
+  {y:1991,c:"uk",t:"Defra Exemption No. 554",d:"Defra grants Smoke Control Area exemption to the Jansen Design stove (Kakkelovnsmakeriet / Camina), a Swedish 5-channel masonry heater. First UK regulatory validation of high-mass batch combustion. Ref: CSC-JDS-01.",major:true,milestone:true},
+
+  {y:1998,c:"uk",t:"Landy Vent UK Ltd Founded",d:"Dave Ashmore incorporates Landy Vent UK Ltd in Studley, Warwickshire (Companies House no. 03610122). Initially a chimney lining specialist (Eldfast ceramic linings), NACE/NACS member. Later develops the Eccostove silicon carbide masonry heater.",major:false},
+
+  {y:2000,c:"uk",t:"Finnish Soapstone Heaters in UK",d:"Small number of specialists begin importing and installing Finnish soapstone masonry heaters (Tulikivi, Nunnaunni) in England. Dave Ashmore and colleagues among the earliest builders. UK masonry heater market embryonic.",major:false},
+
+  {y:2003,c:"uk",t:"Tulikivi UK Dealer Network",d:"Tulikivi (Finland, est. 1980) \u2014 world\u2019s largest manufacturer of heat-retaining soapstone fireplaces \u2014 establishes UK dealer presence via tulikivi.com/en_gb and online store. Soapstone masonry heaters installed through UK dealers including later StoveMason (Scotland) and Gondwana Green Heat (Edinburgh).",major:false},
+
+  {y:2005,c:"uk",t:"Ceramic Stove Company Active",d:"Nick Hills\u2019 Ceramic Stove Company (Worthing, West Sussex) supplies and builds Gabriel Kakelugnar Swedish tiled stoves in the UK. Among the earliest UK specialists in ceramic heat storage stoves.",major:false},
+
+  {y:2008,c:"uk",t:"First Eccostove Prototype",d:"Landy Vent produces prototype Eccostove E850 in January 2008 \u2014 first silicon carbide masonry heater. Tested at Gastec, Cheltenham to both EN 15250 (slow heat release) and room heater standards. UK patent applied for. First appliance worldwide to pass both test regimes.",major:true},
+
+  {y:2009,c:"uk",t:"BS EN 15544:2009 Adopted",d:"EN 15544 adopted as British Standard. No regulatory function. No government awareness of its significance.",major:false},
+
+  {y:2010,c:"uk",t:"StoveMason Begins Operations",d:"Masonry Heater Builders (StoveMason) established in Scotland. HETAS registered. Builds site-built masonry heaters to BS EN 15544, member of MHA and Austrian KOV. Also installs Tulikivi soapstone fireplaces.",major:true},
+
+  {y:2010,c:"uk",t:"Eccostove E678 Launched",d:"Landy Vent launches the Eccostove E678 \u2014 9.4 kW silicon carbide masonry heater. First UK-manufactured masonry heater. DEFRA exempt for Smoke Control Areas. HETAS and OMNI approved. Entirely made in the Midlands.",major:true},
+
+  {y:2011,c:"uk",t:"Cornish Masonry Stove Co. Founded",d:"The Cornish Masonry Stove Company Ltd incorporated in Bodmin, 30 November 2011 (Companies House no. 07865265). Develops the Homeheater \u2014 UK\u2019s first locally sourced ceramic masonry stove using Cornish porcelain from Goonvean and Imerys.",major:false},
+
+  {y:2011,c:"uk",t:"Gondwana Green Heat Founded",d:"Dave Adams incorporates Gondwana Green Heat in Edinburgh, 10 November 2011 (Companies House no. 07842375). Installs Eccostoves, Tigchelaar (Dutch) tile heaters, La Castellamonte (Italian) stoves, and builds custom masonry heaters. HETAS approved.",major:false},
+
+  {y:2012,c:"uk",t:"Beacon Stoves \u2014 Tigchelaar in Wales",d:"Beacon Stoves (Newcastle Emlyn, West Wales) established as one of UK\u2019s few suppliers of Tigchelaar Dutch masonry heaters and Finovens. Award-winning showroom with live masonry heater demonstrations. 30+ years stove experience.",major:false},
+
+  {y:2012,c:"uk",t:"Moslin Masonry Stoves, Scotland",d:"Moslin Masonry Stoves active in Scotland, building bespoke site-built masonry heaters including Swedish 5-channel stoves and contraflow heaters. Uses refractory concrete and traditional firebrick construction.",major:false},
+
+  {y:2013,c:"uk",t:"Eccostove Enters US Market",d:"Landy Vent agrees deal for Eccostove assembly in America. DEFRA-exempt silicon carbide stoves exported to Europe, Canada and USA. Independently tested at OMNI Laboratories in Oregon achieving 2.1 mg/m\u00b3 CO.",major:false},
+
+  {y:2015,c:"uk",t:"Homeheater Tested \u2014 EN 15250",d:"Cornish Masonry Stoves\u2019 Homeheater tested at SGS laboratories (Holland) over 5 days and 10 firings to EN 15250. Rated 4.9 kW, demonstrated up to 20.5 kW. Commended at Cornwall Sustainability Awards 2015 for \u2018Best Innovation for a Sustainable Future\u2019.",major:true},
+
   {y:2023,c:"uk",t:"BS EN 15544:2023 Updated",d:"Updated British Standard published. Still no regulatory recognition, no pathway for site-built heaters in Smoke Control Areas.",major:false},
+
   {y:2026,c:"uk",t:"Defra Consultation Opens",d:"Defra smoke control consultation opens. Does not mention masonry heaters, EN 15544, or calculation-based compliance. Closes 19 March 2026.",major:true},
+
   {y:2026,c:"uk",t:"Evidence Dossier Submitted",d:"Cross-jurisdictional evidence dossier submitted to Defra. 11 regimes compared. Case made for BS EN 15544 recognition.",major:true,milestone:true},
-  {y:2027,c:"uk",t:"UK MHA Founded? →",d:"The opportunity: form a UK Masonry Heater Association. Follow the French AFPMA model. Build the same pathway to recognition.",major:true,milestone:true},
+
+  {y:2027,c:"uk",t:"UK MHA Founded? \u2192",d:"The opportunity: form a UK Masonry Heater Association. Follow the French AFPMA model. Build the same pathway to recognition. At least 8 companies could unite.",major:true,milestone:true},
 ];
 
-// Render year bar
+// Render year bar — positioned using same formula as events
 var yearBar=document.getElementById("yearBar");
-for(var yr=1985;yr<=2027;yr+=5){
+yearBar.style.position="relative";
+yearBar.style.height="20px";
+yearBar.style.display="block";
+for(var yr=1985;yr<=2025;yr+=5){
   var span=document.createElement("span");
   span.className="year-mark";
   span.textContent=yr;
+  span.style.position="absolute";
+  var pctY=((yr-MIN_YEAR)/(MAX_YEAR-MIN_YEAR))*100;
+  span.style.left=pctY+"%";
+  span.style.transform="translateX(-50%)";
   yearBar.appendChild(span);
 }
 
@@ -342,7 +377,6 @@ function showTooltip(ev,e){
 }
 function hideTooltip(){tt.classList.remove("show")}
 function scrollToEvent(e){
-  // Find the era section and open it
   document.querySelectorAll('.era-body').forEach(function(b){b.classList.add('open')});
 }
 
@@ -360,10 +394,10 @@ function filterCountry(c){
 // Render detailed eras
 function renderEras(filter){
   var eras=[
-    {title:"The Foundations (1980–2000)",range:"Tradition meets regulation",events:EVENTS.filter(function(e){return e.y>=1980&&e.y<=2000})},
-    {title:"Standards & Science (2001–2012)",range:"EN 15544, Lopez Labs, calculator development",events:EVENTS.filter(function(e){return e.y>=2001&&e.y<=2012})},
-    {title:"Recognition & Growth (2013–2020)",range:"AFPMA founded, EPA negotiations, French tax code",events:EVENTS.filter(function(e){return e.y>=2013&&e.y<=2020})},
-    {title:"The New Era (2021–2027)",range:"FIRECALC, certification, UK opportunity",events:EVENTS.filter(function(e){return e.y>=2021&&e.y<=2027})},
+    {title:"The Foundations (1980\u20132000)",range:"Tradition meets regulation",events:EVENTS.filter(function(e){return e.y>=1980&&e.y<=2000})},
+    {title:"Standards & Science (2001\u20132012)",range:"EN 15544, Lopez Labs, UK pioneers",events:EVENTS.filter(function(e){return e.y>=2001&&e.y<=2012})},
+    {title:"Recognition & Growth (2013\u20132020)",range:"AFPMA, EPA negotiations, Eccostove exports",events:EVENTS.filter(function(e){return e.y>=2013&&e.y<=2020})},
+    {title:"The New Era (2021\u20132027)",range:"FIRECALC, certification, UK opportunity",events:EVENTS.filter(function(e){return e.y>=2021&&e.y<=2027})},
   ];
 
   var container=document.getElementById("eras");
@@ -377,7 +411,7 @@ function renderEras(filter){
     div.className="era";
     var header=document.createElement("div");
     header.className="era-header";
-    header.innerHTML='<h3>'+era.title+'</h3><span class="era-range">'+era.range+' ▾</span>';
+    header.innerHTML='<h3>'+era.title+'</h3><span class="era-range">'+era.range+' \u25BE</span>';
     header.onclick=function(){
       var body=this.nextElementSibling;
       body.classList.toggle("open");
@@ -403,6 +437,5 @@ function renderEras(filter){
 renderTimeline("all");
 renderEras("all");
 </script>
-
 
 </body></html>
