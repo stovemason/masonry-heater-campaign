@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Three Standards, One Loophole — Defra Consultation Response</title>
+<meta name="description" content="How Three Incompatible Testing Regimes Leave a Gap in UK Smoke Control Regulation. Submission to Defra 2026 Consultation.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --navy: #1B2A4A;
+  --navy-deep: #0F1A2E;
+  --navy-light: #243756;
+  --gold: #C4A35A;
+  --gold-light: #D4B876;
+  --gold-muted: rgba(196,163,90,0.12);
+  --cream: #FAFAF7;
+  --warm-white: #F5F3F0;
+  --text: #2C2C2C;
+  --text-mid: #4A4A4A;
+  --text-light: #6B6B6B;
+  --border: #E0DDD8;
+  --red-accent: #8B3A3A;
+  --green-accent: #3A6B4A;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cream);
+  color: var(--text);
+  font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  font-size: 16px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--gold-muted); }
+
+/* ═══ HOME BAR ═══ */
+.home-bar {
+  background: var(--navy-deep);
+  padding: 8px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.home-bar a {
+  color: var(--gold);
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color .2s;
+}
+.home-bar a:hover { color: var(--gold-light); }
+.home-bar-actions { display: flex; gap: 10px; align-items: center; }
+.btn-sm {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: all .2s;
+}
+.btn-download { background: var(--gold); color: var(--navy-deep) !important; }
+.btn-download:hover { background: var(--gold-light); color: var(--navy-deep) !important; }
+.btn-respond { background: var(--red-accent); color: #fff !important; }
+.btn-respond:hover { background: #A04545; color: #fff !important; }
+
+/* ═══ COVER ═══ */
+.cover {
+  background: linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 40%, var(--navy-light) 100%);
+  color: #fff;
+  padding: 80px 40px 60px;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(196,163,90,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cover::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.cover-inner { max-width: 780px; margin: 0 auto; position: relative; }
+.cover-tag {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.cover h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 24px;
+  letter-spacing: -0.5px;
+}
+.cover-meta {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  line-height: 2;
+}
+.cover-meta strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+.cover-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--gold);
+  margin: 24px 0;
+}
+
+/* ═══ DEFRA ACTION BOX ═══ */
+.defra-box {
+  background: linear-gradient(135deg, #8B3A3A 0%, #6B2A2A 100%);
+  color: #fff;
+  padding: 28px 32px;
+  max-width: 780px;
+  margin: -20px auto 0;
+  position: relative;
+  z-index: 2;
+  border-radius: 0 0 8px 8px;
+  border-top: 3px solid var(--gold);
+}
+.defra-box h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+.defra-box p {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 14px;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+.defra-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.btn-defra {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 5px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: all .2s;
+}
+.btn-defra-primary { background: #fff; color: var(--red-accent); }
+.btn-defra-primary:hover { background: var(--gold-light); color: var(--navy-deep); }
+.btn-defra-secondary { background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+.btn-defra-secondary:hover { background: rgba(255,255,255,0.25); }
+.btn-defra-download { background: var(--gold); color: var(--navy-deep); }
+.btn-defra-download:hover { background: var(--gold-light); }
+
+/* ═══ TABLE OF CONTENTS ═══ */
+.toc {
+  max-width: 780px;
+  margin: 48px auto 40px;
+  padding: 0 24px;
+}
+.toc h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: var(--navy);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--gold);
+  display: inline-block;
+}
+.toc-list { list-style: none; }
+.toc-list li {
+  border-bottom: 1px solid var(--border);
+  transition: background .2s;
+}
+.toc-list li:hover { background: var(--warm-white); }
+.toc-list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 10px 12px;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 15px;
+  font-family: 'Source Sans 3', sans-serif;
+}
+.toc-list a:hover { color: var(--gold); }
+.toc-num { font-weight: 700; color: var(--navy); margin-right: 12px; min-width: 32px; }
+.toc-title { flex: 1; }
+.toc-arrow { color: var(--gold); font-size: 12px; }
+
+/* ═══ CONTENT ═══ */
+.content {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+}
+
+/* Part headers */
+.part-header {
+  margin: 56px 0 28px;
+  padding: 24px 0 16px;
+  border-top: 3px solid var(--navy);
+  position: relative;
+}
+.part-header::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background: var(--gold);
+}
+.part-num {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.part-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 3vw, 30px);
+  color: var(--navy);
+  line-height: 1.2;
+}
+
+/* Subheadings */
+.content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px;
+  color: var(--navy);
+  margin: 32px 0 12px;
+  padding-left: 16px;
+  border-left: 3px solid var(--gold);
+}
+
+/* Body text */
+.content p { margin-bottom: 16px; }
+.content strong { color: var(--navy); }
+
+/* Labelled paragraphs */
+.label-para {
+  padding-left: 20px;
+  border-left: 2px solid var(--border);
+  margin: 12px 0 16px;
+}
+.label-para .label {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  color: var(--navy);
+  text-transform: uppercase;
+}
+
+/* Key figures */
+.key-figure {
+  background: var(--warm-white);
+  border-left: 4px solid var(--gold);
+  padding: 16px 20px;
+  margin: 20px 0;
+  border-radius: 0 6px 6px 0;
+}
+.key-figure p { margin: 0; font-size: 15px; }
+
+/* Recommendations */
+.recommendation {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--navy);
+  padding: 20px 24px;
+  margin: 16px 0;
+  border-radius: 0 6px 6px 0;
+}
+.recommendation .rec-num {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.recommendation h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.recommendation p { font-size: 15px; margin: 0; }
+
+/* EN limits box */
+.limits-box {
+  background: var(--navy);
+  color: #fff;
+  padding: 20px 24px;
+  border-radius: 6px;
+  margin: 20px 0;
+  font-family: 'Source Sans 3', sans-serif;
+}
+.limits-box h4 { color: var(--gold); font-size: 14px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+.limits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+.limit-item {
+  text-align: center;
+  padding: 10px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 4px;
+}
+.limit-val { font-size: 22px; font-weight: 700; color: var(--gold-light); }
+.limit-label { font-size: 11px; color: rgba(255,255,255,0.65); margin-top: 2px; }
+
+/* Heater type cards */
+.heater-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 20px 0;
+}
+.heater-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  border-top: 3px solid var(--navy-light);
+}
+.heater-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.heater-card p { font-size: 14px; line-height: 1.6; color: var(--text-mid); margin-bottom: 6px; }
+.heater-card .origin {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* Conclusion */
+.conclusion {
+  background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 100%);
+  color: #fff;
+  padding: 40px 32px;
+  border-radius: 8px;
+  margin: 48px 0 32px;
+}
+.conclusion h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.conclusion p { color: rgba(255,255,255,0.85); margin-bottom: 12px; }
+.conclusion .gold-line { width: 60px; height: 2px; background: var(--gold); margin: 20px 0; }
+
+/* Footer */
+.doc-footer {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 24px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.doc-footer p {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .cover { padding: 48px 20px 40px; }
+  .defra-box { padding: 20px; margin: 0 12px; border-radius: 0 0 6px 6px; }
+  .heater-grid { grid-template-columns: 1fr; }
+  .limits-grid { grid-template-columns: 1fr 1fr; }
+  .home-bar { padding: 8px 12px; }
+  .defra-actions { flex-direction: column; }
+}
+
+/* Print styles */
+@media print {
+  .home-bar, .defra-box, .toc { display: none; }
+  .cover { padding: 40px 0; }
+  body { font-size: 12pt; }
+}
+</style>
+</head>
+<body>
+
+<!-- HOME BAR -->
+<div class="home-bar">
+  <a href="index.html"><span style="font-size:16px">←</span> Back to Campaign Home</a>
+  <div class="home-bar-actions">
+    <a href="Technical_Evidence_Dossier_Defra_2026.docx" class="btn-sm btn-download">↓ Download .docx</a>
+    <a href="https://consult.defra.gov.uk/domestic-burning/consultation-on-solid-fuel-burning/consultation/subpage.2026-01-13.3633732225/" target="_blank" class="btn-sm btn-respond">Respond to Defra →</a>
+  <span style="margin-left:auto;display:flex;gap:8px"><a href="fr/Technical_Evidence_Dossier_Online.html" style="color:#6B7280;font-size:12px">🇫🇷 FR</a><a href="de/Technical_Evidence_Dossier_Online.html" style="color:#6B7280;font-size:12px">🇩🇪 DE</a></span></div>
+</div>
+
+<!-- COVER -->
+<header class="cover">
+  <div class="cover-inner">
+    <div class="cover-tag">Executive Evidence Dossier &amp; Policy Evaluation</div>
+    <h1>The Case for Harmonising UK Solid Fuel Emissions with Advanced European Masonry Heater Frameworks</h1>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <strong>Submitted to:</strong> Department for Environment, Food and Rural Affairs (Defra)<br>
+      <strong>CC:</strong> Devolved Administrations:<br> Scottish Government — <a href="/cdn-cgi/l/email-protection#97f2f9e1fee5f8f9faf2f9e3b9e7e5f8e3f2f4e3fef8f9b9e3f2f6fad7f0f8e1b9e4f4f8e3" style="color:var(--gold-light)"><span class="__cf_email__" data-cfemail="284d465e415a4746454d465c06585a475c4d4b5c414746065c4d4945684f475e065b4b475c">[email&#160;protected]</span></a><br> Welsh Government / NRW — <a href="/cdn-cgi/l/email-protection#7e1f170c0f0b1f12170a073e101f0a0b0c1f120c1b0d110b0c1d1b0d091f121b0d50191108500b15" style="color:var(--gold-light)"><span class="__cf_email__" data-cfemail="b3d2dac1c2c6d2dfdac7caf3ddd2c7c6c1d2dfc1d6c0dcc6c1d0d6c0c4d2dfd6c09dd4dcc59dc6d8">[email&#160;protected]</span></a><br> DAERA (Northern Ireland) — <a href="/cdn-cgi/l/email-protection#3e5a5f5b4c5f10565b524e5257505b7e5a5f5b4c5f13505710595148104b55" style="color:var(--gold-light)"><span class="__cf_email__" data-cfemail="3e5a5f5b4c5f10565b524e5257505b7e5a5f5b4c5f13505710595148104b55">[email&#160;protected]</span></a><br>
+      <strong>Purpose:</strong> Comprehensive Statutory Response to the Consultation on Reducing Smoke Emissions from Solid Fuel Burning (Closing 19 March 2026)<br>
+      <strong>Date:</strong> 10 March 2026<br>
+      <strong>Classification:</strong> Technical Evidence / Statutory Policy Recommendation / Academic Evaluation
+    </div>
+  </div>
+</header>
+
+<!-- DEFRA ACTION BOX -->
+<div class="defra-box">
+  <h3>Defra Consultation — Closes 19 March 2026</h3>
+  <p>This dossier is a statutory response to the Consultation on Reducing Smoke Emissions from Solid Fuel Burning. You can read the consultation, download the full PDF, or submit your own response below.</p>
+  <div class="defra-actions">
+    <a href="https://consult.defra.gov.uk/domestic-burning/consultation-on-solid-fuel-burning/consultation/subpage.2026-01-13.3633732225/" target="_blank" class="btn-defra btn-defra-primary">Respond to Consultation →</a>
+    <a href="https://consult.defra.gov.uk/domestic-burning/consultation-on-solid-fuel-burning/" target="_blank" class="btn-defra btn-defra-secondary">Read Consultation</a>
+    <a href="https://consult.defra.gov.uk/domestic-burning/consultation-on-solid-fuel-burning/user_uploads/consultation-on-solid-fuel-burning-january-2026.pdf" target="_blank" class="btn-defra btn-defra-secondary">Download Defra PDF</a>
+    <a href="Technical_Evidence_Dossier_Defra_2026.docx" class="btn-defra btn-defra-download">↓ Download This Dossier (.docx)</a>
+  </div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<nav class="toc">
+  <h2>Contents</h2>
+  <ol class="toc-list">
+    <li><a href="#part1"><span class="toc-num">1</span><span class="toc-title">Executive Summary</span><span class="toc-arrow">→</span></a></li>
+    <li><a href="#part2"><span class="toc-num">2</span><span class="toc-title">The Regulatory Anomaly and the "Measurement Gap"</span><span class="toc-arrow">→</span></a></li>
+    <li><a href="#part3"><span class="toc-num">3</span><span class="toc-title">Typology of Masonry Heaters: Diverse Technologies</span><span class="toc-arrow">→</span></a></li>
+    <li><a href="#part4"><span class="toc-num">4</span><span class="toc-title">Scientific Evidence Review &amp; Fact-Checking</span><span class="toc-arrow">→</span></a></li>
+    <li><a href="#part5"><span class="toc-num">5</span><span class="toc-title">The Legal and Standards Framework (BS EN 15544 &amp; 15250)</span><span class="toc-arrow">→</span></a></li>
+    <li><a href="#part6"><span class="toc-num">6</span><span class="toc-title">Global Jurisdictional Precedents</span><span class="toc-arrow">→</span></a></li>
+    <li><a href="#part7"><span class="toc-num">7</span><span class="toc-title">The "French Model" — A Roadmap for the UK</span><span class="toc-arrow">→</span></a></li>
+    <li><a href="#part8"><span class="toc-num">8</span><span class="toc-title">Analysis of the "850° Grundofen" Position</span><span class="toc-arrow">→</span></a></li>
+    <li><a href="#part9"><span class="toc-num">9</span><span class="toc-title">Statutory Recommendations for Defra (2026)</span><span class="toc-arrow">→</span></a></li>
+    <li><a href="#part10"><span class="toc-num">10</span><span class="toc-title">Conclusion</span><span class="toc-arrow">→</span></a></li>
+  </ol>
+</nav>
+
+<!-- MAIN CONTENT -->
+<article class="content">
+
+</head>
+<body>
+
+<!-- HOME BAR -->
+<div class="home-bar">
+  <a href="index.html">← Back to Campaign Home</a>
+  <div class="home-bar-actions">
+    <a href="Technical_Evidence_Dossier_Online.html" class="btn-sm btn-download">Read Evidence Dossier</a>
+    <a href="https://consult.defra.gov.uk/domestic-burning/consultation-on-solid-fuel-burning/consultation/subpage.2026-01-13.3633732225/" target="_blank" class="btn-sm btn-respond">Respond to Defra →</a>
+  </div>
+</div>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-inner">
+    <div class="cover-tag">Submission to Defra 2026 Consultation</div>
+    <h1>Three Standards, One Loophole</h1>
+    <p class="cover-sub">How Three Incompatible Testing Regimes Leave a Gap in UK Smoke Control Regulation</p>
+    <div class="cover-meta">
+      <strong>Submitted to:</strong> Department for Environment, Food and Rural Affairs (Defra)<br>
+      <strong>Date:</strong> 17 March 2026<br>
+      <strong>Classification:</strong> Technical Evidence / Statutory Consultation Response
+    </div>
+  </div>
+</div>
+
+<article class="document">
+
+<!-- EXECUTIVE SUMMARY -->
+<div class="part-header" id="summary">
+  <h2>Executive Summary</h2>
+</div>
+
+<p>This report presents verified evidence that the UK's Smoke Control Area framework operates under three separate and incompatible emission testing regimes. These regimes use different pollutants, different measurement units, and different testing methodologies. The result is a regulatory structure in which the fuel and the appliance that burns it are tested under fundamentally different frameworks — and there is no published mechanism to reconcile them.</p>
+
+<p>The three regimes are:</p>
+
+<div class="label-para">
+  <p><span class="label">1. Authorised Fuels (BS 3841:1994):</span> Tests the fuel in a standard open fire. Collects total particulate mass using an electrostatic precipitator or dilution tunnel. Reports results in grams per hour (g/h). Pass/fail threshold: 5 g/h. No limits for CO, NOx, or OGC. Only additional requirement: 2% sulphur content cap (since 2020).</p>
+</div>
+
+<div class="label-para">
+  <p><span class="label">2. Defra Exempt Appliances (PD 6434:1969):</span> Tests the appliance. Pass/fail threshold: historically 5 g/h + 0.1g per 0.3 kW, reduced to 3 g/h for new certifications since January 2023 under the Environmental Improvement Plan. CO, VOC recorded but not pass/fail criteria. PM₂.₅ concentration not reported.</p>
+</div>
+
+<div class="label-para">
+  <p><span class="label">3. Ecodesign Stoves (EU 2015/1185, retained UK law):</span> Tests the appliance. Limits: PM 40 mg/m³, CO 1,500 mg/m³, NOx 200 mg/m³, OGC 120 mg/m³ (all at 13% O₂). Uses heated filter method which captures filterable PM only. Ricardo (2022) found this method likely understates PM₂.₅.</p>
+</div>
+
+<div class="key-figure">
+  <p><strong>The central finding:</strong> Regimes 1 and 2 report in g/h (emission rate). Regime 3 reports in mg/m³ (concentration). These units cannot be directly compared without knowing the flue gas volumetric flow rate under test conditions. No published government document reconciles them. It is currently impossible for any consumer, regulator, or researcher to directly compare the emission performance of an authorised fuel with the appliance designed to burn it.</p>
+</div>
+
+<!-- PART 1 -->
+<div class="part-header" id="part1">
+  <div class="part-num">Part 1</div>
+  <h2>Three Testing Regimes — A Technical Comparison</h2>
+</div>
+
+<h3>1.1 Regime 1: Authorised Fuel Testing (BS 3841:1994)</h3>
+<p>To be authorised for sale in UK Smoke Control Areas, a manufactured solid fuel must meet two criteria: an average smoke emission of less than 5 grams per hour when tested to BS 3841, and sulphur content of less than 2% by dry weight. There is no PM₂.₅ concentration limit. No CO, NOx, or OGC limits. No minimum thermal efficiency requirement.</p>
+
+<p>Ricardo Energy &amp; Environment (August 2022), in a report commissioned by Defra (<em>Evidence Review into Emission Assessments of Domestic House Stoves</em>, Report ED16697100), noted that total PM measurement can be considered equivalent to PM₂.₅ because most emitted PM from residential solid fuel appliances falls within the PM₂.₅ fraction. The issue is not that PM₂.₅ particles escape uncaptured — the issue is that the result is reported only as total smoke mass in g/h, with no PM₂.₅-specific limit, and CO, NOx, and OGC are not measured at all.</p>
+
+<h3>1.2 Regime 2: Defra Exempt Appliance Testing (PD 6434:1969)</h3>
+<p>The test protocol is PD 6434:1969 with smoke measurement per BS 3841-2:1994. The HETAS Appliance Exemption Application Guidance (SCA01 Issue 2.0, October 2019) specifies: 5 tests at rated output plus 5 at minimum output. Only smoke emission (g/h) determines pass or fail. CO, VOC, and other measurements do not affect the exemption decision. PM₂.₅ concentration is not reported. NOx is not measured. Since January 2023, the policy limit for new certifications has been reduced to 3 g/h.</p>
+
+<h3>1.3 Regime 3: Ecodesign (EU 2015/1185)</h3>
+<p>Since 1 January 2022, all new solid fuel local space heaters must comply with Ecodesign requirements: PM 40 mg/m³, CO 1,500 mg/m³, NOx 200 mg/m³, OGC 120 mg/m³ (closed-front stoves at 13% O₂), and thermal efficiency ≥65%. The primary test method uses a heated filter, which captures filterable PM only — and Defra's own evidence review found this likely understates PM₂.₅.</p>
+
+<!-- PART 2 -->
+<div class="part-header" id="part2">
+  <div class="part-num">Part 2</div>
+  <h2>The Comparability Problem — and the Open Fireplace Loophole</h2>
+</div>
+
+<p>The 2026 consultation proposes tighter limits for appliances. It does not propose any change to how fuels are tested or authorised. The fuel and the appliance continue to be assessed under incompatible frameworks. No mechanism exists to compare them.</p>
+
+<div class="key-figure">
+  <p><span class="label">The Open Fireplace Loophole:</span> An authorised fuel may be burned in any appliance in a Smoke Control Area, including an open fireplace, because the fuel's authorised status provides the legal defence. No appliance approval is required. An open fireplace is 10–20% thermally efficient; an Ecodesign stove is 65%+ efficient. For every unit of useful heat, an open fireplace releases 4–8 times more combustion products — yet Smoke Control Area regulations permit this combination.</p>
+</div>
+
+<!-- PART 3 -->
+<div class="part-header" id="part3">
+  <div class="part-num">Part 3</div>
+  <h2>Is Smokeless Fuel Actually Cleaner?</h2>
+</div>
+
+<p>The University of Surrey and King's College London field study (Scientific Reports, July 2025) measured real indoor air quality in five UK homes during winter. Open fireplaces produced median indoor PM₂.₅ of 38.4 µg/m³ — approximately 7.7 times the WHO annual guideline of 5 µg/m³. Smokeless coal increased ultrafine particle exposure by a factor of 1.5 compared with seasoned wood when burned in the same type of appliance, and had the highest PM₂.₅/PM₁₀ ratio (0.62 ± 0.29) of all fuels tested.</p>
+
+<div class="key-figure">
+  <p>The strongest argument is not that smokeless fuel is dirtier than wood in every scenario. The strongest argument is: (a) the current testing framework does not provide the data needed to make that comparison; (b) the open fireplace loophole permits the worst-case scenario; and (c) the 2026 consultation does not address either gap. All three are verifiable facts.</p>
+</div>
+
+<!-- PART 4 -->
+<div class="part-header" id="part4">
+  <div class="part-num">Part 4</div>
+  <h2>What the 2026 Consultation Proposes — and What It Does Not</h2>
+</div>
+
+<h3>What Is Proposed</h3>
+<div class="label-para">
+  <p><span class="label">Part 1:</span> Reduce smoke limit for new appliances from 3 g/h (reduced from 5 g/h in January 2023) to 1 g/h (+ 0.1g per 0.3 kW). Establish one testing regime. Introduce periodic retesting. 70% of stoves tested since 2018 already meet this. Estimated cumulative 1.08 kt PM₂.₅ abatement across 2027–2036 (1.9% of UK total PM₂.₅).</p>
+</div>
+<div class="label-para">
+  <p><span class="label">Part 2:</span> Mandatory A–C emissions labelling with health statement. Health labelling for manufactured solid fuels.</p>
+</div>
+<div class="label-para">
+  <p><span class="label">Part 3:</span> Increased penalties for non-compliance with 2020 Solid Fuels Regulations. Increased SCA fixed penalty notices.</p>
+</div>
+
+<h3>What Is NOT Proposed</h3>
+<div class="label-para">
+  <p><span class="label">No update to BS 3841:</span> Smokeless coal continues to be authorised under a test with no PM₂.₅ concentration limit and no CO, NOx, or OGC measurement.</p>
+</div>
+<div class="label-para">
+  <p><span class="label">No restriction on open fireplaces:</span> The least efficient and most polluting appliance type remains unrestricted in SCAs for anyone burning an authorised fuel.</p>
+</div>
+<div class="label-para">
+  <p><span class="label">No unit harmonisation:</span> The new 1 g/h limit uses g/h. Ecodesign uses mg/m³. No mechanism to compare them.</p>
+</div>
+<div class="label-para">
+  <p><span class="label">No update to PD 6434:1969:</span> The 57-year-old protocol remains the basis for Smoke Control Area appliance exemption.</p>
+</div>
+
+<!-- PART 5 -->
+<div class="part-header" id="part5">
+  <div class="part-num">Part 5</div>
+  <h2>The Health and Economic Context</h2>
+</div>
+
+<p>UK air pollution is equivalent to 29,000–43,000 deaths annually among adults over 30, with an economic cost exceeding £20 billion per year (Defra 2026, citing COMEAP). Domestic burning accounts for 20.1% of UK PM₂.₅ (2023) — comparable to road transport at 20.5%. PM₂.₅ from domestic burning increased by 36% between 2009 and 2020. Up to 1,500 non-essential deaths per year are attributable to domestic burning specifically, with direct NHS costs of up to £54 million annually.</p>
+
+<div class="label-para">
+  <p><span class="label">Ireland — Evidence That Fuel-Level Intervention Saves Lives:</span> Dublin's 1990 ban on bituminous coal sales produced a 70% reduction in black smoke concentrations and a 5.7% decrease in non-trauma death rates. Respiratory deaths fell by 15.5%. Approximately 8,000 premature deaths have been averted since 1990. Ireland intervened at the fuel level. The UK's 2026 consultation proposes intervention only at the appliance level.</p>
+</div>
+
+<!-- PART 6 -->
+<div class="part-header" id="part6">
+  <div class="part-num">Part 6</div>
+  <h2>Governance — Who Tests, Who Certifies, Who Advises</h2>
+</div>
+
+<p>HETAS administers both the Defra exempt appliance scheme and the authorised fuel certification process. HETAS is the direct successor to DSFAAS, the testing arm of the solid fuel industry during the National Coal Board era. Revenue is derived from industry certification and registration fees. HETAS also produces and maintains the Defra Smoke Control Area website (smokecontrol.defra.gov.uk).</p>
+
+<p>The Stove Industry Association (SIA, Companies House 06594851) and clearSkies Mark Ltd (Companies House 12311369) share the same registered address and directors. In November 2025, the Advertising Standards Authority upheld complaints against two SIA claims about stove emissions, finding that the data did not consistently demonstrate lower emissions across all key pollutants (ASA Ruling A25-1292745). All company and directorship information is sourced from Companies House public records.</p>
+
+<!-- PART 7 -->
+<div class="part-header" id="part7">
+  <div class="part-num">Part 7</div>
+  <h2>What This Response Asks of Defra</h2>
+</div>
+
+<div class="recommendation">
+  <div class="rec-num">Request 1</div>
+  <h4>Update the Fuel Authorisation Test</h4>
+  <p>Replace BS 3841:1994 as the sole basis for authorising fuels. Any fuel authorised for SCA use should demonstrate compliance with PM₂.₅, CO, NOx, and OGC limits in mg/m³ at a defined reference oxygen level.</p>
+</div>
+
+<div class="recommendation">
+  <div class="rec-num">Request 2</div>
+  <h4>Address the Open Fireplace Loophole</h4>
+  <p>The consultation should explicitly address whether authorised fuels should continue to be permitted in open fireplaces in SCAs. If yes, Defra should publish the PM₂.₅, CO, NOx, and OGC emission profile of authorised smokeless fuels when burned in open fires under real-world conditions.</p>
+</div>
+
+<div class="recommendation">
+  <div class="rec-num">Request 3</div>
+  <h4>Harmonise Measurement Units</h4>
+  <p>Adopt mg/m³ at 13% O₂ as the standard unit for all emission limits — appliances and fuels. The continued use of g/h for some regimes and mg/m³ for others prevents meaningful comparison.</p>
+</div>
+
+<div class="recommendation">
+  <div class="rec-num">Request 4</div>
+  <h4>Mandate PM₂.₅ Data on Fuel Packaging</h4>
+  <p>Every manufactured solid fuel should carry tested PM₂.₅ emission data in mg/m³, not just a generic health statement.</p>
+</div>
+
+<div class="recommendation">
+  <div class="rec-num">Request 5</div>
+  <h4>Strengthen Health Labelling</h4>
+  <p>The WHO states there is no safe level of PM₂.₅ exposure (WHO Global Air Quality Guidelines, 2021). The label should name specific health conditions and state that indoor burning is a significant source of household PM₂.₅ exposure.</p>
+</div>
+
+<div class="recommendation">
+  <div class="rec-num">Request 6</div>
+  <h4>Ensure Independent Testing Governance</h4>
+  <p>The body responsible for fuel authorisation and appliance exemption should be structurally independent of the solid fuel industry. The Defra Smoke Control Area website should be transferred to a body with no financial relationship with the regulated industry.</p>
+</div>
+
+<div class="recommendation">
+  <div class="rec-num">Request 7</div>
+  <h4>Commission an Independent Comparison Study</h4>
+  <p>Defra should commission testing of all currently authorised smokeless fuels for PM₂.₅ (mg/m³), CO, NOx, and OGC, using Ecodesign-equivalent methodology, in a range of appliance types including open fireplaces.</p>
+</div>
+
+<div class="recommendation">
+  <div class="rec-num">Request 8</div>
+  <h4>Learn from Ireland</h4>
+  <p>Study and adopt Ireland's fuel-level intervention model. Dublin's coal ban produced a 70% reduction in black smoke and a 5.7% reduction in mortality. The UK's 2026 consultation addresses only the appliance. The Irish evidence demonstrates that fuel-level regulation produces health benefits that appliance-level regulation alone cannot deliver.</p>
+</div>
+
+<!-- CONCLUSION -->
+<div class="conclusion">
+  <h2>Two Complementary Arguments, One Deadline</h2>
+  <div class="gold-line"></div>
+  <p>This response and the accompanying <a href="Technical_Evidence_Dossier_Online.html" style="color:var(--gold)">Technical Evidence Dossier</a> present two complementary cases to Defra. The Dossier demonstrates that the UK has no regulatory pathway for masonry heaters — the cleanest solid fuel technology available — and proposes BS EN 15544 recognition. This response demonstrates that the testing framework itself is internally contradictory, with three incompatible regimes leaving critical gaps in fuel regulation, open fireplace use, and measurement comparability.</p>
+  <p>Both responses share the same deadline. Both share the same goal: a testing and regulatory framework that accurately measures what matters — PM₂.₅, CO, NOx, OGC, and efficiency — in comparable units, for all fuels and all appliances.</p>
+  <div class="gold-line"></div>
+  <p style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px;margin-top:16px">Defra consultation closes 19 March 2026 (midday)</p>
+</div>
+
+<div style="text-align:center;margin:40px 0 20px">
+  <a href="https://consult.defra.gov.uk/domestic-burning/consultation-on-solid-fuel-burning/consultation/subpage.2026-01-13.3633732225/" target="_blank" class="btn-defra btn-defra-primary" style="font-size:16px;padding:14px 32px;background:var(--red-accent);color:#fff;border-radius:6px">Respond to the Defra Consultation →</a>
+</div>
+
+<div style="text-align:center;margin-bottom:24px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+  <a href="Technical_Evidence_Dossier_Online.html" style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:var(--gold)">Read the Evidence Dossier</a>
+  <span style="color:var(--border)">·</span>
+  <a href="https://consult.defra.gov.uk/domestic-burning/consultation-on-solid-fuel-burning/" target="_blank" style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:var(--gold)">Read the consultation</a>
+  <span style="color:var(--border)">·</span>
+  <a href="https://consult.defra.gov.uk/domestic-burning/consultation-on-solid-fuel-burning/user_uploads/consultation-on-solid-fuel-burning-january-2026.pdf" target="_blank" style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:var(--gold)">Download Defra PDF</a>
+</div>
+
+</article>
+
+<footer class="doc-footer">
+  <p>Campaign by <a href="https://www.stovemason.com" target="_blank" style="color:var(--gold)">StoveMason — Masonry Heater Builders Ltd</a></p>
+  <p style="margin-top:6px">Sources: BS 3841:1994 · PD 6434:1969 · EU 2015/1185 · Ricardo ED16697100 (2022) · Clean Air Act 1993 · HETAS SCA01 · ASA Ruling A25-1292745 · Clancy et al. (2002) The Lancet · University of Surrey/KCL (2025)</p>
+</footer>
+
+</body>
+</html>

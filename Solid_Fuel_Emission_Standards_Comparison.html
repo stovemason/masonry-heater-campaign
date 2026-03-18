@@ -243,7 +243,7 @@ pm+='<div class="insight">Per unit of heat delivered, the EPA-certified woodstov
 // ═══════════════════════════════════════════════════════════
 var factor='<div class="stitle"><h2>Emission Factors: PM Per Kilogram of Fuel Burned</h2><p>g/kg — the unit MHA and OMNI argue is most scientifically honest</p></div>';
 factor+='<div class="card"><div class="chart">';
-factor+=bar("MHA Normal (Lopez Labs)",0.97,8.5,C.mha);
+factor+=bar("MHA Normal (Lopez Labs)",2.9,8.5,C.mha);
 factor+=bar("MHA All Tests (103 runs)",1.27,8.5,"#E65100");
 factor+=bar("MHA Worst Case (cold+wet)",4.61,8.5,"#BF360C");
 factor+=bar("MHA Best Run (dry oak, warm)",0.45,8.5,"#FF8F00");
@@ -252,7 +252,7 @@ factor+=bar("OMNI Swedish Heater (ASTM)",2.35,8.5,C.us);
 factor+=bar("EPA Stove (low burn)",8.0,8.5,"#37474F");
 factor+=bar("EPA Stove (high burn)",3.0,8.5,"#546E7A");
 factor+='</div>';
-factor+='<div class="insight">Under normal conditions, masonry heaters produce 0.97 g/kg — comparable to pellet stoves. An EPA woodstove at low (damped) burn rate produces 8.0 g/kg — over 8× worse. Even at high burn rate, the stove is 3× higher. The g/kg metric reveals what g/hr conceals.</div></div>';
+factor+='<div class="insight">Under normal conditions, masonry heaters produce 2.9 g/kg average (best designs sub-1.0 g/kg) — comparable to pellet stoves. An EPA woodstove at low (damped) burn rate produces 8.0 g/kg — over 8× worse. Even at high burn rate, the stove is 3× higher. The g/kg metric reveals what g/hr conceals.</div></div>';
 
 factor+='<div class="card"><h3>Lopez Labs 185-Test Distribution</h3><div class="flex3">';
 [{l:"< 1.0 g/kg",p:"~50%",c:"#2E7D32",d:"Green zone — pellet stove range"},
