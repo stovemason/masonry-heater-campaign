@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Radiance Equation — Masonry Heater Science</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0B0C0E; --bg2:#111216; --bg3:#1A1B20;
+  --gold:#C4973B; --gold-light:#E8C373; --gold-dim:#8B6D2B;
+  --gold-glow:rgba(196,151,59,0.12);
+  --text:#D8D4CC; --text-dim:#7A776F; --text-bright:#F0ECE4;
+  --therapeutic:#E8913A; --window-blue:#3A7C9E;
+  --body-peak:#C45A5A; --green:#6BAA6A; --red:#AA5A5A;
+  --outside:#5A4A4A;
+  --massive:#E8C373; --medium:#8AB86A; --thin:#C45A5A;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;}
+body{min-height:100vh;overflow-x:hidden;}
+
+/* HEADER - large on all devices */
+.header{text-align:center;padding:clamp(28px,5vw,48px) clamp(16px,4vw,40px) clamp(12px,2vw,20px);}
+.header h1{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;font-size:clamp(32px,7vw,46px);
+  letter-spacing:clamp(2px,0.8vw,6px);text-transform:uppercase;
+  color:var(--text-bright);line-height:1.15;
+}
+.header .subtitle{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:clamp(10px,1.8vw,12px);letter-spacing:clamp(1.5px,0.4vw,3px);
+  text-transform:uppercase;color:var(--gold);margin-top:8px;
+}
+.header .divider{
+  width:100px;height:1px;margin:16px auto 0;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+
+.main{max-width:1400px;margin:0 auto;padding:12px clamp(12px,3vw,40px) 48px;}
+
+/* SECTION HEADINGS */
+.sec-head{
+  display:flex;align-items:center;gap:12px;margin:clamp(20px,3vw,36px) 0 12px;
+}
+.sec-num{
+  font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;
+  color:var(--gold);line-height:1;
+}
+.sec-title{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  letter-spacing:2.5px;text-transform:uppercase;color:var(--text-dim);
+}
+
+/* PANELS */
+.panel{
+  background:var(--bg2);border:1px solid #1E1F24;border-radius:2px;
+  padding:clamp(14px,2vw,24px);margin-bottom:16px;
+}
+.panel-explain{
+  font-size:clamp(11px,1.5vw,13px);color:var(--text-dim);line-height:1.7;
+  margin-bottom:16px;max-width:900px;
+}
+.panel-explain em{color:var(--text);font-style:normal;}
+.panel-explain strong{color:var(--text-bright);font-weight:500;}
+
+/* CANVASES */
+canvas{display:block;width:100%;cursor:crosshair;}
+
+/* TOOLTIP */
+.tooltip{
+  position:absolute;pointer-events:none;background:rgba(11,12,14,0.96);
+  border:1px solid var(--gold-dim);border-radius:3px;padding:10px 14px;
+  font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:var(--text);
+  z-index:100;opacity:0;transition:opacity 0.12s;max-width:260px;
+  backdrop-filter:blur(10px);line-height:1.5;
+}
+.tooltip.visible{opacity:1;}
+.tooltip b{color:var(--text-bright);font-weight:500;}
+.tooltip .tt-zone{
+  margin-top:5px;padding-top:5px;border-top:1px solid #2A2B30;
+  font-size:10px;font-family:'IBM Plex Mono',monospace;
+}
+
+/* CROSSHAIR */
+.xhair{
+  position:absolute;top:0;width:1px;height:100%;
+  background:rgba(196,151,59,0.2);pointer-events:none;display:none;
+}
+
+/* VERDICT BOX */
+.verdict{
+  background:var(--bg3);border:1px solid #2A2B30;border-radius:2px;
+  padding:clamp(16px,2vw,24px);margin-top:16px;
+  display:flex;align-items:flex-start;gap:16px;
+}
+.verdict-icon{
+  font-size:28px;flex-shrink:0;line-height:1;margin-top:2px;
+}
+.verdict h4{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;
+}
+.verdict p{font-size:12px;color:var(--text-dim);line-height:1.65;}
+.verdict p strong{color:var(--text-bright);font-weight:500;}
+
+/* LEGEND */
+.legend{
+  display:flex;gap:clamp(10px,2vw,24px);flex-wrap:wrap;
+  padding:8px 0 4px;
+}
+.legend-item{
+  display:flex;align-items:center;gap:5px;
+  font-size:clamp(9px,1.3vw,10px);font-family:'IBM Plex Mono',monospace;
+  letter-spacing:0.6px;color:var(--text-dim);
+}
+.legend-sw{width:18px;height:3px;border-radius:1px;}
+
+/* CONTROLS ROW */
+.ctrl-row{
+  display:flex;gap:12px;margin:12px 0 8px;flex-wrap:wrap;align-items:center;
+}
+.ctrl-row label{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);
+}
+.btn-group{display:flex;gap:3px;flex-wrap:wrap;}
+.tbtn{
+  padding:4px 10px;background:var(--bg3);border:1px solid #2A2B30;
+  border-radius:2px;cursor:pointer;font-family:'IBM Plex Mono',monospace;
+  font-size:10px;color:var(--text-dim);transition:all 0.12s;user-select:none;
+}
+.tbtn:hover{border-color:#3A3B40;color:var(--text);}
+.tbtn.on{border-color:var(--gold-dim);color:var(--gold);background:var(--gold-glow);}
+
+/* MATERIAL COMPARISON */
+.mat-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:16px;margin-top:16px;
+}
+.mat-card{
+  background:var(--bg2);border:1px solid #1E1F24;border-radius:2px;padding:16px;
+}
+.mat-card h4{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;
+  letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;
+}
+.mat-row{display:flex;align-items:center;gap:8px;padding:3px 0;}
+.mat-name{width:110px;font-size:11px;color:var(--text);flex-shrink:0;}
+.mat-bar{flex:1;height:4px;background:var(--bg3);border-radius:2px;overflow:hidden;}
+.mat-fill{height:100%;border-radius:2px;}
+.mat-val{
+  width:32px;text-align:right;font-family:'IBM Plex Mono',monospace;
+  font-size:10px;font-weight:500;color:var(--text-bright);
+}
+
+/* SOURCE CARDS */
+.sources{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:16px;margin-top:clamp(24px,3vw,36px);
+}
+.src-card{
+  background:var(--bg2);border:1px solid #1E1F24;border-radius:2px;
+  padding:16px;position:relative;overflow:hidden;
+}
+.src-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.src-card.s1::before{background:var(--therapeutic);}
+.src-card.s2::before{background:var(--window-blue);}
+.src-card.s3::before{background:var(--green);}
+.src-card.s4::before{background:#8A7AB8;}
+.src-card h5{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;
+  letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;
+}
+.src-card p{font-size:11px;color:var(--text-dim);line-height:1.5;margin-bottom:6px;}
+.src-card a{
+  font-size:10px;font-family:'IBM Plex Mono',monospace;
+  color:var(--gold-dim);text-decoration:none;word-break:break-all;
+}
+.src-card a:hover{text-decoration:underline;}
+
+.footer{
+  text-align:center;padding:28px 16px;
+  font-size:9px;font-family:'IBM Plex Mono',monospace;
+  color:var(--text-dim);letter-spacing:1.2px;
+  border-top:1px solid #1A1B20;margin-top:28px;
+}
+
+@media(max-width:600px){
+  canvas{cursor:default;}
+  .verdict{flex-direction:column;gap:8px;}
+  .mat-name{width:85px;font-size:10px;}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>The Radiance Equation</h1>
+  <div class="subtitle">The Science of Why Masonry Heaters Work</div>
+  <div class="divider"></div>
+</div>
+
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SECTION 1: SPECTRAL PROOF -->
+<!-- ============================================================ -->
+<div class="sec-head">
+  <div class="sec-num">1</div>
+  <div class="sec-title">The Wavelength — Every Masonry Heater Is Already Optimal</div>
+</div>
+
+<div class="panel">
+  <div class="panel-explain">
+    Every heated surface emits infrared radiation across a range of wavelengths. The <em>peak wavelength</em> depends on temperature — this is <strong>Wien's Displacement Law</strong>. 
+    The chart below shows this for masonry heater surfaces from 37°C (body temperature) to 90°C. 
+    The key finding: <em>all masonry heater operating temperatures produce peak emissions between 8–10 μm</em> — 
+    precisely inside the <strong>FIR therapeutic zone</strong> and the <strong>atmospheric window</strong> (where air doesn't absorb the radiation). 
+    <em>This isn't something you need to optimise. Physics guarantees it.</em>
+  </div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-sw" style="background:var(--therapeutic);opacity:.6"></div>FIR Therapy 8–10 μm</div>
+    <div class="legend-item"><div class="legend-sw" style="background:var(--window-blue);opacity:.4"></div>Atm. Window 8–14 μm</div>
+    <div class="legend-item"><div class="legend-sw" style="background:var(--outside);opacity:.4"></div>Absorbed by Air</div>
+  </div>
+  <div style="position:relative;overflow:hidden;">
+    <canvas id="specChart"></canvas>
+    <div class="xhair" id="xh1"></div>
+    <div class="tooltip" id="tt1"></div>
+  </div>
+  <div class="ctrl-row">
+    <label>Show curves:</label>
+    <div class="btn-group" id="specBtns"></div>
+  </div>
+  <div class="verdict" style="border-left:2px solid var(--green);">
+    <div class="verdict-icon">✓</div>
+    <div>
+      <h4 style="color:var(--green);">Confirmed by Physics</h4>
+      <p>At 45°C the peak is 9.1 μm. At 80°C it's 8.2 μm. That's a shift of less than 1 μm — <strong>both land squarely in the 8–10 μm FIR zone</strong>. 
+      You cannot build a masonry heater that misses this window. So the real engineering questions are: <strong>how much power, from how much surface, for how long?</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 2: THE 24-HOUR POWER CURVE -->
+<!-- ============================================================ -->
+<div class="sec-head">
+  <div class="sec-num">2</div>
+  <div class="sec-title">The 24-Hour Cycle — Where Design Actually Matters</div>
+</div>
+
+<div class="panel">
+  <div class="panel-explain">
+    This is where masonry heater engineering makes the difference. After a single firing, the surface heats up and then slowly cools. 
+    <strong>Total radiant power</strong> (Stefan-Boltzmann Law) is proportional to <em>temperature to the fourth power</em> — so a small drop in temperature means a large drop in output. 
+    The chart below shows three heater types over 24 hours. The <em>area under each curve</em> is the total therapeutic radiant energy delivered to you. 
+    A <strong>massive Grundofen</strong> with a large surface area delivers moderate, steady warmth for 20+ hours. 
+    A <strong>thin-walled system heater</strong> peaks high but falls fast — more energy wasted as convection during the hot phase, less useful radiation in the long tail. 
+    The <em>comfort zone</em> (green band) is where the surface is warm enough to heat the room but cool enough to touch.
+  </div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-sw" style="background:var(--massive)"></div>Massive Grundofen (2t+, 6m²)</div>
+    <div class="legend-item"><div class="legend-sw" style="background:var(--medium)"></div>Medium Kachelofen (1.2t, 4m²)</div>
+    <div class="legend-item"><div class="legend-sw" style="background:var(--thin)"></div>Thin System Heater (0.6t, 2.5m²)</div>
+  </div>
+  <div style="position:relative;overflow:hidden;">
+    <canvas id="timeChart"></canvas>
+    <div class="xhair" id="xh2"></div>
+    <div class="tooltip" id="tt2"></div>
+  </div>
+  <div class="ctrl-row">
+    <label>Y axis:</label>
+    <div class="btn-group" id="yAxisBtns">
+      <div class="tbtn on" data-mode="power">Radiant Power (W/m²)</div>
+      <div class="tbtn" data-mode="temp">Surface Temp (°C)</div>
+    </div>
+  </div>
+  <div class="verdict" style="border-left:2px solid var(--massive);">
+    <div class="verdict-icon">◉</div>
+    <div>
+      <h4 style="color:var(--massive);">The Real Equation</h4>
+      <p><strong>Total therapeutic radiance = Emissivity × Surface Area × ∫ T⁴ dt</strong><br>
+      This is why a massive clay/ceramic Grundofen with large surface area outperforms: high emissivity (ε 0.90+), maximum radiating surface (m²), 
+      and the longest time above the comfort threshold. The wavelength is already guaranteed. <strong>Mass, surface, and material are the variables you control.</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 3: MATERIAL -->
+<!-- ============================================================ -->
+<div class="sec-head">
+  <div class="sec-num">3</div>
+  <div class="sec-title">Material Emissivity — The Multiplier</div>
+</div>
+
+<div class="mat-grid">
+  <div class="mat-card">
+    <h4>High Emissivity (ε ≥ 0.85) — Radiant</h4>
+    <div id="matHigh"></div>
+  </div>
+  <div class="mat-card">
+    <h4>Medium (ε 0.60–0.84) — Mixed</h4>
+    <div id="matMid"></div>
+  </div>
+  <div class="mat-card">
+    <h4>Low (ε &lt; 0.60) — Convective</h4>
+    <div id="matLow"></div>
+  </div>
+</div>
+<div class="verdict" style="border-left:2px solid var(--gold);margin-top:16px;">
+  <div class="verdict-icon">ε</div>
+  <div>
+    <h4 style="color:var(--gold);">Why Clay and Ceramic Win</h4>
+    <p>At the same temperature, <strong>unglazed ceramic (ε 0.90) radiates 18× more infrared than polished steel (ε 0.05)</strong>. 
+    Even compared to a painted radiator (ε 0.84), ceramic surfaces deliver ~7% more radiant energy — and critically, 
+    their thermal mass keeps them radiating for hours longer. The combination of <strong>high emissivity + slow thermal conductivity + massive heat capacity</strong> 
+    is unique to traditional masonry heater materials.</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SOURCES -->
+<!-- ============================================================ -->
+<div class="sec-head">
+  <div class="sec-num">⌗</div>
+  <div class="sec-title">Sources & Evidence</div>
+</div>
+
+<div class="sources">
+  <div class="src-card s1">
+    <h5>FIR Therapeutic Wavelength</h5>
+    <p>Most biologically effective FIR wavelength identified as 8–10 μm. Shorter wavelengths (2–5 μm) may impede therapeutic effects.</p>
+    <a href="https://www.sciencedirect.com/science/article/pii/S1043661824002949" target="_blank" rel="noopener">Pharmacological Research, Vol. 207, 2024 — ScienceDirect</a>
+  </div>
+  <div class="src-card s1">
+    <h5>FIR Cardiovascular Benefits</h5>
+    <p>Systematic review: FIR therapy linked to increased eNOS expression, nitric oxide production, and improved endothelial function.</p>
+    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4935255/" target="_blank" rel="noopener">PMC4935255 — Journal of Cardiology &amp; Therapy, 2016</a>
+  </div>
+  <div class="src-card s2">
+    <h5>Atmospheric IR Window</h5>
+    <p>The 8–14 μm spectral region where Earth's atmosphere is relatively transparent to infrared radiation.</p>
+    <a href="https://en.wikipedia.org/wiki/Infrared_window" target="_blank" rel="noopener">Wikipedia — Infrared Window (physics)</a>
+  </div>
+  <div class="src-card s3">
+    <h5>Kachelofen Thermal Comfort</h5>
+    <p>Surface temperature 40–65°C identified as most comfortable range. Radiant heat warms bodies directly, not air.</p>
+    <a href="https://www.kachelofenwelt.de/ofentypen/grundofen" target="_blank" rel="noopener">Kachelofenwelt.de — Grundofen</a>
+  </div>
+  <div class="src-card s4">
+    <h5>Negative Ions &amp; Depression</h5>
+    <p>Meta-analysis: high-density negative air ionisation significantly associated with lower depression scores. No consistent effect on other outcomes.</p>
+    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3598548/" target="_blank" rel="noopener">PMC3598548 — BMC Psychiatry, 2013</a>
+  </div>
+  <div class="src-card s2">
+    <h5>Emissivity Reference Data</h5>
+    <p>Engineering reference tables for thermal emissivity coefficients of common building and heater materials.</p>
+    <a href="https://www.engineeringtoolbox.com/emissivity-coefficients-d_447.html" target="_blank" rel="noopener">Engineering Toolbox — Emissivity Coefficients</a>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  StoveMason Ltd · The Radiance Equation<br>
+  <span style="opacity:.5">Wien's Displacement Law · Stefan-Boltzmann Law · Planck Radiation Law · Newton's Law of Cooling<br>
+  NIST constants: σ = 5.670×10⁻⁸ W·m⁻²·K⁻⁴ · b = 2897.8 μm·K</span>
+</div>
+
+<script>
+// ============================================================
+// PHYSICS
+// ============================================================
+const h=6.626e-34, cc=2.998e8, kb=1.381e-23, sig=5.670e-8, bw=2897.8;
+function planck(l,TK){const m=l*1e-6;return(2*h*cc*cc/Math.pow(m,5))/(Math.exp(h*cc/(m*kb*TK))-1);}
+function peakWL(TC){return bw/(TC+273.15);}
+function SB(TC,e){return e*sig*Math.pow(TC+273.15,4);}
+function atmT(l){
+  if(l>=8&&l<=13)return .85+.05*Math.sin((l-8)/5*Math.PI);
+  if(l>13&&l<=14)return .85-(l-13)*.35;
+  if(l>=6&&l<8)return .15+.7*Math.pow((l-6)/2,2);
+  if(l>14&&l<=16)return .5-(l-14)*.2;
+  if(l>16)return Math.max(.05,.1-(l-16)*.015);
+  return Math.max(.05,.15-(6-l)*.03);
+}
+
+// ============================================================
+// SPECTRAL CHART (Panel 1)
+// ============================================================
+const specTemps=[
+  {t:37,label:'Body 37°C',color:'#C45A5A',on:true},
+  {t:45,label:'45°C',color:'#5A9A6A',on:true},
+  {t:55,label:'55°C',color:'#7AAA5A',on:true},
+  {t:65,label:'65°C',color:'#AAAA3A',on:true},
+  {t:80,label:'80°C',color:'#DA7A2A',on:true},
+  {t:90,label:'90°C',color:'#C45A3A',on:false},
+];
+
+const sc=document.getElementById('specChart');
+const sx=sc.getContext('2d');
+const LN=5,LX=20;
+let sdpr,scW,scH,spW,spH;
+const SP={top:28,right:10,bottom:40,left:48};
+
+function sResize(){
+  const w=sc.parentElement.clientWidth,h_=Math.min(380,Math.max(240,w*.38));
+  sdpr=devicePixelRatio||1;
+  sc.width=w*sdpr;sc.height=h_*sdpr;
+  sc.style.width=w+'px';sc.style.height=h_+'px';
+  sx.setTransform(sdpr,0,0,sdpr,0,0);
+  scW=w;scH=h_;spW=scW-SP.left-SP.right;spH=scH-SP.top-SP.bottom;
+}
+function slX(l){return SP.left+(l-LN)/(LX-LN)*spW;}
+function sxL(x){return LN+(x-SP.left)/spW*(LX-LN);}
+function svY(v,mx){return SP.top+spH-(v/mx)*spH;}
+
+function sDraw(){
+  let mx=0;
+  specTemps.filter(s=>s.on).forEach(s=>{
+    const v=planck(peakWL(s.t),s.t+273.15);if(v>mx)mx=v;
+  });
+  mx*=1.12;
+  sx.clearRect(0,0,scW,scH);
+  sx.fillStyle='#0E0F12';sx.fillRect(0,0,scW,scH);
+
+  // Grid
+  sx.strokeStyle='#1A1B20';sx.lineWidth=.5;
+  sx.font='10px "IBM Plex Mono",monospace';
+  sx.fillStyle='#4A4840';sx.textAlign='center';
+  for(let l=6;l<=20;l+=2){
+    const x=slX(l);
+    sx.beginPath();sx.moveTo(x,SP.top);sx.lineTo(x,SP.top+spH);sx.stroke();
+    sx.fillText(l+' μm',x,SP.top+spH+14);
+  }
+  for(let i=0;i<=4;i++){
+    const y=SP.top+spH*(1-i/4);
+    sx.beginPath();sx.moveTo(SP.left,y);sx.lineTo(SP.left+spW,y);sx.stroke();
+  }
+  // Axes labels
+  sx.save();sx.translate(12,SP.top+spH/2);sx.rotate(-Math.PI/2);
+  sx.fillStyle='#5A5850';sx.font='9px "IBM Plex Mono",monospace';sx.textAlign='center';
+  sx.fillText('ENERGY INTENSITY →',0,0);sx.restore();
+  sx.fillStyle='#5A5850';sx.font='9px "IBM Plex Mono",monospace';sx.textAlign='center';
+  sx.fillText('WAVELENGTH (μm)',SP.left+spW/2,scH-6);
+
+  // Zones
+  // Absorbed left
+  sx.fillStyle='rgba(90,74,74,.06)';sx.fillRect(slX(5),SP.top,slX(8)-slX(5),spH);
+  sx.strokeStyle='rgba(90,74,74,.07)';sx.lineWidth=1;
+  for(let x=slX(5);x<slX(8);x+=7){sx.beginPath();sx.moveTo(x,SP.top);sx.lineTo(x+spH*.25,SP.top+spH);sx.stroke();}
+  // Absorbed right
+  sx.fillStyle='rgba(90,74,74,.06)';sx.fillRect(slX(14),SP.top,slX(20)-slX(14),spH);
+  for(let x=slX(14);x<slX(20);x+=7){sx.beginPath();sx.moveTo(x,SP.top);sx.lineTo(x+spH*.25,SP.top+spH);sx.stroke();}
+  // Labels
+  if(spW>300){
+    sx.fillStyle='rgba(90,74,74,.3)';sx.font='8px "IBM Plex Mono",monospace';sx.textAlign='center';
+    sx.fillText('ABSORBED',(slX(5)+slX(8))/2,SP.top+spH-8);
+    sx.fillText('ABSORBED',(slX(14)+slX(20))/2,SP.top+spH-8);
+  }
+  // Atm window
+  sx.fillStyle='rgba(58,124,158,.04)';sx.fillRect(slX(8),SP.top,slX(14)-slX(8),spH);
+  sx.strokeStyle='rgba(58,124,158,.18)';sx.setLineDash([4,4]);
+  sx.beginPath();sx.moveTo(slX(8),SP.top);sx.lineTo(slX(8),SP.top+spH);sx.stroke();
+  sx.beginPath();sx.moveTo(slX(14),SP.top);sx.lineTo(slX(14),SP.top+spH);sx.stroke();
+  sx.setLineDash([]);
+  // FIR zone
+  sx.fillStyle='rgba(232,145,58,.06)';sx.fillRect(slX(8),SP.top,slX(10)-slX(8),spH);
+  sx.strokeStyle='rgba(232,145,58,.2)';sx.setLineDash([3,3]);
+  sx.beginPath();sx.moveTo(slX(10),SP.top);sx.lineTo(slX(10),SP.top+spH);sx.stroke();
+  sx.setLineDash([]);
+
+  // Curves
+  const step=.12;
+  const labelData=[];
+  specTemps.filter(s=>s.on).sort((a,b)=>b.t-a.t).forEach(s=>{
+    const TK=s.t+273.15;
+    sx.beginPath();sx.strokeStyle=s.color;
+    sx.globalAlpha=s.t===37?.5:.55;sx.lineWidth=s.t===37?1.5:1.5;
+    let f=true;
+    for(let l=LN;l<=LX;l+=step){
+      const x=slX(l),y=svY(planck(l,TK),mx);
+      f?(sx.moveTo(x,y),f=false):sx.lineTo(x,y);
+    }
+    sx.stroke();sx.globalAlpha=1;
+    // Peak dot
+    const pk=peakWL(s.t),pkV=planck(pk,TK);
+    if(pk>=LN&&pk<=LX){
+      sx.fillStyle=s.color;sx.globalAlpha=.6;
+      sx.beginPath();sx.arc(slX(pk),svY(pkV,mx),3,0,Math.PI*2);sx.fill();
+      sx.globalAlpha=1;
+      // Collect for label
+      labelData.push({x:slX(pk),y:svY(pkV,mx),pk:pk,label:s.label,color:s.color});
+    }
+  });
+
+  // Smart labels: place to the right, push apart
+  labelData.sort((a,b)=>a.y-b.y);
+  const LH=13,LG=4;
+  labelData.forEach((l,i)=>{l.fy=l.y-8;});
+  for(let i=1;i<labelData.length;i++){
+    const mn=labelData[i-1].fy+LH+LG;
+    if(labelData[i].fy<mn)labelData[i].fy=mn;
+  }
+  // Clamp
+  labelData.forEach(l=>{l.fy=Math.max(SP.top+6,Math.min(SP.top+spH-6,l.fy));});
+  // Draw
+  const labX=SP.left+spW-6;
+  labelData.forEach(l=>{
+    // Leader
+    sx.strokeStyle=l.color;sx.globalAlpha=.15;sx.lineWidth=.6;
+    sx.beginPath();sx.moveTo(labX-2,l.fy);sx.lineTo(l.x+4,l.y);sx.stroke();
+    // Text
+    sx.globalAlpha=.75;sx.fillStyle=l.color;
+    sx.font='400 9px "IBM Plex Mono",monospace';sx.textAlign='right';
+    sx.fillText(l.label+' · '+l.pk.toFixed(1)+'μm',labX,l.fy+3);
+    sx.globalAlpha=1;
+  });
+
+  // Hover
+  sc.onmousemove=sc.ontouchmove=function(e){
+    e.preventDefault&&e.preventDefault();
+    const r=sc.getBoundingClientRect();
+    const mx_=(e.touches?e.touches[0].clientX:e.clientX)-r.left;
+    const my_=(e.touches?e.touches[0].clientY:e.clientY)-r.top;
+    const xh=document.getElementById('xh1'),tt=document.getElementById('tt1');
+    if(mx_<SP.left||mx_>SP.left+spW){tt.classList.remove('visible');xh.style.display='none';return;}
+    xh.style.display='block';xh.style.left=mx_+'px';
+    const lam=sxL(mx_);
+    const inF=lam>=8&&lam<=10,inW=lam>=8&&lam<=14;
+    const tr=atmT(lam);
+    let h_=`<b>${lam.toFixed(1)} μm</b> — air transmits <b>${(tr*100).toFixed(0)}%</b>`;
+    if(inF)h_+=`<div class="tt-zone" style="color:var(--therapeutic)">● FIR therapeutic zone</div>`;
+    else if(inW)h_+=`<div class="tt-zone" style="color:var(--window-blue)">● Atmospheric window — reaches you</div>`;
+    else h_+=`<div class="tt-zone" style="color:var(--outside)">● Mostly absorbed by air</div>`;
+    tt.innerHTML=h_;tt.classList.add('visible');
+    let tx=mx_+12,ty=my_-8;
+    if(tx+240>scW)tx=mx_-248;
+    if(ty<0)ty=8;if(ty+80>scH)ty=my_-80;
+    tt.style.left=tx+'px';tt.style.top=ty+'px';
+  };
+  sc.onmouseleave=sc.ontouchend=function(){
+    document.getElementById('tt1').classList.remove('visible');
+    document.getElementById('xh1').style.display='none';
+  };
+}
+
+// Spec buttons
+const sbEl=document.getElementById('specBtns');
+specTemps.forEach(s=>{
+  const b=document.createElement('div');b.className='tbtn'+(s.on?' on':'');
+  b.textContent=s.label;b.style.borderLeftColor=s.color;
+  b.addEventListener('click',()=>{s.on=!s.on;b.classList.toggle('on',s.on);sDraw();});
+  sbEl.appendChild(b);
+});
+
+// ============================================================
+// TEMPORAL CHART (Panel 2)
+// ============================================================
+const tc=document.getElementById('timeChart');
+const tx2=tc.getContext('2d');
+let tdpr,tcW,tcH,tpW,tpH;
+const TP={top:28,right:10,bottom:40,left:56};
+let yMode='power'; // 'power' or 'temp'
+
+// Heater models: Newton's law of cooling
+// T(t) = T_room + (T_max - T_room) * heating_phase(t) * exp(-t/tau)
+const T_ROOM=20;
+const heaters=[
+  {name:'Massive Grundofen',color:'#E8C373',Tmax:58,tau:16,riseH:2.5,area:6,emiss:.90},
+  {name:'Medium Kachelofen',color:'#8AB86A',Tmax:72,tau:10,riseH:1.8,area:4,emiss:.88},
+  {name:'Thin System',color:'#C45A5A',Tmax:88,tau:5,riseH:1.2,area:2.5,emiss:.78},
+];
+
+function heaterTemp(h,t){
+  // Rise phase: sigmoid up to Tmax over riseH hours
+  // Cool phase: exponential decay
+  if(t<=0)return T_ROOM;
+  const riseEnd=h.riseH;
+  if(t<riseEnd){
+    // Sigmoid rise
+    const frac=t/riseEnd;
+    const s=frac*frac*(3-2*frac); // smoothstep
+    return T_ROOM+(h.Tmax-T_ROOM)*s;
+  }
+  // Cooling from peak
+  const dt=t-riseEnd;
+  return T_ROOM+(h.Tmax-T_ROOM)*Math.exp(-dt/h.tau);
+}
+
+function heaterPower(h,t){
+  const T=heaterTemp(h,t);
+  return h.emiss*sig*Math.pow(T+273.15,4)*h.area; // Total watts from entire surface
+}
+
+function tResize(){
+  const w=tc.parentElement.clientWidth,h_=Math.min(380,Math.max(240,w*.38));
+  tdpr=devicePixelRatio||1;
+  tc.width=w*tdpr;tc.height=h_*tdpr;
+  tc.style.width=w+'px';tc.style.height=h_+'px';
+  tx2.setTransform(tdpr,0,0,tdpr,0,0);
+  tcW=w;tcH=h_;tpW=tcW-TP.left-TP.right;tpH=tcH-TP.top-TP.bottom;
+}
+
+function tDraw(){
+  tx2.clearRect(0,0,tcW,tcH);
+  tx2.fillStyle='#0E0F12';tx2.fillRect(0,0,tcW,tcH);
+  const HOURS=24;
+  function tX(hr){return TP.left+hr/HOURS*tpW;}
+  function hrX(x){return(x-TP.left)/tpW*HOURS;}
+
+  // Compute y range
+  let yMax=0;
+  if(yMode==='power'){
+    heaters.forEach(h=>{for(let t=0;t<=HOURS;t+=.2){const p=heaterPower(h,t);if(p>yMax)yMax=p;}});
+  } else {
+    heaters.forEach(h=>{if(h.Tmax>yMax)yMax=h.Tmax;});
+    yMax+=5;
+  }
+  function tY(v){return TP.top+tpH-(v/yMax)*tpH;}
+
+  // Grid
+  tx2.strokeStyle='#1A1B20';tx2.lineWidth=.5;
+  tx2.font='10px "IBM Plex Mono",monospace';
+  tx2.fillStyle='#4A4840';tx2.textAlign='center';
+  for(let hr=0;hr<=24;hr+=4){
+    const x=tX(hr);
+    tx2.beginPath();tx2.moveTo(x,TP.top);tx2.lineTo(x,TP.top+tpH);tx2.stroke();
+    tx2.fillText(hr+'h',x,TP.top+tpH+14);
+  }
+  for(let i=0;i<=4;i++){
+    const y=TP.top+tpH*(1-i/4),v=yMax*i/4;
+    tx2.beginPath();tx2.moveTo(TP.left,y);tx2.lineTo(TP.left+tpW,y);tx2.stroke();
+    tx2.textAlign='right';
+    if(yMode==='power') tx2.fillText(Math.round(v)+'W',TP.left-4,y+4);
+    else tx2.fillText(Math.round(v)+'°',TP.left-4,y+4);
+  }
+  // Axes
+  tx2.save();tx2.translate(12,TP.top+tpH/2);tx2.rotate(-Math.PI/2);
+  tx2.fillStyle='#5A5850';tx2.font='9px "IBM Plex Mono",monospace';tx2.textAlign='center';
+  tx2.fillText(yMode==='power'?'TOTAL RADIANT OUTPUT (W) →':'SURFACE TEMPERATURE (°C) →',0,0);
+  tx2.restore();
+  tx2.fillStyle='#5A5850';tx2.font='9px "IBM Plex Mono",monospace';tx2.textAlign='center';
+  tx2.fillText('TIME AFTER FIRING',TP.left+tpW/2,tcH-6);
+
+  // Comfort zone band (40-65°C mapped to power or temp)
+  if(yMode==='temp'){
+    const y1=tY(65),y2=tY(40);
+    tx2.fillStyle='rgba(107,170,106,.06)';tx2.fillRect(TP.left,y1,tpW,y2-y1);
+    tx2.strokeStyle='rgba(107,170,106,.15)';tx2.lineWidth=1;tx2.setLineDash([4,4]);
+    tx2.beginPath();tx2.moveTo(TP.left,y1);tx2.lineTo(TP.left+tpW,y1);tx2.stroke();
+    tx2.beginPath();tx2.moveTo(TP.left,y2);tx2.lineTo(TP.left+tpW,y2);tx2.stroke();
+    tx2.setLineDash([]);
+    if(tpW>300){
+      tx2.fillStyle='rgba(107,170,106,.35)';tx2.font='8px "IBM Plex Mono",monospace';tx2.textAlign='right';
+      tx2.fillText('COMFORT ZONE 40–65°C',TP.left+tpW-4,(y1+y2)/2+3);
+    }
+  } else {
+    // Show comfort zone as power range for the massive heater (ε=0.90, area=6m²)
+    const pLo=.90*sig*Math.pow(40+273.15,4)*6;
+    const pHi=.90*sig*Math.pow(65+273.15,4)*6;
+    const y1=tY(pHi),y2=tY(pLo);
+    if(y2>TP.top&&y1<TP.top+tpH){
+      tx2.fillStyle='rgba(107,170,106,.04)';tx2.fillRect(TP.left,y1,tpW,y2-y1);
+      tx2.strokeStyle='rgba(107,170,106,.12)';tx2.lineWidth=1;tx2.setLineDash([4,4]);
+      tx2.beginPath();tx2.moveTo(TP.left,y1);tx2.lineTo(TP.left+tpW,y1);tx2.stroke();
+      tx2.beginPath();tx2.moveTo(TP.left,y2);tx2.lineTo(TP.left+tpW,y2);tx2.stroke();
+      tx2.setLineDash([]);
+      if(tpW>300){
+        tx2.fillStyle='rgba(107,170,106,.3)';tx2.font='8px "IBM Plex Mono",monospace';tx2.textAlign='right';
+        tx2.fillText('COMFORT ZONE',TP.left+tpW-4,(y1+y2)/2+3);
+      }
+    }
+  }
+
+  // Draw curves
+  const step=.1;
+  const endLabels=[];
+  heaters.forEach(ht=>{
+    tx2.beginPath();tx2.strokeStyle=ht.color;tx2.lineWidth=2;tx2.globalAlpha=.85;
+    let f=true;
+    for(let t=0;t<=HOURS;t+=step){
+      const val=yMode==='power'?heaterPower(ht,t):heaterTemp(ht,t);
+      const x=tX(t),y=tY(val);
+      f?(tx2.moveTo(x,y),f=false):tx2.lineTo(x,y);
+    }
+    tx2.stroke();
+    // Fill under curve
+    tx2.lineTo(tX(HOURS),TP.top+tpH);tx2.lineTo(tX(0),TP.top+tpH);tx2.closePath();
+    tx2.globalAlpha=.04;tx2.fillStyle=ht.color;tx2.fill();
+    tx2.globalAlpha=1;
+    // End label
+    const endVal=yMode==='power'?heaterPower(ht,HOURS):heaterTemp(ht,HOURS);
+    endLabels.push({y:tY(endVal),label:ht.name.split(' ')[0],color:ht.color});
+  });
+
+  // End labels (right edge, push apart)
+  endLabels.sort((a,b)=>a.y-b.y);
+  for(let i=1;i<endLabels.length;i++){
+    if(endLabels[i].y-endLabels[i-1].y<14)endLabels[i].y=endLabels[i-1].y+14;
+  }
+  endLabels.forEach(l=>{
+    tx2.fillStyle=l.color;tx2.globalAlpha=.6;
+    tx2.font='9px "IBM Plex Mono",monospace';tx2.textAlign='right';
+    tx2.fillText(l.label,TP.left+tpW-2,l.y-4);
+    tx2.globalAlpha=1;
+  });
+
+  // Hover
+  tc.onmousemove=tc.ontouchmove=function(e){
+    e.preventDefault&&e.preventDefault();
+    const r=tc.getBoundingClientRect();
+    const mx=(e.touches?e.touches[0].clientX:e.clientX)-r.left;
+    const my=(e.touches?e.touches[0].clientY:e.clientY)-r.top;
+    const xh=document.getElementById('xh2'),tt=document.getElementById('tt2');
+    if(mx<TP.left||mx>TP.left+tpW){tt.classList.remove('visible');xh.style.display='none';return;}
+    xh.style.display='block';xh.style.left=mx+'px';
+    const hr=hrX(mx);
+    let htm=`<b>${hr.toFixed(1)} hours</b> after firing`;
+    heaters.forEach(ht=>{
+      const tmp=heaterTemp(ht,hr);
+      const pwr=heaterPower(ht,hr);
+      const nm=ht.name.split('(')[0].trim();
+      htm+=`<div style="margin-top:4px;color:${ht.color}">`
+        +`<b>${nm}</b>: ${tmp.toFixed(0)}°C · ${Math.round(pwr)} W total</div>`;
+    });
+    tt.innerHTML=htm;tt.classList.add('visible');
+    let tx_=mx+12,ty_=my-8;
+    if(tx_+240>tcW)tx_=mx-248;
+    if(ty_<0)ty_=8;if(ty_+120>tcH)ty_=my-120;
+    tt.style.left=tx_+'px';tt.style.top=ty_+'px';
+  };
+  tc.onmouseleave=tc.ontouchend=function(){
+    document.getElementById('tt2').classList.remove('visible');
+    document.getElementById('xh2').style.display='none';
+  };
+}
+
+// Y axis toggle
+document.querySelectorAll('#yAxisBtns .tbtn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    yMode=b.dataset.mode;
+    document.querySelectorAll('#yAxisBtns .tbtn').forEach(x=>x.classList.toggle('on',x.dataset.mode===yMode));
+    tDraw();
+  });
+});
+
+// ============================================================
+// MATERIALS
+// ============================================================
+const mats=[
+  {n:'Clay Plaster',e:.91,c:'#C49468',g:'high'},
+  {n:'Red Brick',e:.93,c:'#B86B4A',g:'high'},
+  {n:'Unglazed Ceramic',e:.90,c:'#E8C373',g:'high'},
+  {n:'Glazed Tile',e:.88,c:'#9AB8C8',g:'high'},
+  {n:'Soapstone',e:.87,c:'#8A9A8A',g:'high'},
+  {n:'Radiator Paint',e:.84,c:'#7888AA',g:'mid'},
+  {n:'Fireclay',e:.78,c:'#AA9A78',g:'mid'},
+  {n:'Cast Iron oxid.',e:.64,c:'#6A7A8A',g:'mid'},
+  {n:'Steel polished',e:.05,c:'#4A5A6A',g:'low'},
+  {n:'Aluminium pol.',e:.04,c:'#4A5A5A',g:'low'},
+];
+function drawMats(){
+  ['high','mid','low'].forEach(g=>{
+    const el=document.getElementById(g==='high'?'matHigh':g==='mid'?'matMid':'matLow');
+    if(!el)return;el.innerHTML='';
+    mats.filter(m=>m.g===g).forEach(m=>{
+      const r=document.createElement('div');r.className='mat-row';
+      r.innerHTML=`<div class="mat-name">${m.n}</div>`
+        +`<div class="mat-bar"><div class="mat-fill" style="width:${m.e*100}%;background:${m.c}"></div></div>`
+        +`<div class="mat-val">${m.e.toFixed(2)}</div>`;
+      el.appendChild(r);
+    });
+  });
+}
+
+// ============================================================
+// INIT
+// ============================================================
+function init(){sResize();tResize();sDraw();tDraw();drawMats();}
+window.addEventListener('resize',init);
+init();
+</script>
+</body>
+</html>
